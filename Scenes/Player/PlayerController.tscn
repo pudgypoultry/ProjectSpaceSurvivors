@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bd2dhg5c7cps"]
 
-[ext_resource type="Script" uid="uid://dmdnn5el83uhh" path="res://PlayerController.gd" id="1_2be4l"]
+[ext_resource type="Script" uid="uid://dmdnn5el83uhh" path="res://Scenes/Player/PlayerController.gd" id="1_2be4l"]
 [ext_resource type="PackedScene" uid="uid://bv2oii3anjsyg" path="res://Assets/player_ship.tscn" id="2_3mwrl"]
 [ext_resource type="AudioStream" uid="uid://l405xqglb7et" path="res://Audio/autocannon.mp3" id="3_y00gc"]
 

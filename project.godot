@@ -15,6 +15,10 @@ run/main_scene="uid://w4awhwa35ma4"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/andal/GodotProjects/quackhacks-2025/Movies/Space.avi"
+
 [filesystem]
 
 import/blender/enabled=false

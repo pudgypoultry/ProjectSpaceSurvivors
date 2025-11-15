@@ -1,4 +1,5 @@
 extends Node3D
+class_name Weapon
 
 @export var fire_rate : float = 1.0
 @export var spawn_positions : Array[Vector3] = []

@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://w4awhwa35ma4"]
+[gd_scene load_steps=5 format=3 uid="uid://w4awhwa35ma4"]
 
 [ext_resource type="PackedScene" uid="uid://bd2dhg5c7cps" path="res://PlayerController.tscn" id="1_3h184"]
 [ext_resource type="PackedScene" path="res://stars_environment.tscn" id="1_cojph"]
+[ext_resource type="PackedScene" uid="uid://chtonxaegbo54" path="res://mainmenu.tscn" id="1_p7lbm"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_cojph"]
 
 [node name="Sandbox" type="Node3D"]
+
+[node name="Menu" parent="." instance=ExtResource("1_p7lbm")]
 
 [node name="StarsEnvironment" parent="." instance=ExtResource("1_cojph")]
 

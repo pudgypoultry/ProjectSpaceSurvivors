@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://oruhk8s3cav1"]
+
+[ext_resource type="PackedScene" uid="uid://btfg88k0b6utm" path="res://BlenderFiles/GLBs/ship_02.glb" id="1_tmvy6"]
+
+[node name="EnemyShip02" type="Node3D"]
+
+[node name="ship_02" parent="." instance=ExtResource("1_tmvy6")]

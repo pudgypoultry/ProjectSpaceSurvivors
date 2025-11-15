@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://bebkpupgom0dp"]
+[gd_scene load_steps=2 format=3 uid="uid://bebkpupgom0dp"]
+
+[ext_resource type="Script" uid="uid://dl5pybno11cxm" path="res://Scenes/Weapon.gd" id="1_c2fmn"]
 
 [node name="Weapons_Parent" type="Node3D"]
+script = ExtResource("1_c2fmn")

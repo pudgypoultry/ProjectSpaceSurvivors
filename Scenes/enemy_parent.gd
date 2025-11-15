@@ -1,10 +1,8 @@
 extends Node
-class_name EnemyParent
+class_name Enemy
 
 # signals
 signal died
-died.connect()
-# maybe signal what enemy type died, maybe don't have to
 
 # export for balancing
 @export_group("Stats")
@@ -14,12 +12,13 @@ died.connect()
 # stats
 var current_health: float
 var is_dead: bool = false
-var weapon = null
-var behavior = null
+var weapon = Node
+var behavior = Node
 # enemies have health, speed, weapon they have, movement behavior
 
 func _ready():
-	current_heatlh = max_health
+	current_health = max_health
+	died.connect(dying)
 	initialize()
 
 # for special characteristics of non-base class
@@ -29,12 +28,13 @@ func initialize():
 func _physics_process(delta):
 	if is_dead:
 		return
-	
 		
-func died():
-	
+func dying():
+	is_dead = true
+	died.emit()
+	print("Died!")
 		
-	
-	
-	
-	
+func take_damage(dmg: float):
+	current_health -= dmg
+	if current_health <= 0:
+		dying()

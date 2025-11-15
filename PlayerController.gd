@@ -11,6 +11,7 @@ extends Node3D
 @export var nose_rotation_speed : float = 1.0
 @export var roll_rotation_speed : float = 1.0
 
+
 var direction : Vector3
 var canAct : bool = true
 
@@ -51,4 +52,5 @@ func FireWeapons(delta):
 		if currentTimer > weapon.fireRate:
 			weapon.Fire()
 			equipped_weapons[weapon] = 0
+		
 		

@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3 uid="uid://chtonxaegbo54"]
+
+[ext_resource type="Script" uid="uid://cvuqk6nkfmmx0" path="res://control.gd" id="1_cmhrf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2nv2"]
+bg_color = Color(0.938266, 0.355157, 0.634376, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_offset = Vector2(0, 3.5)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cmhrf")
+
+[node name="startbutton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.217
+anchor_top = 0.287
+anchor_right = 0.759
+anchor_bottom = 0.5
+offset_left = 4.01599
+offset_top = 0.0240021
+offset_right = -0.368042
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_d2nv2")
+text = "Start"
+
+[node name="quitbutton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.217
+anchor_top = 0.753
+anchor_right = 0.762
+anchor_bottom = 0.978
+offset_left = 22.016
+offset_top = 0.0559998
+offset_right = 0.175964
+offset_bottom = 0.255981
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_d2nv2")
+text = "Quit
+"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.179
+offset_bottom = 0.00799561
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.0627451, 1, 0, 1)
+theme_override_font_sizes/font_size = 76
+theme_override_styles/normal = SubResource("StyleBoxFlat_d2nv2")
+text = "Space Survivor"
+
+[connection signal="pressed" from="startbutton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="quitbutton" to="." method="_on_quitbutton_pressed"]
+[connection signal="pressed" from="quitbutton" to="." method="_on_button_pressed"]

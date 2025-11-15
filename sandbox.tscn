@@ -12,24 +12,24 @@ ambient_light_color = Color(1, 1, 1, 1)
 [node name="Sandbox" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.63913035, -0.43452632, 0.6345859, 0, 0.82510364, 0.5649814, -0.76909846, -0.36109677, 0.52734876, 0, 0, 0)
+transform = Transform3D(0.63913, -0.434526, 0.634586, 0, 0.825104, 0.564981, -0.769098, -0.361097, 0.527349, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2315865, 1.4988369, 2.3458283)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.23159, 1.49884, 2.34583)
 mesh = SubResource("SphereMesh_cojph")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9154952, 1.4988369, 7.8209267)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9155, 1.49884, 7.82093)
 mesh = SubResource("SphereMesh_cojph")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.961777, 4.818954, 10.491139)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.96178, 4.81895, 10.4911)
 mesh = SubResource("SphereMesh_cojph")
 
 [node name="PlayerShip" parent="." instance=ExtResource("1_3h184")]
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.2071905)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.20719)
 mesh = SubResource("SphereMesh_cojph")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

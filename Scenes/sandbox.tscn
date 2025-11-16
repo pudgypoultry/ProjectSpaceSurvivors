@@ -14,6 +14,7 @@
 [node name="Levelup" parent="." instance=ExtResource("1_koc8j")]
 
 [node name="Menu" parent="." instance=ExtResource("1_p7lbm")]
+process_mode = 3
 
 [node name="StarsEnvironment" parent="." instance=ExtResource("1_cojph")]
 

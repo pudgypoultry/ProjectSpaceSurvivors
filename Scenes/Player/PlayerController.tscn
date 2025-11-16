@@ -39,7 +39,6 @@ var equipped_passives = []
 
 
 func _ready() -> void:
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pass
 
 
@@ -94,6 +93,13 @@ func FireWeapons(delta):
 			equipped_weapons[weapon] = 0
 		else:
 			equipped_weapons[weapon] = currentTimer
+
+
+func SetMouseMode(paused : bool):
+	if paused:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 "
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2rbph"]

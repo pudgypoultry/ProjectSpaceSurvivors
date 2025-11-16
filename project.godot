@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="quackhacks-2025"
-run/main_scene="uid://k1ilv66v2q2m"
+run/main_scene="uid://bow4pmvgil7xa"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

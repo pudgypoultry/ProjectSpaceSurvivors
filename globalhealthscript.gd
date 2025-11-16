@@ -8,5 +8,5 @@ func damage_player(damage:float) -> void:
 		# player dead
 		
 		get_tree().paused= false
-		get_tree().change_scene_to_file("res://Scenes/UI/gameover.tscn")
+		get_tree().change_scene_to_file.call_deferred("res://Scenes/UI/gameover.tscn")
 		

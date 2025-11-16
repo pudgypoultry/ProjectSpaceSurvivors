@@ -40,5 +40,8 @@ func _on_body_entered(body: Node3D) -> void:
 
 func MissileBehavior(delta):
 	timer += delta
-	position = lerp(startPosition, currentTarget.position, timer / life_time)
-	look_at(currentTarget.position)
+	if currentTarget:
+		position = lerp(startPosition, currentTarget.position, timer / life_time)
+		look_at(currentTarget.position)
+	else:
+		position += -transform.basis.z * delta

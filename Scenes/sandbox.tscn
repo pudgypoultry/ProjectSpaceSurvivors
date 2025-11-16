@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://k1ilv66v2q2m"]
+[gd_scene load_steps=7 format=3 uid="uid://dsy7m6hgucriu"]
 
 [ext_resource type="PackedScene" uid="uid://bd2dhg5c7cps" path="res://Scenes/Player/PlayerController.tscn" id="1_3h184"]
 [ext_resource type="PackedScene" uid="uid://dkel3gcb3p1k0" path="res://Scenes/Environment/stars_environment.tscn" id="1_cojph"]
@@ -11,6 +11,7 @@
 [node name="Sandbox" type="Node3D"]
 
 [node name="Menu" parent="." instance=ExtResource("1_p7lbm")]
+process_mode = 3
 
 [node name="StarsEnvironment" parent="." instance=ExtResource("1_cojph")]
 

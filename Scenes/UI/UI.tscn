@@ -1,0 +1,195 @@
+[gd_scene load_steps=8 format=3 uid="uid://clp300niww6c5"]
+
+[ext_resource type="PackedScene" uid="uid://chtonxaegbo54" path="res://Scenes/UI/mainmenu.tscn" id="2_jevvu"]
+[ext_resource type="FontFile" uid="uid://jbbxmrffrxqq" path="res://Assets/Fonts/m5x7.ttf" id="3_w8wei"]
+[ext_resource type="AudioStream" uid="uid://q6iylgd1j0a2" path="res://Audio/buttonpress.mp3" id="4_8wlyu"]
+[ext_resource type="AudioStream" uid="uid://vdd7r2c04aob" path="res://Audio/hover-button-287656.mp3" id="5_y85ht"]
+[ext_resource type="PackedScene" uid="uid://c1yablwjh8wrk" path="res://Scenes/UI/pausemenu.tscn" id="6_nqsl3"]
+
+[sub_resource type="GDScript" id="GDScript_oqha6"]
+script/source = "extends Control
+
+# Optional: if you want to reload or change scenes later
+@export var main_scene_path: String = \"res://sandbox.tscn\"
+@onready var main_menu: Control = $MainMenu
+
+@onready var pause_menu: Control = $PauseMenu
+
+
+func _ready() -> void:
+	# Game starts at the MAIN MENU
+	show_main_menu()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(\"pause\"):
+		# If main menu is up, ignore ESC
+		if main_menu.visible:
+			return
+
+		# If pause menu is up, ESC resumes
+		if pause_menu.visible:
+			_resume_game()
+		else:
+			_show_pause_menu()
+
+
+# -------------------------
+# State helpers
+# -------------------------
+
+func show_main_menu() -> void:
+	main_menu.show()
+	pause_menu.hide()
+	get_tree().paused = true   # freeze the game while in main menu
+
+
+func _start_game() -> void:
+	main_menu.hide()
+	pause_menu.hide()
+	get_tree().paused = false  # unpause when game starts
+
+
+func _show_pause_menu() -> void:
+	pause_menu.show()
+	main_menu.hide()
+	get_tree().paused = true   # pause game
+
+
+func _resume_game() -> void:
+	pause_menu.hide()
+	get_tree().paused = false  # unpause game
+
+
+func _quit_game() -> void:
+	get_tree().quit()
+	# OR if you want to reload a main menu scene:
+	# get_tree().paused = false
+	# get_tree().change_scene_to_file(main_scene_path)
+
+
+# -------------------------
+# Button signal callbacks
+# (wire these up in the editor)
+# -------------------------
+
+# Main menu: Start button
+func _on_start_button_pressed() -> void:
+	_start_game()
+
+
+# Main menu: Quit button
+func _on_quit_button_pressed() -> void:
+	_quit_game()
+
+
+# Pause menu: Resume button
+func _on_resume_button_pressed() -> void:
+	_resume_game()
+
+
+# Pause menu: Quit button (from pause)
+func _on_pause_quit_button_pressed() -> void:
+	_quit_game()
+	# or, if instead you want to go back to main menu without exiting:
+	# show_main_menu()
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6hof"]
+bg_color = Color(0.938266, 0.355157, 0.634376, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_offset = Vector2(0, 3.5)
+
+[node name="Ui" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = SubResource("GDScript_oqha6")
+
+[node name="MainMenu" parent="." instance=ExtResource("2_jevvu")]
+layout_mode = 1
+script = null
+
+[node name="start" type="Button" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.036
+anchor_top = 0.674
+anchor_right = 0.251
+anchor_bottom = 0.802
+offset_left = 0.527996
+offset_top = 0.247986
+offset_right = -0.152008
+offset_bottom = 0.303955
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.513726, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_w8wei")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_u6hof")
+text = "Start"
+
+[node name="quit" type="Button" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.033
+anchor_top = 0.846
+anchor_right = 0.253
+anchor_bottom = 0.978
+offset_left = -0.0159988
+offset_top = -0.208008
+offset_right = 0.543976
+offset_bottom = -4.74402
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.580615, 0.0519404, 0.322269, 1)
+theme_override_fonts/font = ExtResource("3_w8wei")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_u6hof")
+text = "Quit
+"
+
+[node name="title" type="Button" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.093
+anchor_top = 0.005
+anchor_right = 0.955
+anchor_bottom = 0.179
+offset_left = -0.136002
+offset_top = -0.24
+offset_right = -0.160034
+offset_bottom = 1.008
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.0627451, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_w8wei")
+theme_override_font_sizes/font_size = 143
+theme_override_styles/normal = SubResource("StyleBoxFlat_u6hof")
+text = "Space Survivor"
+
+[node name="click2" type="AudioStreamPlayer" parent="MainMenu"]
+stream = ExtResource("4_8wlyu")
+
+[node name="hover2" type="AudioStreamPlayer" parent="MainMenu"]
+stream = ExtResource("5_y85ht")
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_nqsl3")]
+layout_mode = 1
+script = null
+
+[node name="resume" type="Button" parent="PauseMenu"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="quit" type="Button" parent="PauseMenu"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[connection signal="pressed" from="MainMenu/start" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MainMenu/start" to="." method="_on_pause_quit_button_pressed"]
+[connection signal="pressed" from="MainMenu/start" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="MainMenu/start" to="." method="_on_quit_button_pressed"]

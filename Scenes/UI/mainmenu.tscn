@@ -88,5 +88,5 @@ stream = ExtResource("4_3pujl")
 [connection signal="mouse_entered" from="startbutton" to="." method="_on_startbutton_mouse_entered"]
 [connection signal="pressed" from="startbutton" to="." method="_on_button_pressed"]
 [connection signal="mouse_entered" from="quitbutton" to="." method="_on_startbutton_mouse_entered"]
-[connection signal="pressed" from="quitbutton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="quitbutton" to="." method="_on_quitbutton_pressed"]
+[connection signal="pressed" from="quitbutton" to="." method="_on_button_pressed"]

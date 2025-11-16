@@ -11,7 +11,33 @@
 [node name="PlayerShip" type="Node3D"]
 script = ExtResource("1_abx53")
 
-[node name="laser" parent="." instance=ExtResource("2_abx53")]
+[node name="Lasers" type="Node3D" parent="."]
+
+[node name="laser" parent="Lasers" instance=ExtResource("2_abx53")]
+
+[node name="laser3" parent="Lasers" instance=ExtResource("2_abx53")]
+transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, -0.38920966, 0, 0.12075937)
+
+[node name="laser2" parent="Lasers" instance=ExtResource("2_abx53")]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 0.43618375, 0, 0.1179229)
+
+[node name="laser4" parent="Lasers" instance=ExtResource("2_abx53")]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0.020591838, 0.0027109683)
+
+[node name="laser5" parent="Lasers" instance=ExtResource("2_abx53")]
+transform = Transform3D(0.96592593, 0, 0.25881907, 0.0669873, 0.9659258, -0.25, -0.25000003, 0.25881907, 0.9330128, -0.38920966, -0.010662985, 0.11935556)
+
+[node name="laser6" parent="Lasers" instance=ExtResource("2_abx53")]
+transform = Transform3D(0.96592593, 0, -0.25881907, -0.0669873, 0.9659258, -0.25, 0.25000003, 0.25881907, 0.9330128, 0.43618375, -0.009928854, 0.11661574)
+
+[node name="laser7" parent="Lasers" instance=ExtResource("2_abx53")]
+transform = Transform3D(1, 0, 0, 0, 0.96592593, 0.25881907, 0, -0.25881907, 0.96592593, 0, -0.02059184, 0.0027109683)
+
+[node name="laser8" parent="Lasers" instance=ExtResource("2_abx53")]
+transform = Transform3D(0.9659259, -3.8567047e-09, 0.25881904, -0.0669873, 0.9659257, 0.25, -0.25, -0.25881898, 0.93301266, -0.38920966, 0.010662986, 0.11935556)
+
+[node name="laser9" parent="Lasers" instance=ExtResource("2_abx53")]
+transform = Transform3D(0.9659259, 3.8567047e-09, -0.25881904, 0.0669873, 0.9659257, 0.25, 0.25, -0.25881898, 0.93301266, 0.43618375, 0.009928853, 0.11661574)
 
 [node name="PlayerShipModel" parent="." instance=ExtResource("2_3mwrl")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

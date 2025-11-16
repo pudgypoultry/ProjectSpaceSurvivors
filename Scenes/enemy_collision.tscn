@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bheh0wje7wt7v"]
+[gd_scene load_steps=3 format=3 uid="uid://bheh0wje7wt7v"]
 
 [ext_resource type="Script" uid="uid://dixjk6jso6fvg" path="res://Scenes/enemy_collision.gd" id="1_o4pmv"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_o4pmv"]
+radius = 0.4092227
+
 [node name="EnemyCollision" type="Node3D"]
 script = ExtResource("1_o4pmv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("SphereShape3D_o4pmv")

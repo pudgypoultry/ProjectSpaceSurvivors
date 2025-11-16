@@ -10,6 +10,7 @@ extends Node3D
 @export var player_health : float = 100.0
 @export var nose_rotation_speed : float = 1.0
 @export var roll_rotation_speed : float = 1.0
+signal player_killed()
 
 
 var direction : Vector3
@@ -53,4 +54,11 @@ func FireWeapons(delta):
 			weapon.Fire()
 			equipped_weapons[weapon] = 0
 		
-		
+
+
+func _on_body_3d_body_entered(body: Node) -> void:
+	# player Dead
+	self.hide()
+	player_killed.emit()
+	get_tree().paused = true
+	

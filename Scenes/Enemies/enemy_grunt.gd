@@ -12,4 +12,5 @@ func initialize():
 		behavior = get_node_or_null("Behavior")
 
 func dying():
+	Globalpointscript.score +=100
 	super.dying()

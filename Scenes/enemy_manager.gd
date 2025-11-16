@@ -5,6 +5,7 @@ extends Node3D
 var spawn_range:float = 10
 var player_ship: Node3D
 var enemies_in_play = []
+var total_enemies = 0
 
 # manage timers, spawning, stopping on menus
 
@@ -30,6 +31,7 @@ func SpawnEnemy(enemy_index:int) -> void:
 	enemies_in_play.append(newscene)
 	# update location
 	newscene.position = spawn_pos
+	total_enemies += 1
 
 var tmp:float = 0
 func _process(delta: float) -> void:

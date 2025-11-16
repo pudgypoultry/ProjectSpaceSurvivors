@@ -30,6 +30,7 @@ func initialize():
 	
 func dying():
 	is_dead = true
+	EnemyManager.total_enemies -= 1
 	queue_free()
 	
 		

@@ -1,11 +1,15 @@
-extends Node
+extends Node3D
 class_name Missile
 
 @export_category("Game Rules")
 @export var movement_speed : float = 1.0
 @export var damage : float = 10.0
 @export var acceleration : float = 0.0
-@export var life_time : float = 10.0
+@export var life_time : float = 5.0
+
+var currentTarget
+var startPosition
+var timer = 0.0
 # @export var sound_effect : Audio
 # @export var particle_effect : GPUParticles3D
 
@@ -18,12 +22,14 @@ func _ready() -> void:
 	#Play noise
 	#Start Particles
 	#Discover target
+	currentTarget = EnemyManager.enemies_in_play[randi_range(0, EnemyManager.total_enemies - 1)]
+	startPosition = position
 	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	MissileBehavior(delta)
 
 
 func _on_body_entered(body: Node3D) -> void:
@@ -31,3 +37,8 @@ func _on_body_entered(body: Node3D) -> void:
 		body.take_damage(damage)
 		# Deploy particle effect and sound
 		queue_free()
+
+func MissileBehavior(delta):
+	timer += delta
+	position = lerp(startPosition, currentTarget.position, timer / life_time)
+	look_at(currentTarget.position)

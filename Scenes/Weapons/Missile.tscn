@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://deuyk7c48o36t"]
+[gd_scene load_steps=4 format=3 uid="uid://deuyk7c48o36t"]
 
-[ext_resource type="Script" uid="uid://ryjyvl78d5n0" path="res://Scenes/Weapons/Missile.gd" id="1_jyd2h"]
+[ext_resource type="Script" uid="uid://yohf4atko3at" path="res://Scenes/Weapons/Missile.gd" id="1_jyd2h"]
+[ext_resource type="PackedScene" uid="uid://dtmc7ljhdo3da" path="res://BlenderFiles/GLBs/rocket.glb" id="2_ty6se"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ty6se"]
 
 [node name="Missile" type="Area3D"]
 script = ExtResource("1_jyd2h")
+
+[node name="rocket" parent="." instance=ExtResource("2_ty6se")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_ty6se")

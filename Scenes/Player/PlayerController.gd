@@ -33,9 +33,10 @@ var equipped_passives = []
 
 
 func _process(delta: float) -> void:
+	#print(EnemyManager.enemies_in_play)
 	facing_direction = -transform.basis.z
 	
-	var up_down = Input.get_axis("nose_down", "nose_up")
+	var up_down = Input.get_axis("nose_up", "nose_down")
 	var target_pitch_input = mouse_y_input
 	var target_roll_input = mouse_x_input
 	

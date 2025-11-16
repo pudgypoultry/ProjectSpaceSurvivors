@@ -1,7 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
-*/*.import
+*import
 # Created by https://www.toptal.com/developers/gitignore/api/python,c,c++,blender,godot,windows,macos,linux
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,c,c++,blender,godot,windows,macos,linux
 

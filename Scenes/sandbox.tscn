@@ -1,18 +1,12 @@
-
-
-[gd_scene load_steps=8 format=3 uid="uid://dsy7m6hgucriu"]
-
+[gd_scene load_steps=9 format=3 uid="uid://dsy7m6hgucriu"]
 
 [ext_resource type="PackedScene" uid="uid://bd2dhg5c7cps" path="res://Scenes/Player/PlayerController.tscn" id="1_3h184"]
 [ext_resource type="PackedScene" uid="uid://dkel3gcb3p1k0" path="res://Scenes/Environment/stars_environment.tscn" id="1_cojph"]
 [ext_resource type="PackedScene" uid="uid://chtonxaegbo54" path="res://Scenes/UI/mainmenu.tscn" id="1_p7lbm"]
 [ext_resource type="AudioStream" uid="uid://fqvbhdyu8d3l" path="res://Audio/backgroundmusic.mp3" id="4_rvmsc"]
-
 [ext_resource type="PackedScene" uid="uid://c1yablwjh8wrk" path="res://Scenes/UI/pausemenu.tscn" id="5_1cu7a"]
-
 [ext_resource type="Script" path="res://Scenes/enemy_grunt.gd" id="5_koc8j"]
-[ext_resource type="Script" uid="uid://cb1x00x57ab5t" path="res://Scenes/chase_behavior.gd" id="6_wpw8k"]
-
+[ext_resource type="Script" path="res://Scenes/chase_behavior.gd" id="6_wpw8k"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_cojph"]
 
@@ -48,7 +42,6 @@ stream = ExtResource("4_rvmsc")
 autoplay = true
 parameters/looping = true
 
-
 [node name="Pausemenu" parent="." instance=ExtResource("5_1cu7a")]
 process_mode = 3
 visible = false
@@ -58,4 +51,3 @@ script = ExtResource("5_koc8j")
 
 [node name="ChaseBehavior" type="Node" parent="EnemyGrunt"]
 script = ExtResource("6_wpw8k")
-

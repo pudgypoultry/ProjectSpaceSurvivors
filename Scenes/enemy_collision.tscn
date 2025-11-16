@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bheh0wje7wt7v"]
 
-[ext_resource type="Script" uid="uid://dixjk6jso6fvg" path="res://Scenes/enemy_collision.gd" id="1_o4pmv"]
+[ext_resource type="Script" path="res://Scenes/enemy_collision.gd" id="1_o4pmv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mehe6"]
 

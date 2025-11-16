@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cglqs8ofn7x8h"]
+
+[ext_resource type="PackedScene" uid="uid://2mlybyu5mld3" path="res://BlenderFiles/GLBs/sword.glb" id="1_onk4m"]
+[ext_resource type="Script" uid="uid://bso721wcmujcb" path="res://Scenes/Weapons/weapon_sword.gd" id="1_pyxvt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g87a1"]
+size = Vector3(1, 0.4814911, 4.630615)
+
+[node name="WeaponSword" type="Node3D"]
+script = ExtResource("1_pyxvt")
+
+[node name="sword" parent="." instance=ExtResource("1_onk4m")]
+transform = Transform3D(0.45397967, 0, 0, 0, 0.45397967, 0, 0, 0, 0.45397967, 0, 0, -1.1484674)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="sword"]
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="sword/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.004402133, -1.8153079)
+shape = SubResource("BoxShape3D_g87a1")
+
+[connection signal="body_entered" from="sword/RigidBody3D" to="." method="_on_rigid_body_3d_body_entered"]

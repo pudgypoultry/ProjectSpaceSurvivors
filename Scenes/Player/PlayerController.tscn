@@ -1,19 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://bd2dhg5c7cps"]
+[gd_scene load_steps=6 format=3 uid="uid://bd2dhg5c7cps"]
 
 [ext_resource type="Script" uid="uid://dmdnn5el83uhh" path="res://Scenes/Player/PlayerController.gd" id="1_2be4l"]
 [ext_resource type="PackedScene" uid="uid://bv2oii3anjsyg" path="res://Assets/player_ship.tscn" id="2_3mwrl"]
 [ext_resource type="AudioStream" uid="uid://l405xqglb7et" path="res://Audio/autocannon.mp3" id="3_y00gc"]
+[ext_resource type="PackedScene" uid="uid://cglqs8ofn7x8h" path="res://Scenes/Weapons/weapon_sword.tscn" id="4_abx53"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2rbph"]
 
 [node name="PlayerShip" type="Node3D"]
 script = ExtResource("1_2be4l")
+throttle = null
+throttle_change_rate = null
+throttle_min = null
+throttle_max = null
+player_health = null
+nose_rotation_speed = null
+roll_rotation_speed = null
 
 [node name="PlayerShipModel" parent="." instance=ExtResource("2_3mwrl")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.448267, 1.08424)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.448267, 1.721163)
 
 [node name="autocannon" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_y00gc")
@@ -25,5 +33,7 @@ max_contacts_reported = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body3D"]
 shape = SubResource("SphereShape3D_2rbph")
+
+[node name="WeaponSword" parent="." instance=ExtResource("4_abx53")]
 
 [connection signal="body_entered" from="Body3D" to="." method="_on_body_3d_body_entered"]

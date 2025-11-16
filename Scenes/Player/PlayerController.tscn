@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bd2dhg5c7cps"]
+[gd_scene load_steps=6 format=3 uid="uid://bd2dhg5c7cps"]
 
 [ext_resource type="Script" uid="uid://dmdnn5el83uhh" path="res://Scenes/Player/PlayerController.gd" id="1_abx53"]
 [ext_resource type="PackedScene" uid="uid://bv2oii3anjsyg" path="res://Assets/player_ship.tscn" id="2_3mwrl"]
 [ext_resource type="PackedScene" uid="uid://4tgy7edoskwo" path="res://Scenes/Weapons/laser.tscn" id="2_abx53"]
 [ext_resource type="AudioStream" uid="uid://l405xqglb7et" path="res://Audio/autocannon.mp3" id="3_y00gc"]
-[ext_resource type="PackedScene" uid="uid://cglqs8ofn7x8h" path="res://Scenes/Weapons/weapon_sword.tscn" id="4_abx53"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2rbph"]
 
@@ -56,7 +55,5 @@ max_contacts_reported = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body3D"]
 shape = SubResource("SphereShape3D_2rbph")
-
-[node name="WeaponSword" parent="." instance=ExtResource("4_abx53")]
 
 [connection signal="body_entered" from="Body3D" to="." method="_on_body_3d_body_entered"]

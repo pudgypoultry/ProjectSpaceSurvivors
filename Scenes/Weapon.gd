@@ -24,7 +24,7 @@ func Fire():
 		print("Launching missiles")
 		for i in range(len(spawn_positions)):
 			var new_missile = missile_object.instantiate()
-			print("Spawned " + str(new_missile) + " : " + str(new_missile.global_position))
+			# print("Spawned " + str(new_missile) + " : " + str(new_missile.global_position))
 			new_missile.position = spawn_positions[i] + global_position
 			get_tree().root.add_child(new_missile)
 			new_missile.siloObject = self

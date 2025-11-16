@@ -44,4 +44,7 @@ lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_ty6se")
 draw_pass_1 = SubResource("SphereMesh_au87h")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.123665124)
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

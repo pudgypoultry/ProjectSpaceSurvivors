@@ -30,6 +30,7 @@ var facing_direction : Vector3
 var canAct : bool = true
 
 var velocity: Vector3 = Vector3.ZERO # Replaces movement_direction
+var original_velocity
 
 var equipped_weapons = [Weapon]
 var equipped_passives = []
@@ -52,12 +53,15 @@ func _process(delta: float) -> void:
 	if abs(smoothed_roll_input) > 0.001:
 		rotate_object_local(Vector3.FORWARD, -smoothed_roll_input * roll_rotation_speed * delta)
 	
+
+	
+	if Input.is_action_just_pressed("Brake"):
+		original_velocity = velocity
+	
 	if Input.is_action_pressed("Brake"):
 		throttle = 0.0
-		lerp(velocity, Vector3.ZERO, current_brake/brake_timer)
+		velocity = lerp(original_velocity, Vector3.ZERO, current_brake/brake_timer)
 		current_brake += delta
-		if current_brake / brake_timer > 1:
-			velocity = Vector3.ZERO
 	
 	if Input.is_action_just_released("Brake"):
 		current_brake = 0

@@ -48,7 +48,7 @@ func MissileBehavior(delta):
 	
 	if !reachedInitial:
 		position = lerp(startPosition, startPosition + Vector3.UP, timer)
-		look_at(startPosition + siloObject.transform.basis.y)
+		look_at(startPosition + transform.basis.y)
 		if timer > 1.0:
 			reachedInitial = true
 			startPosition = position

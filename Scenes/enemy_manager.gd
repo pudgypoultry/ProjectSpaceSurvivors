@@ -4,6 +4,7 @@ extends Node3D
 @export var ememy_types:Array[PackedScene] = []
 var spawn_range:float = 10
 @export var player_ship: Node3D
+var enemies_in_play = []
 
 # manage timers, spawning, stopping on menus
 
@@ -26,6 +27,7 @@ func SpawnEnemy(enemy_index:int) -> void:
 	# spawn enemy
 	var newscene:Node3D = self.ememy_types[enemy_index].instantiate()
 	self.add_child(newscene)
+	enemies_in_play.append(newscene)
 	# update location
 	newscene.position = spawn_pos
 

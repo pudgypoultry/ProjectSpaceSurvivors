@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 	if throttle_change != 0:
 		throttle += throttle_change * throttle_change_rate * delta
 	
-	clampf(throttle, throttle_min, throttle_max)
+	throttle = clampf(throttle, -throttle_max, throttle_max)
 	
 	position += -transform.basis.z * throttle * delta
 	FireWeapons(delta)

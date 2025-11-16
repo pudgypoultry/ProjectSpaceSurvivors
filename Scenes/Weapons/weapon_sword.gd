@@ -3,7 +3,7 @@ extends Node3D
 var frequency:float = 70
 	
 func _ready() -> void:
-	self.rotation.z = randf() * PI
+	self.rotation.z = randf() * 2 * PI - PI
 
 func _physics_process(delta: float) -> void:
 	self.rotate(self.transform.basis.y, delta * frequency * PI / 180)

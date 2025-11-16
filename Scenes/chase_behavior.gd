@@ -14,9 +14,10 @@ func move_to(delta):
 		Globalhealthscript.damage_player(enemy_grunt.damage)
 		enemy_grunt.DestroyEnemy()
 		return
+	var magsq = direction.dot(direction)
 	direction = direction.normalized()
-	var distance:float = delta * enemy_grunt.speed * 0.1
-	var move_vec:Vector3 = direction * distance
+	var distance:float = delta * enemy_grunt.speed * 0.01 + 0.01
+	var move_vec:Vector3 = direction * distance + max(magsq * 0.005, 0) * direction
 	enemy_grunt.position += move_vec
 	# rotate to point at the player
 	var target_basis:Basis = Basis.looking_at(-direction)

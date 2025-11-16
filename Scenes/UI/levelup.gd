@@ -6,8 +6,8 @@ extends Control
 var upgrade_options = [
 	{"name": "Increased Max Health", "description": "+20 Max HP", "stat": "player_health", "value": 20},
 	{"name": "Faster Movement", "description": "+10% Speed", "stat": "max_speed", "value": 0.10, "is_percent": true},
-	{"name": "Extra Damage", "description": "+15% Damage", "stat": "damage", "value": 0.15, "is_percent": true},
-	{"name": "Attack Speed", "description": "+20% Attack Speed", "stat": "fire_rate", "value": 0.20, "is_percent": true},
+	{"name": "Extra Damage", "description": "+15% Damage", "stat": "modify_damage", "value": 0.15, "is_percent": true},
+	{"name": "Attack Speed", "description": "+20% Attack Speed", "stat": "modify_fire_rate", "value": 0.20, "is_percent": true},
 ]
 
 func _input(event):
@@ -84,9 +84,19 @@ func apply_upgrade(upgrade: Dictionary):
 	var value = upgrade["value"]
 	var is_percent = upgrade.get("is_percent", false)
 	
+	print("Trying to modify stat: ", stat)
+	print("Current value: ", player.get(stat))
+	print("New value to add: ", value)
+	
 	if is_percent:
+		var current_val = player.get(stat)
+		print("DEBUG: current_val type: ", typeof(current_val))
+		print("DEBUG: current_val value: ", current_val)
+		if current_val == null:
+			print("ERROR: Value is null!")
+			return
 		# Multiply current stat by percentage
-		player.set(stat, player.get(stat) * (1 + value))
+		player.set(stat, current_val * (1 + value))
 	else:
 		# Add flat value
 		player.set(stat, player.get(stat) + value)

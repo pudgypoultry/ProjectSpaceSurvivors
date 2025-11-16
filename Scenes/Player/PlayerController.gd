@@ -11,6 +11,8 @@ extends Node3D
 @export var player_health : float = 100.0
 @export var nose_rotation_speed : float = 1.0
 @export var roll_rotation_speed : float = 1.0
+@export var modify_fire_rate : float = 1.0
+@export var modify_damage : float = 1.0
 
 @export_category("Mouse Controls")
 @export var mouse_sensitivity : float = 0.5

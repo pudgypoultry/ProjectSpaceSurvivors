@@ -22,6 +22,8 @@ var mouse_x_input: float = 0.0
 var mouse_y_input: float = 0.0
 var smoothed_pitch_input: float = 0.0
 var smoothed_roll_input: float = 0.0
+var brake_timer = 2.0
+var current_brake = 0.0
 
 var facing_direction : Vector3
 var canAct : bool = true
@@ -48,6 +50,15 @@ func _process(delta: float) -> void:
 	
 	if abs(smoothed_roll_input) > 0.001:
 		rotate_object_local(Vector3.FORWARD, -smoothed_roll_input * roll_rotation_speed * delta)
+	
+	if Input.is_action_pressed("Brake"):
+		lerp(velocity, Vector3.ZERO, current_brake/brake_timer)
+		current_brake += delta
+		if current_brake / brake_timer > 1:
+			velocity = Vector3.ZERO
+	
+	if Input.is_action_just_released("Brake"):
+		current_brake = 0
 	
 	mouse_x_input = 0.0
 	mouse_y_input = 0.0
@@ -82,4 +93,4 @@ func FireWeapons(delta):
 			
 
 func _on_body_3d_body_entered(body: Node) -> void:
-	Globalhealthscript.damage_player(body.get_parent().get_parent().damage)
+	Globalhealthscript.damage_player(body.damage)

@@ -4,6 +4,7 @@ class_name Enemy_Parent
 # signals
 signal died
 
+
 # export for balancing
 @export_group("Stats")
 @export var max_health: float = 30.0
@@ -20,6 +21,7 @@ var behavior = Node
 # enemies have health, speed, weapon they have, movement behavior
 
 func _ready():
+	add_to_group("Enemies")
 	current_health = max_health
 	died.connect(dying)
 	initialize()

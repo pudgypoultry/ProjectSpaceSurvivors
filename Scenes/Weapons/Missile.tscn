@@ -1,17 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://deuyk7c48o36t"]
+[gd_scene load_steps=9 format=3 uid="uid://deuyk7c48o36t"]
 
 [ext_resource type="Script" uid="uid://yohf4atko3at" path="res://Scenes/Weapons/Missile.gd" id="1_jyd2h"]
 [ext_resource type="PackedScene" uid="uid://dtmc7ljhdo3da" path="res://BlenderFiles/GLBs/rocket.glb" id="2_ty6se"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ty6se"]
 
+[sub_resource type="Curve" id="Curve_ty6se"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.9990231, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jkgyp"]
+curve = SubResource("Curve_ty6se")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ty6se"]
+direction = Vector3(0, 0, 1)
+initial_velocity_max = 0.19999999
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_jkgyp")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkgyp"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.4862745, 0.4862745, 0.4862745, 0.827451)
+
+[sub_resource type="SphereMesh" id="SphereMesh_au87h"]
+material = SubResource("StandardMaterial3D_jkgyp")
+radius = 0.025
+height = 0.05
+
 [node name="Missile" type="Area3D"]
 script = ExtResource("1_jyd2h")
 
 [node name="rocket" parent="." instance=ExtResource("2_ty6se")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, 0.1, 0, -0.1, -4.371139e-09, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_ty6se")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1472617)
+amount = 10
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_ty6se")
+draw_pass_1 = SubResource("SphereMesh_au87h")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

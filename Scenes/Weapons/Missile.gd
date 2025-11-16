@@ -3,7 +3,7 @@ class_name Missile
 
 @export_category("Game Rules")
 @export var movement_speed : float = 1.0
-@export var damage : float = 10.0
+@export var damageAmount : float = 100.0
 @export var acceleration : float = 0.0
 @export var life_time : float = 5.0
 
@@ -33,8 +33,9 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
-	if body.is_class("Enemy"):
-		body.take_damage(damage)
+	print(body.get_groups())
+	if body.is_in_group("Enemies"):
+		body.DamageEnemy(damageAmount)
 		# Deploy particle effect and sound
 		queue_free()
 

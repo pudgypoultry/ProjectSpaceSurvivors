@@ -1,8 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://da8pywxx2uxtx"]
 
 [ext_resource type="Script" uid="uid://cj00nltwhscyt" path="res://Scenes/enemy_manager.gd" id="1_xf0q5"]
-[ext_resource type="PackedScene" uid="uid://bg488xrx7m4ag" path="res://Scenes/Enemies/enemy_grunt.tscn" id="2_kqq1u"]
+[ext_resource type="PackedScene" uid="uid://dq5ly6ojgvmbp" path="res://Scenes/Enemies/enemy_grunt2.tscn" id="2_ld3fo"]
 
 [node name="EnemyManager" type="Node3D"]
 script = ExtResource("1_xf0q5")
-enemy_types = Array[PackedScene]([ExtResource("2_kqq1u")])
+enemy_types = Array[PackedScene]([ExtResource("2_ld3fo")])

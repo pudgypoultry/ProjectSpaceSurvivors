@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq5ly6ojgvmbp"]
+
+[ext_resource type="Script" uid="uid://01wt37ucvak6" path="res://Scenes/Enemies/enemy_grunt.gd" id="1_h1n5f"]
+[ext_resource type="PackedScene" uid="uid://d2fclcdf2hwlt" path="res://Assets/enemy_ship_01.tscn" id="2_cgqly"]
+[ext_resource type="Script" uid="uid://cb1x00x57ab5t" path="res://Scenes/chase_behavior.gd" id="3_p4amk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_aosis"]
+
+[node name="EnemyGrunt" type="StaticBody3D" groups=["Enemies"]]
+script = ExtResource("1_h1n5f")
+speed = 50.0
+
+[node name="EnemyShip01" parent="." groups=["Enemies"] instance=ExtResource("2_cgqly")]
+
+[node name="ChaseBehavior" type="Node" parent="."]
+script = ExtResource("3_p4amk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Enemies"]]
+shape = SubResource("SphereShape3D_aosis")

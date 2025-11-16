@@ -8,10 +8,12 @@ class_name Weapon
 @export var delay_between_fires : float = 0
 
 var timer : float = 0.0
+var player = EnemyManager.player_ship
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	timer += delta
+	fire_rate *= (1/player.modify_fire_rate)
 	if timer > fire_rate:
 		Fire()
 		timer = 0.0

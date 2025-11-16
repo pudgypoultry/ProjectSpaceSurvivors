@@ -1,15 +1,15 @@
 [gd_scene load_steps=11 format=3 uid="uid://bow4pmvgil7xa"]
 
 [ext_resource type="PackedScene" uid="uid://bd2dhg5c7cps" path="res://Scenes/Player/PlayerController.tscn" id="1_3h184"]
-[ext_resource type="Script" path="res://Scenes/healthlabel.gd" id="1_6yop6"]
+[ext_resource type="Script" uid="uid://jgrt3ovh4uo5" path="res://Scenes/healthlabel.gd" id="1_6yop6"]
 [ext_resource type="PackedScene" uid="uid://dkel3gcb3p1k0" path="res://Scenes/Environment/stars_environment.tscn" id="1_cojph"]
 [ext_resource type="PackedScene" uid="uid://cakffvppwgksy" path="res://Scenes/UI/levelup.tscn" id="1_koc8j"]
 [ext_resource type="PackedScene" uid="uid://chtonxaegbo54" path="res://Scenes/UI/mainmenu.tscn" id="1_p7lbm"]
-[ext_resource type="Script" path="res://Scenes/scorelabel.gd" id="1_wpw8k"]
-[ext_resource type="Script" path="res://Scenes/levellabel.gd" id="2_s5h6m"]
+[ext_resource type="Script" uid="uid://dhrrid3tx5m7j" path="res://Scenes/scorelabel.gd" id="1_wpw8k"]
+[ext_resource type="Script" uid="uid://shxnvdx73v8h" path="res://Scenes/levellabel.gd" id="2_s5h6m"]
 [ext_resource type="AudioStream" uid="uid://fqvbhdyu8d3l" path="res://Audio/backgroundmusic.mp3" id="4_rvmsc"]
 [ext_resource type="PackedScene" uid="uid://c1yablwjh8wrk" path="res://Scenes/UI/pausemenu.tscn" id="5_1cu7a"]
-[ext_resource type="PackedScene" uid="uid://cxsanjyei8f6f" path="res://Scenes/planet.tscn" id="8_s5h6m"]
+[ext_resource type="PackedScene" path="res://Scenes/planet.tscn" id="8_s5h6m"]
 
 [node name="Sandbox" type="Node3D"]
 

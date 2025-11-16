@@ -30,9 +30,6 @@ func initialize():
 	
 func dying():
 	is_dead = true
-
-
-	print("Died!")
 	queue_free()
 	
 		

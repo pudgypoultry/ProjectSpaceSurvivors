@@ -13,8 +13,5 @@ func fire_laser():
 	
 	if raycast.is_colliding():
 		var hit_object = raycast.get_collider()
-		var hit_point = raycast.get_collision_point()
-		
-		print("Hit: ", hit_object.name)
-		
+		var hit_point = raycast.get_collision_point()	
 		hit_object.get_parent().damaged.emit(10)

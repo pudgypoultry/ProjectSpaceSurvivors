@@ -6,6 +6,7 @@
 albedo_color = Color(0.15888548, 0.47427785, 0.80412936, 1)
 emission_enabled = true
 emission = Color(0.13306406, 0.36872226, 0.9999984, 1)
+emission_energy_multiplier = 10.67
 
 [node name="laser" type="Node3D"]
 script = ExtResource("1_ffbre")

@@ -5,6 +5,7 @@ var laser_firing = false
 @onready var laser: Node3D = $"."
 @onready var laser_mesh: CSGCylinder3D = $CSGCylinder3D
 var laser_firing_duration:float = 0.5
+var damage = 10
 
 func _ready() -> void:
 	laser_mesh.hide()
@@ -23,7 +24,9 @@ func fire_laser():
 		if hit_object.is_in_group("Enemies"):
 			laser_firing = true
 			laser_mesh.show()
-			hit_object.DamageEnemy(10)
+			var player = EnemyManager.player_ship
+			var newDamage = player.modify_damage * damage
+			hit_object.DamageEnemy(newDamage)
 			await get_tree().create_timer(laser_firing_duration).timeout
 			laser_firing = false
 			laser_mesh.hide()

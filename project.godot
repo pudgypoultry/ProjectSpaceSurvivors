@@ -11,7 +11,11 @@ config_version=5
 [application]
 
 config/name="quackhacks-2025"
+<<<<<<< HEAD
 run/main_scene="uid://k1ilv66v2q2m"
+=======
+run/main_scene="uid://dsy7m6hgucriu"
+>>>>>>> refs/remotes/origin/main
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

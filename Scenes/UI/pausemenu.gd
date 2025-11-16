@@ -12,13 +12,16 @@ func toggle_pause_menu():
 	print(visible)
 	if visible:
 		self.hide()
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	else:
 		self.show()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().paused = new_state
 
 
 func _on_resume_pressed() -> void:
 	get_tree().paused= false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	self.visible= false
 	
 	

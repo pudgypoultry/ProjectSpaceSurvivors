@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bq36ahy3qm7ev"]
+[gd_scene load_steps=6 format=3 uid="uid://dsy7m6hgucriu"]
 
-[ext_resource type="PackedScene" uid="uid://bd2dhg5c7cps" path="res://PlayerController.tscn" id="1_3h184"]
-[ext_resource type="PackedScene" uid="uid://dkel3gcb3p1k0" path="res://stars_environment.tscn" id="1_cojph"]
-[ext_resource type="PackedScene" uid="uid://chtonxaegbo54" path="res://mainmenu.tscn" id="1_p7lbm"]
-[ext_resource type="PackedScene" uid="uid://da8pywxx2uxtx" path="res://Scenes/enemy_manager.tscn" id="4_rjrbw"]
+[ext_resource type="PackedScene" uid="uid://bd2dhg5c7cps" path="res://Scenes/Player/PlayerController.tscn" id="1_3h184"]
+[ext_resource type="PackedScene" uid="uid://dkel3gcb3p1k0" path="res://Scenes/Environment/stars_environment.tscn" id="1_cojph"]
+[ext_resource type="PackedScene" uid="uid://chtonxaegbo54" path="res://Scenes/UI/mainmenu.tscn" id="1_p7lbm"]
 [ext_resource type="AudioStream" uid="uid://fqvbhdyu8d3l" path="res://Audio/backgroundmusic.mp3" id="4_rvmsc"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_cojph"]
@@ -39,6 +38,3 @@ mesh = SubResource("SphereMesh_cojph")
 stream = ExtResource("4_rvmsc")
 autoplay = true
 parameters/looping = true
-
-[node name="EnemyManager" parent="." node_paths=PackedStringArray("player_ship") instance=ExtResource("4_rjrbw")]
-player_ship = NodePath("../PlayerShip")

@@ -190,6 +190,11 @@ offset_right = 8.0
 offset_bottom = 8.0
 
 [connection signal="pressed" from="MainMenu/start" to="." method="_on_start_button_pressed"]
+<<<<<<< Updated upstream
 [connection signal="pressed" from="MainMenu/start" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="MainMenu/start" to="." method="_on_resume_button_pressed"]
+=======
+[connection signal="pressed" from="MainMenu/start" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="MainMenu/start" to="." method="_on_quit_button_pressed"]
+>>>>>>> Stashed changes
 [connection signal="pressed" from="MainMenu/start" to="." method="_on_pause_quit_button_pressed"]

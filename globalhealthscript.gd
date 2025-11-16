@@ -1,2 +1,11 @@
 extends Node
-var health= 100
+var health: int= 100
+
+
+
+
+	
+
+
+	
+	

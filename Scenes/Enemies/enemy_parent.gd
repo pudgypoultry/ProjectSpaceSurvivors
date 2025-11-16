@@ -10,6 +10,7 @@ signal died
 @export var speed: float = 5.0
 
 # stats
+var pointvalue: int= 100
 var current_health: float
 var is_dead: bool = false
 var weapon = Node
@@ -25,11 +26,10 @@ func _ready():
 func initialize():
 	pass
 	
-func _physics_process(delta):
-	pass
-
 func dying():
 	is_dead = true
+	Globalpointscript.score +=pointvalue
+	
 	died.emit()
 	print("Died!")
 	queue_free()

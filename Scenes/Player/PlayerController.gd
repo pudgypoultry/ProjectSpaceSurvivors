@@ -7,7 +7,7 @@ extends Node3D
 @export var throttle_change_rate : float = 1.0
 @export var throttle_min : float = 0.0
 @export var throttle_max : float = 10.0
-@export var player_health : float = 100.0
+
 @export var nose_rotation_speed : float = 1.0
 @export var roll_rotation_speed : float = 1.0
 signal player_killed()
@@ -59,7 +59,13 @@ func FireWeapons(delta):
 func _on_body_3d_body_entered(body: Node) -> void:
 	# player Dead
 	Globalhealthscript.health -= 10
-	(body.get_parent().destroyed.emit())
-	player_killed.emit()
+	if Globalhealthscript.health <= -10:
+		print(Globalhealthscript.health)
+		get_tree().paused= true
+		show()
+		(body.get_parent().destroyed.emit())
+		queue_free()
+		player_killed.emit()
+	
 	
 	

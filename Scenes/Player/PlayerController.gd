@@ -55,15 +55,10 @@ func _process(delta: float) -> void:
 		throttle += up_down * throttle_change_rate * delta
 	
 	throttle = clampf(throttle, -throttle_max, throttle_max)
-	
 	var acceleration: Vector3 = facing_direction * throttle
-	
 	velocity += acceleration * delta
-	
 	velocity = velocity.limit_length(max_speed)
-	
 	position += velocity * delta
-	
 	FireWeapons(delta)
 
 
@@ -86,14 +81,4 @@ func FireWeapons(delta):
 			
 
 func _on_body_3d_body_entered(body: Node) -> void:
-	Globalhealthscript.health -= 10
-	
-	if Globalhealthscript.health <= body.get_parent().get_parent().damage:
-		print(Globalhealthscript.health)
-		queue_free()
-		get_tree().paused= true
-		
-		(body.get_parent().destroyed.emit())
-	
-	
-	
+	Globalhealthscript.damage_player(body.get_parent().get_parent().damage)

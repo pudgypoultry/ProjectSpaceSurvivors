@@ -8,10 +8,14 @@ func _ready():
 	enemy_grunt = self.get_parent() as EnemyGrunt
 	
 func move_to(delta):
-	var direction = (target_coords - enemy_grunt.position)
-	var distance = delta * enemy_grunt.speed
-	var move_vec = direction / (distance + 50)
-	self.get_parent().position += move_vec
+	var direction:Vector3 = (target_coords - enemy_grunt.position)
+	direction = direction.normalized()
+	var distance:float = delta * enemy_grunt.speed * 0.1
+	var move_vec:Vector3 = direction * distance
+	enemy_grunt.position += move_vec
+	# rotate to point at the player
+	var target_basis:Basis = Basis.looking_at(-direction)
+	enemy_grunt.transform.basis = enemy_grunt.transform.basis.slerp(target_basis, 0.5)
 	
 func _physics_process(delta):
 	target_coords = EnemyManager.player_ship.position

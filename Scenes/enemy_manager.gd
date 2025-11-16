@@ -33,10 +33,11 @@ func SpawnEnemy(enemy_index:int) -> void:
 
 var tmp:float = 0
 func _process(delta: float) -> void:
-	tmp += delta
-	if tmp > 1:
-		SpawnEnemy(randi_range(0, 0))
-		tmp = 0
+	if player_ship:
+		tmp += delta
+		if tmp > 1:
+			SpawnEnemy(randi_range(0, 0))
+			tmp = 0
 
 func _ready():
 	player_ship = get_node("/root/Sandbox/PlayerShip")

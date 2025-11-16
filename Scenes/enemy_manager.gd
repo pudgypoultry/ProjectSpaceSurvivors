@@ -15,6 +15,9 @@ var total_enemies = 0
 
 # function to run through list of enemies and destroy selected types
 
+func GetTargetEnemy():
+	return enemies_in_play.pick_random()
+
 func SpawnEnemy(enemy_index:int) -> void:
 	# random angle between -PI and +PI
 	var phi = 2 * PI * randf() - PI

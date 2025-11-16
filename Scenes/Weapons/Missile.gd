@@ -22,7 +22,7 @@ func _ready() -> void:
 	#Play noise
 	#Start Particles
 	#Discover target
-	currentTarget = EnemyManager.enemies_in_play[randi_range(0, EnemyManager.total_enemies - 1)]
+	currentTarget = EnemyManager.GetTargetEnemy()
 	startPosition = position
 	pass
 

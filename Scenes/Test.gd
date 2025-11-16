@@ -18,5 +18,5 @@ func TestMissiles():
 		print("Starting Test")
 		for i in range(5):
 			var new_missile = missiles.instantiate()
-			get_parent().add_child(new_missile)
 			new_missile.position = player.position
+			get_parent().add_child(new_missile)

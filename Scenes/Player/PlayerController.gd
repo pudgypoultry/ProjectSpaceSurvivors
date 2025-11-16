@@ -30,7 +30,7 @@ var canAct : bool = true
 
 var velocity: Vector3 = Vector3.ZERO # Replaces movement_direction
 
-var equipped_weapons = {}
+var equipped_weapons = [Weapon]
 var equipped_passives = []
 
 
@@ -52,6 +52,7 @@ func _process(delta: float) -> void:
 		rotate_object_local(Vector3.FORWARD, -smoothed_roll_input * roll_rotation_speed * delta)
 	
 	if Input.is_action_pressed("Brake"):
+		throttle = 0.0
 		lerp(velocity, Vector3.ZERO, current_brake/brake_timer)
 		current_brake += delta
 		if current_brake / brake_timer > 1:
@@ -65,6 +66,8 @@ func _process(delta: float) -> void:
 	
 	if up_down != 0:
 		throttle += up_down * throttle_change_rate * delta
+	else:
+		throttle = lerp(throttle, 0.0, delta)
 	
 	throttle = clampf(throttle, -throttle_max, throttle_max)
 	var acceleration: Vector3 = facing_direction * throttle
@@ -80,6 +83,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		mouse_y_input = -mouse_motion_event.relative.y * mouse_sensitivity
 		mouse_x_input = -mouse_motion_event.relative.x * mouse_sensitivity
 
+func EquipWeapon(newWeapon : Weapon):
+	equipped_weapons.append(newWeapon)
+	newWeapon.position = position
+	newWeapon.rotation = rotation
+	add_child(newWeapon)
 
 func FireWeapons(delta):
 	for weapon in equipped_weapons.keys():

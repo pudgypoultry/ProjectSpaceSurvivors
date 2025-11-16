@@ -6,6 +6,8 @@ class_name Missile
 @export var damage : float = 10.0
 @export var acceleration : float = 0.0
 @export var life_time : float = 10.0
+# @export var sound_effect : Audio
+# @export var particle_effect : GPUParticles3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

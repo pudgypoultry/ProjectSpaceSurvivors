@@ -6,6 +6,7 @@ extends Control
 
 
 
+
 func _on_button_pressed() ->  void:
 	
 	
@@ -23,4 +24,6 @@ func _on_quitbutton_pressed() -> void:
 
 func _on_startbutton_mouse_entered() -> void:
 	$hover.play()
+	
+	
 	

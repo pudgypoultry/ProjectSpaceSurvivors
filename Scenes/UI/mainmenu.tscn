@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://chtonxaegbo54"]
 
 [ext_resource type="Script" uid="uid://cvuqk6nkfmmx0" path="res://control.gd" id="1_cmhrf"]
-[ext_resource type="FontFile" uid="uid://baniet7aixrnq" path="res://m5x7.ttf" id="2_d2nv2"]
+[ext_resource type="FontFile" uid="uid://jbbxmrffrxqq" path="res://Assets/Fonts/m5x7.ttf" id="2_d2nv2"]
 [ext_resource type="AudioStream" uid="uid://q6iylgd1j0a2" path="res://Audio/buttonpress.mp3" id="3_igs2m"]
 [ext_resource type="AudioStream" uid="uid://vdd7r2c04aob" path="res://Audio/hover-button-287656.mp3" id="4_3pujl"]
 
@@ -88,5 +88,5 @@ stream = ExtResource("4_3pujl")
 [connection signal="mouse_entered" from="startbutton" to="." method="_on_startbutton_mouse_entered"]
 [connection signal="pressed" from="startbutton" to="." method="_on_button_pressed"]
 [connection signal="mouse_entered" from="quitbutton" to="." method="_on_startbutton_mouse_entered"]
-[connection signal="pressed" from="quitbutton" to="." method="_on_quitbutton_pressed"]
 [connection signal="pressed" from="quitbutton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="quitbutton" to="." method="_on_quitbutton_pressed"]

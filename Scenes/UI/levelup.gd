@@ -4,14 +4,10 @@ extends Control
 # selection process
 
 var upgrade_options = [
-	{"name": "Increased Max Health", "description": "+20 Max HP"},
+	{"name": "Increased Max Health", "description": "+20 Max HP", "stat": "playerhealth", "value": "20"},
 	{"name": "Faster Movement", "description": "+10% Speed"},
 	{"name": "Extra Damage", "description": "+15% Damage"},
-	{"name": "Health Regeneration", "description": "Heal 1 HP per second"},
 	{"name": "Attack Speed", "description": "+20% Attack Speed"},
-	{"name": "Projectile Count", "description": "+1 Projectile"},
-	{"name": "Critical Chance", "description": "+10% Crit Chance"},
-	{"name": "Shield", "description": "Gain a shield that blocks 50 damage"},
 ]
 
 func _input(event):

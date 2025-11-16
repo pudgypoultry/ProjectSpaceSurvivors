@@ -1,5 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bd2dhg5c7cps"]
 
+[ext_resource type="Script" uid="uid://diyor7j00epvr" path="res://Scenes/Player/PlayerController2.gd" id="1_abx53"]
 [ext_resource type="PackedScene" uid="uid://bv2oii3anjsyg" path="res://Assets/player_ship.tscn" id="2_3mwrl"]
 [ext_resource type="PackedScene" uid="uid://4tgy7edoskwo" path="res://Scenes/Weapons/laser.tscn" id="2_abx53"]
 [ext_resource type="AudioStream" uid="uid://l405xqglb7et" path="res://Audio/autocannon.mp3" id="3_y00gc"]

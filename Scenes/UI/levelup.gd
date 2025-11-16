@@ -3,12 +3,23 @@ extends Control
 # call show_level_up_menu to start whole level and buff
 # selection process
 
+
+@export var beam_sword : Weapon
+@export var missile_silo : Weapon
+@export var laser : Weapon
+@export var mine : Weapon
+
 var upgrade_options = [
 	{"name": "Increased Max Health", "description": "+20 Max HP", "stat": "Globalhealthscript.health", "value": 20},
 	{"name": "Faster Movement", "description": "+10% Speed", "stat": "max_speed", "value": 0.10, "is_percent": true},
 	{"name": "Extra Damage", "description": "+15% Damage", "stat": "modify_damage", "value": 0.15, "is_percent": true},
 	#{"name": "Attack Speed", "description": "+20% Attack Speed", "stat": "modify_fire_rate", "value": 0.20, "is_percent": true},
+	{"name": "Energy Sword", "description": "A rotating beam sword", "is_weapon" : true, "object" : beam_sword, "amount": 0},
+	{"name": "Missile Silos", "description": "Seek and destroy", "is_weapon" : true, "object" : missile_silo, "amount": 0},
+	{"name": "Laser Beam", "description": "Y = mX + b", "is_weapon" : true, "object" : laser, "amount": 0},
+	{"name": "Mines", "description": "Kaboom", "is_weapon" : true, "object" : mine, "amount": 0}
 ]
+
 
 func _input(event):
 	if event.is_action_pressed("level_up"):

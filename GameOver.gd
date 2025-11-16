@@ -1,5 +1,5 @@
 extends Control
-@export var mainscene = "res://sandbox.tscn"
+@export var mainscene = "res://sandbox2.tscn"
 
 
 

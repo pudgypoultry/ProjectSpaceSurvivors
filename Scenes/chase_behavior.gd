@@ -3,7 +3,7 @@ extends Node
 var enemy: EnemyGrunt
 var enemy_grunt: EnemyGrunt
 var target_coords: Vector3
-var collision_margin:float = 1
+var collision_margin:float = 0.5
 
 func _ready():
 	enemy_grunt = self.get_parent() as EnemyGrunt
@@ -16,8 +16,8 @@ func move_to(delta):
 		return
 	var magsq = direction.dot(direction)
 	direction = direction.normalized()
-	var distance:float = delta * enemy_grunt.speed * 0.01 + 0.01
-	var move_vec:Vector3 = direction * distance + max(magsq * 0.005, 0) * direction
+	var distance:float = delta * enemy_grunt.speed * 0.01 + 0.005
+	var move_vec:Vector3 = direction * distance + max(magsq * 0.001, 0) * direction
 	enemy_grunt.position += move_vec
 	# rotate to point at the player
 	var target_basis:Basis = Basis.looking_at(-direction)

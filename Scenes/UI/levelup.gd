@@ -28,7 +28,7 @@ func _ready():
 	{"name": "Increased Max Health", "description": "+20 Max HP", "stat": "Globalhealthscript.health", "value": 20, "is_weapon" : false},
 	{"name": "Faster Movement", "description": "+10% Speed", "stat": "max_speed", "value": 0.10, "is_percent": true, "is_weapon" : false},
 	{"name": "Extra Damage", "description": "+15% Damage", "stat": "modify_damage", "value": 0.15, "is_percent": true, "is_weapon" : false},
-	#{"name": "Attack Speed", "description": "+20% Attack Speed", "stat": "modify_fire_rate", "value": 0.20, "is_percent": true},
+	{"name": "Attack Speed", "description": "+20% Attack Speed", "stat": "modify_fire_rate", "value": 0.20, "is_percent": true},
 	{"name": "Energy Sword", "description": "A rotating beam sword", "is_weapon" : true, "object" : beam_sword, "amount": 0},
 	{"name": "Missile Silos", "description": "Seek and destroy", "is_weapon" : true, "object" : missile_silo, "amount": 0},
 	{"name": "Laser Beam", "description": "Y = mX + b", "is_weapon" : true, "object" : laser, "amount": 0}

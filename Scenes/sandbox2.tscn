@@ -10,9 +10,9 @@
 [ext_resource type="AudioStream" uid="uid://fqvbhdyu8d3l" path="res://Audio/backgroundmusic.mp3" id="4_rvmsc"]
 [ext_resource type="PackedScene" uid="uid://c1yablwjh8wrk" path="res://Scenes/UI/pausemenu.tscn" id="5_1cu7a"]
 [ext_resource type="PackedScene" uid="uid://cglqs8ofn7x8h" path="res://Scenes/Weapons/weapon_sword.tscn" id="5_sudtw"]
-[ext_resource type="PackedScene" uid="uid://sek0oui3bfaq" path="res://Scenes/Weapons/MissileSilo.tscn" id="6_sudtw"]
+[ext_resource type="PackedScene" path="res://Scenes/Weapons/MissileSilo.tscn" id="6_sudtw"]
 [ext_resource type="PackedScene" uid="uid://4tgy7edoskwo" path="res://Scenes/Weapons/laser.tscn" id="7_qvlwa"]
-[ext_resource type="PackedScene" uid="uid://cxsanjyei8f6f" path="res://Scenes/planet.tscn" id="8_s5h6m"]
+[ext_resource type="PackedScene" path="res://Scenes/planet.tscn" id="8_s5h6m"]
 
 [node name="Sandbox" type="Node3D"]
 

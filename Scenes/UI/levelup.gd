@@ -3,22 +3,15 @@ extends Control
 # call show_level_up_menu to start whole level and buff
 # selection process
 
+var player
 
-@export var beam_sword : Weapon
-@export var missile_silo : Weapon
-@export var laser : Weapon
-@export var mine : Weapon
+@export var beam_sword : PackedScene
+@export var missile_silo : PackedScene
+@export var laser : PackedScene
+@export var mine : PackedScene
 
-var upgrade_options = [
-	{"name": "Increased Max Health", "description": "+20 Max HP", "stat": "Globalhealthscript.health", "value": 20},
-	{"name": "Faster Movement", "description": "+10% Speed", "stat": "max_speed", "value": 0.10, "is_percent": true},
-	{"name": "Extra Damage", "description": "+15% Damage", "stat": "modify_damage", "value": 0.15, "is_percent": true},
-	{"name": "Attack Speed", "description": "+20% Attack Speed", "stat": "modify_fire_rate", "value": 0.20, "is_percent": true},
-	{"name": "Energy Sword", "description": "A rotating beam sword", "is_weapon" : true, "object" : beam_sword, "amount": 0},
-	{"name": "Missile Silos", "description": "Seek and destroy", "is_weapon" : true, "object" : missile_silo, "amount": 0},
-	{"name": "Laser Beam", "description": "Y = mX + b", "is_weapon" : true, "object" : laser, "amount": 0},
-	{"name": "Mines", "description": "Kaboom", "is_weapon" : true, "object" : mine, "amount": 0}
-]
+var upgrade_options
+
 
 
 func _input(event):
@@ -31,6 +24,16 @@ func _input(event):
 signal upgrade_selected(upgrade_name: String)
 
 func _ready():
+	upgrade_options = [
+	{"name": "Increased Max Health", "description": "+20 Max HP", "stat": "Globalhealthscript.health", "value": 20, "is_weapon" : false},
+	{"name": "Faster Movement", "description": "+10% Speed", "stat": "max_speed", "value": 0.10, "is_percent": true, "is_weapon" : false},
+	{"name": "Extra Damage", "description": "+15% Damage", "stat": "modify_damage", "value": 0.15, "is_percent": true, "is_weapon" : false},
+	#{"name": "Attack Speed", "description": "+20% Attack Speed", "stat": "modify_fire_rate", "value": 0.20, "is_percent": true},
+	{"name": "Energy Sword", "description": "A rotating beam sword", "is_weapon" : true, "object" : beam_sword, "amount": 0},
+	{"name": "Missile Silos", "description": "Seek and destroy", "is_weapon" : true, "object" : missile_silo, "amount": 0},
+	{"name": "Laser Beam", "description": "Y = mX + b", "is_weapon" : true, "object" : laser, "amount": 0}
+	]
+	player = EnemyManager.player_ship
 	# hide by default
 	hide()
 
@@ -88,7 +91,6 @@ func _on_upgrade_selected(upgrade_name: String):
 	get_tree().paused = false
 
 func apply_upgrade(upgrade: Dictionary):
-	var player = get_node("/root/Sandbox/PlayerShip")
 	if not player:
 		print("Error: Not player")
 		return
@@ -102,36 +104,42 @@ func apply_upgrade(upgrade: Dictionary):
 		if prop.usage & PROPERTY_USAGE_SCRIPT_VARIABLE:
 			print("  - ", prop.name, " = ", player.get(prop.name))
 	
-	var stat = upgrade["stat"]
-	var value = upgrade["value"]
-	var is_percent = upgrade.get("is_percent", false)
-	
-	print("Trying to modify stat: ", stat)
-	print("Current value: ", player.get(stat))
-	print("New value to add: ", value)
-	
-	if stat == "Globalhealthscript.health":
-		if is_percent:
-			Globalhealthscript.health = Globalhealthscript.health * (1 + value)
-		else:
-			Globalhealthscript.health += value
-		print("Applied ", upgrade["name"], " - new health: ", Globalhealthscript.health)
-		return
-	
-	if is_percent:
-		var current_val = player.get(stat)
-		print("DEBUG: current_val type: ", typeof(current_val))
-		print("DEBUG: current_val value: ", current_val)
-		if current_val == null:
-			print("ERROR: Value is null!")
+	if !upgrade["is_weapon"]:
+		var stat = upgrade["stat"]
+		var value = upgrade["value"]
+		var is_percent = upgrade.get("is_percent", false)
+		
+		print("Trying to modify stat: ", stat)
+		print("Current value: ", player.get(stat))
+		print("New value to add: ", value)
+		
+		if stat == "Globalhealthscript.health":
+			if is_percent:
+				Globalhealthscript.health = Globalhealthscript.health * (1 + value)
+			else:
+				Globalhealthscript.health += value
+			print("Applied ", upgrade["name"], " - new health: ", Globalhealthscript.health)
 			return
-		# Multiply current stat by percentage
-		player.set(stat, current_val * (1 + value))
+		
+		if is_percent:
+			var current_val = player.get(stat)
+			print("DEBUG: current_val type: ", typeof(current_val))
+			print("DEBUG: current_val value: ", current_val)
+			if current_val == null:
+				print("ERROR: Value is null!")
+				return
+			# Multiply current stat by percentage
+			player.set(stat, current_val * (1 + value))
+		else:
+			# Add flat value
+			player.set(stat, player.get(stat) + value)
+		
+		print("Applied ", upgrade["name"], " to player")
+		
 	else:
-		# Add flat value
-		player.set(stat, player.get(stat) + value)
-	
-	print("Applied ", upgrade["name"], " to player")
+		print(upgrade["object"])
+		var newWeapon = upgrade["object"].instantiate()
+		player.EquipWeapon(newWeapon)
 	
 func clear_buttons():
 	for child in button_container.get_children():

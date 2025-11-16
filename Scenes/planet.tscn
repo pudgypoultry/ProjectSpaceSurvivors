@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxsanjyei8f6f"]
+
+[ext_resource type="PackedScene" uid="uid://bugvlyasolte8" path="res://BlenderFiles/GLBs/planet.glb" id="1_xehyc"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kg0dd"]
+
+[node name="Planet" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("SphereShape3D_kg0dd")
+
+[node name="planet" parent="." instance=ExtResource("1_xehyc")]
+transform = Transform3D(0.52820784, 0, 0, 0, 0.52820784, 0, 0, 0, 0.52820784, 0, 0, 0)

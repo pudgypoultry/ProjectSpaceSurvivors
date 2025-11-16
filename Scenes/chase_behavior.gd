@@ -11,8 +11,8 @@ func _ready():
 func move_to(delta):
 	var direction:Vector3 = (target_coords - enemy_grunt.position)
 	if direction.dot(direction) < collision_margin:
-		Globalhealthscript.damage_player(self.get_parent().damage)
-		self.get_parent().dying()
+		Globalhealthscript.damage_player(enemy_grunt.damage)
+		enemy_grunt.DestroyEnemy()
 		return
 	direction = direction.normalized()
 	var distance:float = delta * enemy_grunt.speed * 0.1

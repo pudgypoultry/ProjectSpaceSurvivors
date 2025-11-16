@@ -93,4 +93,7 @@ func FireWeapons(delta):
 			
 
 func _on_body_3d_body_entered(body: Node) -> void:
-	Globalhealthscript.damage_player(body.damage)
+	if body.is_in_group("Enemy"):
+		Globalhealthscript.damage_player(body.damage)
+	else:
+		Globalhealthscript.damage_player(1000)

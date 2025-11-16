@@ -1,6 +1,7 @@
 extends Enemy_Parent
 class_name EnemyGrunt
 
+
 func initialize():
 	max_health = 50.0
 	speed = 15
@@ -14,3 +15,7 @@ func initialize():
 func dying():
 	Globalpointscript.score +=100
 	super.dying()
+
+
+func _on_enemy_collision_destroyed() -> void:
+	queue_free()

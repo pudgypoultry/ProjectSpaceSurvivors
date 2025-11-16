@@ -58,7 +58,8 @@ func FireWeapons(delta):
 
 func _on_body_3d_body_entered(body: Node) -> void:
 	# player Dead
-	self.hide()
+	Globalhealthscript.health -= 10
+	(body.get_parent().destroyed.emit())
 	player_killed.emit()
-	get_tree().paused = true
+	
 	

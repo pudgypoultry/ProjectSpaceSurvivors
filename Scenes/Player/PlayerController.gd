@@ -74,7 +74,7 @@ func _process(delta: float) -> void:
 	velocity += acceleration * delta
 	velocity = velocity.limit_length(max_speed)
 	position += velocity * delta
-	FireWeapons(delta)
+	# FireWeapons(delta)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -89,15 +89,15 @@ func EquipWeapon(newWeapon : Weapon):
 	newWeapon.rotation = rotation
 	add_child(newWeapon)
 
-func FireWeapons(delta):
-	for weapon in equipped_weapons.keys():
-		var currentTimer = equipped_weapons[weapon]
-		currentTimer += delta
-		if currentTimer > weapon.fireRate:
-			weapon.Fire()
-			equipped_weapons[weapon] = 0
-		else:
-			equipped_weapons[weapon] = currentTimer
+#func FireWeapons(delta):
+	#for weapon in equipped_weapons.keys():
+		#var currentTimer = equipped_weapons[weapon]
+		#currentTimer += delta
+		#if currentTimer > weapon.fireRate:
+			#weapon.Fire()
+			#equipped_weapons[weapon] = 0
+		#else:
+			#equipped_weapons[weapon] = currentTimer
 			
 
 func _on_body_3d_body_entered(body: Node) -> void:

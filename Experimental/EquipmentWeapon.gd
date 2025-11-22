@@ -23,12 +23,7 @@ var timer = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	currentDamage = baseDamage
-	currentDuration = baseDuration
-	currentCooldown = baseCooldown
-	currentArea = baseArea
-	currentProjectileSpeed = baseProjectileSpeed
-	currentProjectileAmount = baseProjectileAmount
+	RecalculateStats()
 	super._ready()
 
 
@@ -43,3 +38,12 @@ func _process(delta: float) -> void:
 func Fire():
 	print("	Fire for " + name + " is not implemented yet")
 	pass
+
+
+func RecalculateStats():
+	currentDamage = baseDamage
+	currentDuration = baseDuration
+	currentCooldown = baseCooldown
+	currentArea = baseArea
+	currentProjectileSpeed = baseProjectileSpeed
+	currentProjectileAmount = baseProjectileAmount

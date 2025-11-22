@@ -43,6 +43,7 @@ func _on_body_entered(body: Node3D) -> void:
 		# Deploy particle effect and sound
 		queue_free()
 
+
 func MissileBehavior(delta):
 	timer += delta
 	
@@ -55,7 +56,7 @@ func MissileBehavior(delta):
 			timer = 0.0
 	else:
 		if currentTarget:
-			position = lerp(startPosition, currentTarget.position, timer / life_time)
+			position = lerp(startPosition, currentTarget.position, timer*movement_speed / life_time)
 			look_at(currentTarget.position)
 		else:
 			position += -transform.basis.z * delta

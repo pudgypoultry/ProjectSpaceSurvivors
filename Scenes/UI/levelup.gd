@@ -119,7 +119,7 @@ func apply_upgrade(upgrade: Dictionary):
 	else:
 		print("hello hi how are you hello")
 		var equipment = upgrade["reference"]
-		equipment.OnLevelUp(equipment.level + 1)
+		equipment.OnLevelUp(equipment.level)
 	
 func clear_buttons():
 	for child in button_container.get_children():

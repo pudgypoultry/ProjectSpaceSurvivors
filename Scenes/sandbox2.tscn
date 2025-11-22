@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://shxnvdx73v8h" path="res://Scenes/levellabel.gd" id="2_s5h6m"]
 [ext_resource type="AudioStream" uid="uid://fqvbhdyu8d3l" path="res://Audio/backgroundmusic.mp3" id="4_rvmsc"]
 [ext_resource type="PackedScene" uid="uid://c1yablwjh8wrk" path="res://Scenes/UI/pausemenu.tscn" id="5_1cu7a"]
-[ext_resource type="PackedScene" uid="uid://7qpm7dadjybc" path="res://Experimental/NewMissileSilo.tscn" id="6_sudtw"]
+[ext_resource type="PackedScene" uid="uid://7qpm7dadjybc" path="res://Scenes/Weapons/MissileSilo.tscn" id="6_sudtw"]
 [ext_resource type="PackedScene" uid="uid://4tgy7edoskwo" path="res://Scenes/Weapons/laser.tscn" id="7_qvlwa"]
 [ext_resource type="PackedScene" uid="uid://cxsanjyei8f6f" path="res://Scenes/planet.tscn" id="8_s5h6m"]
 

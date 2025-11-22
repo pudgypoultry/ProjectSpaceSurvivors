@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://7qpm7dadjybc"]
+
+[ext_resource type="Script" uid="uid://s4ysxfohnt0a" path="res://Experimental/NewMissileSilo.gd" id="1_x8l4j"]
+[ext_resource type="PackedScene" uid="uid://deuyk7c48o36t" path="res://Scenes/Weapons/Missile.tscn" id="2_1ii8p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ii8p"]
+albedo_color = Color(1, 0.5038467, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_bn7yc"]
+material = SubResource("StandardMaterial3D_1ii8p")
+
+[node name="NewMissileSilo" type="Node3D" node_paths=PackedStringArray("firePositions")]
+script = ExtResource("1_x8l4j")
+firePositions = [NodePath("Marker3D"), NodePath("Marker3D2"), NodePath("Marker3D3"), NodePath("Marker3D4")]
+projectileObject = ExtResource("2_1ii8p")
+equipmentName = "Missile Silo"
+equipmentDescription = "Seek and Destroy"
+maxLevel = 8
+levelUpDescriptions = Array[String](["2 Missile speed and damage +25%", "3 Missile speed and damage +25%", "4 Missile speed and damage +25%", "5 Missile speed and damage +25%", "6 Missile speed and damage +25%", "7 Missile speed and damage +25%", "8 Missile speed and damage +25%"])
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("SphereMesh_bn7yc")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2813686, 0, 0)
+
+[node name="Marker3D2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2813686, 0, 0.31928885)
+
+[node name="Marker3D3" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.281, 0, 0)
+
+[node name="Marker3D4" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.281, 0, 0.31928885)

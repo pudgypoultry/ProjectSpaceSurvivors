@@ -21,6 +21,7 @@ EnemyManager="*res://Scenes/enemy_manager.tscn"
 Globalpointscript="*res://globalpointscript.gd"
 Globallevelscript="*res://globallevelscript.gd"
 Globalhealthscript="*res://globalhealthscript.gd"
+StatManager="*res://Experimental/StatManager.gd"
 
 [editor]
 

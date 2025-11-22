@@ -32,8 +32,12 @@ var canAct : bool = true
 var velocity: Vector3 = Vector3.ZERO # Replaces movement_direction
 var original_velocity
 
-var equipped_weapons = [Weapon]
-var equipped_passives = []
+var equipped_weapons = [PlayerEquipment]
+var equipped_passives = [PlayerEquipment]
+
+
+func _ready():
+	StatManager.StartGame(self)
 
 
 func _process(delta: float) -> void:
@@ -94,6 +98,11 @@ func EquipWeapon(newWeapon : Node3D):
 	newWeapon.position = Vector3.ZERO
 	newWeapon.rotation = rotation
 	add_child(newWeapon)
+
+func EquipPassive(newPassive : Node3D):
+	print(newPassive)
+	equipped_passives.append(newPassive)
+	add_child(newPassive)
 
 #func FireWeapons(delta):
 	#for weapon in equipped_weapons.keys():

@@ -5,8 +5,8 @@ extends Control
 
 var player
 
-@export var beam_sword : PackedScene
-@export var missile_silo : PackedScene
+@export var beamSword : PackedScene
+@export var missileSilo : PackedScene
 @export var laser : PackedScene
 @export var mine : PackedScene
 
@@ -29,10 +29,13 @@ func _ready():
 	{"name": "Faster Movement", "description": "+10% Speed", "stat": "max_speed", "value": 0.10, "is_percent": true, "is_weapon" : false},
 	{"name": "Extra Damage", "description": "+15% Damage", "stat": "modify_damage", "value": 0.15, "is_percent": true, "is_weapon" : false},
 	{"name": "Attack Speed", "description": "+20% Attack Speed", "stat": "modify_fire_rate", "value": 0.20, "is_percent": true, "is_weapon" : false},
-	{"name": "Energy Sword", "description": "A rotating beam sword", "is_weapon" : true, "object" : beam_sword, "amount": 0},
-	{"name": "Missile Silos", "description": "Seek and destroy", "is_weapon" : true, "object" : missile_silo, "amount": 0}
+	{"name": "Energy Sword", "description": "A rotating beam sword", "is_weapon" : true, "object" : beamSword, "amount": 0},
+	{"name": "Missile Silos", "description": "Seek and destroy", "is_weapon" : true, "object" : missileSilo, "amount": 0}
 	# {"name": "Laser Beam", "description": "Y = mX + b", "is_weapon" : true, "object" : laser, "amount": 0}
 	]
+	for option in upgrade_options:
+		option["is_equipped"] = false
+		option["reference"] = null
 	player = EnemyManager.player_ship
 	# hide by default
 	hide()
@@ -95,51 +98,28 @@ func apply_upgrade(upgrade: Dictionary):
 		print("Error: Not player")
 		return
 	
-	print("DEBUG: Player node found: ", player)
-	print("DEBUG: Player script: ", player.get_script())
+	#print("DEBUG: Player node found: ", player)
+	#print("DEBUG: Player script: ", player.get_script())
 	
 	# Try to list all properties
-	print("DEBUG: Player has these properties:")
+	#print("DEBUG: Player has these properties:")
 	for prop in player.get_property_list():
 		if prop.usage & PROPERTY_USAGE_SCRIPT_VARIABLE:
 			print("  - ", prop.name, " = ", player.get(prop.name))
 	
-	if !upgrade["is_weapon"]:
-		var stat = upgrade["stat"]
-		var value = upgrade["value"]
-		var is_percent = upgrade.get("is_percent", false)
-		
-		print("Trying to modify stat: ", stat)
-		print("Current value: ", player.get(stat))
-		print("New value to add: ", value)
-		
-		if stat == "Globalhealthscript.health":
-			if is_percent:
-				Globalhealthscript.health = Globalhealthscript.health * (1 + value)
-			else:
-				Globalhealthscript.health += value
-			print("Applied ", upgrade["name"], " - new health: ", Globalhealthscript.health)
-			return
-		
-		if is_percent:
-			var current_val = player.get(stat)
-			print("DEBUG: current_val type: ", typeof(current_val))
-			print("DEBUG: current_val value: ", current_val)
-			if current_val == null:
-				print("ERROR: Value is null!")
-				return
-			# Multiply current stat by percentage
-			player.set(stat, current_val * (1 - value))
-		else:
-			# Add flat value
-			player.set(stat, player.get(stat) + value)
-		
-		print("Applied ", upgrade["name"], " to player")
-		
-	else:
+	if !upgrade["is_equipped"]:
 		print(upgrade["object"])
 		var newWeapon = upgrade["object"].instantiate()
+		upgrade["reference"] = newWeapon
+		print("NEW REFERENCE:")
+		print(upgrade["reference"])
 		player.EquipWeapon(newWeapon)
+		upgrade["is_equipped"] = true
+	# Item is equipped
+	else:
+		print("hello hi how are you hello")
+		var equipment = upgrade["reference"]
+		equipment.OnLevelUp(equipment.level + 1)
 	
 func clear_buttons():
 	for child in button_container.get_children():

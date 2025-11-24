@@ -21,10 +21,6 @@ func _ready():
 	super._ready()
 
 
-func OnLevelUp(currentLevel):
-	pass
-
-
 func RecalculateStats():
 	currentDamage = baseDamage
 	currentDuration = baseDuration

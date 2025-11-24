@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwxwon8nkqf8k"]
+
+[ext_resource type="Script" uid="uid://b2toicjm15fm2" path="res://Scenes/Weapons/BeamSwordSpawner.gd" id="1_dwfpw"]
+[ext_resource type="PackedScene" uid="uid://cglqs8ofn7x8h" path="res://Scenes/Weapons/weapon_sword.tscn" id="2_8mjur"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ii8p"]
+albedo_color = Color(1, 0.5038467, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_bn7yc"]
+material = SubResource("StandardMaterial3D_1ii8p")
+
+[node name="BeamSwordHolder" type="Node3D"]
+script = ExtResource("1_dwfpw")
+projectileObject = ExtResource("2_8mjur")
+equipmentName = "Beam Sword"
+equipmentDescription = "Cleave through enemies"
+maxLevel = 8
+levelUpDescriptions = Array[String](["Cleave through enemies", "Summon a second sword", "And a third", "Swords spin faster", "Faster", "FASTER", "F A S T E R", ""])
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("SphereMesh_bn7yc")

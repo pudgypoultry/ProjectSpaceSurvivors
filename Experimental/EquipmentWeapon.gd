@@ -42,8 +42,14 @@ func Fire():
 
 func RecalculateStats():
 	currentDamage = baseDamage
+	currentDamage *= StatManager.aggregation["damage"]
 	currentDuration = baseDuration
+	currentDuration *= StatManager.aggregation["duration"]
 	currentCooldown = baseCooldown
+	currentCooldown *= StatManager.aggregation["cooldown"]
 	currentArea = baseArea
+	currentArea *= StatManager.aggregation["area"]
 	currentProjectileSpeed = baseProjectileSpeed
+	currentProjectileSpeed *= StatManager.aggregation["projectileSpeed"]
 	currentProjectileAmount = baseProjectileAmount
+	currentProjectileAmount *= StatManager.aggregation["projectileAmount"]

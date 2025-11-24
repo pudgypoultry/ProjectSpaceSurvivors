@@ -38,15 +38,11 @@ func Fire():
 		await get_tree().create_timer(currentCooldown).timeout
 
 func OnLevelUp(currentLevel : int):
-	print("leveling up on level: " + str(currentLevel))
-	match currentLevel:
-		1:
-			level += 1
-			doubleFire = true
+	print("leveling " + name + " up to level: " + str(currentLevel + 1))
+	match currentLevel + 1:
 		2:
 			level += 1
-			baseDamage += 0.25
-			baseProjectileSpeed += 0.25
+			doubleFire = true
 		3:
 			level += 1
 			baseDamage += 0.25

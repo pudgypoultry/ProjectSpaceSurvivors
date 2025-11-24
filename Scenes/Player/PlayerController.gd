@@ -104,16 +104,18 @@ func EquipPassive(newPassive : Node3D):
 	equipped_passives.append(newPassive)
 	add_child(newPassive)
 
-#func FireWeapons(delta):
-	#for weapon in equipped_weapons.keys():
-		#var currentTimer = equipped_weapons[weapon]
-		#currentTimer += delta
-		#if currentTimer > weapon.fireRate:
-			#weapon.Fire()
-			#equipped_weapons[weapon] = 0
-		#else:
-			#equipped_weapons[weapon] = currentTimer
-			
+func ReaggregateStats():
+	for weapon in equipped_weapons:
+		weapon.currentDamage *= StatManager.aggregation["damage"]
+		weapon.currentDuration *= StatManager.aggregation["duration"]
+		weapon.currentCooldown *= StatManager.aggregation["cooldown"]
+		weapon.currentArea *= StatManager.aggregation["area"]
+		weapon.currentProjectileSpeed *= StatManager.aggregation["projectileSpeed"]
+		weapon.currentProjectileAmount *= StatManager.aggregation["projectileAmount"]
+
+	for passive in equipped_passives:
+		pass
+
 
 func _on_body_3d_body_entered(body: Node) -> void:
 	if body.is_in_group("Enemies"):

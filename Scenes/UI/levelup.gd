@@ -36,6 +36,10 @@ func _ready():
 	for option in upgrade_options:
 		option["is_equipped"] = false
 		option["reference"] = null
+		if "is_weapon" not in option.keys():
+			pass
+			option["is_weapon"] = false
+		
 	player = EnemyManager.player_ship
 	# hide by default
 	hide()
@@ -55,7 +59,11 @@ func generate_random_options(n: int):
 	
 func create_upgrade_button(upgrade: Dictionary):
 	var button = Button.new()
-	button.text = upgrade["name"] + "\n" + upgrade["description"]
+	if !upgrade["is_equipped"]:
+		button.text = upgrade["name"] + "\n" + upgrade["description"]
+	else:
+		print("Current level for " + upgrade["name"] + ":	" + str(upgrade["reference"].level))
+		button.text = upgrade["name"] + "\n" + upgrade["reference"].levelUpDescriptions[upgrade["reference"].level]
 	button.custom_minimum_size = Vector2(800, 200)
 	
 	# normal style
@@ -98,9 +106,6 @@ func apply_upgrade(upgrade: Dictionary):
 		print("Error: Not player")
 		return
 	
-	#print("DEBUG: Player node found: ", player)
-	#print("DEBUG: Player script: ", player.get_script())
-	
 	# Try to list all properties
 	#print("DEBUG: Player has these properties:")
 	for prop in player.get_property_list():
@@ -120,6 +125,12 @@ func apply_upgrade(upgrade: Dictionary):
 		print("hello hi how are you hello")
 		var equipment = upgrade["reference"]
 		equipment.OnLevelUp(equipment.level)
+		if equipment.level == equipment.maxLevel:
+			var neededIndex
+			for i in range(len(upgrade_options)):
+				if upgrade["name"] == upgrade_options[i]["name"]:
+					neededIndex = i
+			upgrade_options.pop_at(neededIndex)
 	
 func clear_buttons():
 	for child in button_container.get_children():

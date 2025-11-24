@@ -22,8 +22,8 @@ func _ready():
 func OnLevelUp(currentLevel : int):
 	# print("OnLevelUp for " + name + " is not implemented yet")
 	match currentLevel:
-		1:
-			print("OnLevelUp for " + name + " is not implemented yet for level 1")
+		_:
+			print("OnLevelUp for " + name + " is not implemented yet")
 
 func RecalculateStats():
 	pass

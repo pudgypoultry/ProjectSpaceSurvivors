@@ -2,7 +2,7 @@ extends Node3D
 
 # hold enemies, types, etc.
 @export var enemy_types:Array[PackedScene] = []
-var spawn_range:float = 10
+var spawn_range:float = 15
 var player_ship: Node3D
 var enemies_in_play = []
 var total_enemies = 0
@@ -44,6 +44,7 @@ func _process(delta: float) -> void:
 	if player_ship:
 		spawnTimer += delta
 		if spawnTimer > spawnInterval && len(enemies_in_play) < maxEnemies:
+			SpawnEnemy(randi_range(0, 0))
 			SpawnEnemy(randi_range(0, 0))
 			spawnTimer = 0
 			spawnInterval *= 0.999

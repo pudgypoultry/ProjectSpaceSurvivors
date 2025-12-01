@@ -1,42 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://bd2dhg5c7cps"]
+[gd_scene load_steps=7 format=3 uid="uid://bd2dhg5c7cps"]
 
 [ext_resource type="Script" uid="uid://dmdnn5el83uhh" path="res://Scenes/Player/PlayerController.gd" id="1_abx53"]
 [ext_resource type="PackedScene" uid="uid://bv2oii3anjsyg" path="res://Assets/player_ship.tscn" id="2_3mwrl"]
 [ext_resource type="PackedScene" uid="uid://4tgy7edoskwo" path="res://Scenes/Weapons/laser.tscn" id="2_abx53"]
+[ext_resource type="PackedScene" uid="uid://bmp5u8ynpjlru" path="res://Experimental/grapple_test.tscn" id="2_p1tv5"]
 [ext_resource type="AudioStream" uid="uid://l405xqglb7et" path="res://Audio/autocannon.mp3" id="3_y00gc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2rbph"]
 
 [node name="PlayerShip" type="RigidBody3D"]
 script = ExtResource("1_abx53")
+grapplingHook = ExtResource("2_p1tv5")
 
 [node name="Lasers" type="Node3D" parent="."]
 
 [node name="laser" parent="Lasers" instance=ExtResource("2_abx53")]
-
-[node name="laser3" parent="Lasers" instance=ExtResource("2_abx53")]
-transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -0.38921, 0, 0.120759)
-
-[node name="laser2" parent="Lasers" instance=ExtResource("2_abx53")]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.436184, 0, 0.117923)
-
-[node name="laser4" parent="Lasers" instance=ExtResource("2_abx53")]
-transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0.0205918, 0.00271097)
-
-[node name="laser5" parent="Lasers" instance=ExtResource("2_abx53")]
-transform = Transform3D(0.965926, 0, 0.258819, 0.0669873, 0.965926, -0.25, -0.25, 0.258819, 0.933013, -0.38921, -0.010663, 0.119356)
-
-[node name="laser6" parent="Lasers" instance=ExtResource("2_abx53")]
-transform = Transform3D(0.965926, 0, -0.258819, -0.0669873, 0.965926, -0.25, 0.25, 0.258819, 0.933013, 0.436184, -0.00992885, 0.116616)
-
-[node name="laser7" parent="Lasers" instance=ExtResource("2_abx53")]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, -0.0205918, 0.00271097)
-
-[node name="laser8" parent="Lasers" instance=ExtResource("2_abx53")]
-transform = Transform3D(0.965926, -3.8567e-09, 0.258819, -0.0669873, 0.965926, 0.25, -0.25, -0.258819, 0.933013, -0.38921, 0.010663, 0.119356)
-
-[node name="laser9" parent="Lasers" instance=ExtResource("2_abx53")]
-transform = Transform3D(0.965926, 3.8567e-09, -0.258819, 0.0669873, 0.965926, 0.25, 0.25, -0.258819, 0.933013, 0.436184, 0.00992885, 0.116616)
 
 [node name="PlayerShipModel" parent="." instance=ExtResource("2_3mwrl")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

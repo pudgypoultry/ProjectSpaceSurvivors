@@ -2,6 +2,9 @@ extends Node3D
 class_name PlayerController
 
 @export_category("Plugging In Nodes")
+@export var grapplingHook : PackedScene
+var grappling = false
+var currentGrapple : GrapplingHook
 
 @export_category("Starting Stats")
 @export var baseHealth : float = 100.0
@@ -81,17 +84,37 @@ func _process(delta: float) -> void:
 	if abs(smoothed_roll_input) > 0.001:
 		rotate_object_local(Vector3.FORWARD, -smoothed_roll_input * roll_rotation_speed * delta)
 	
-
+	if Input.is_action_just_pressed("grapple") && !grappling:
+		print("Grapplin...")
+		var newGrapple = grapplingHook.instantiate()
+		var spawn_offset = -transform.basis.z * 1.5
+		newGrapple.global_position = global_position + spawn_offset
+		newGrapple.global_position = global_position
+		get_tree().root.add_child(newGrapple)
+		newGrapple.add_collision_exception_with(self)
+		# await get_tree().create_timer(1.0).timeout
+		
+		currentGrapple = newGrapple
+		currentGrapple.Fire(-transform.basis.z)
+		grappling = true
 	
-	if Input.is_action_just_pressed("Brake"):
+	elif Input.is_action_just_pressed("grapple") && grappling:
+		print("Done Grapplin")
+		if is_instance_valid(currentGrapple):
+			currentGrapple.Release()
+		grappling = false
+	
+	if Input.is_action_just_pressed("brake"):
 		original_velocity = velocity
 	
-	if Input.is_action_pressed("Brake"):
+	if Input.is_action_pressed("brake"):
 		throttle = 0.0
 		velocity = lerp(original_velocity, Vector3.ZERO, (current_brake * currentInertia)/brake_timer)
 		current_brake += delta
+		if current_brake * currentInertia / brake_timer > 1.0:
+			velocity = Vector3.ZERO
 	
-	if Input.is_action_just_released("Brake"):
+	if Input.is_action_just_released("brake"):
 		current_brake = 0
 	
 	mouse_x_input = 0.0
@@ -144,5 +167,6 @@ func ReaggregateStats():
 func _on_body_3d_body_entered(body: Node) -> void:
 	if body.is_in_group("Enemies"):
 		Globalhealthscript.damage_player(body.damage)
-	else:
+	elif body.is_in_group("Grappleable"):
+		print("CRASHED")
 		Globalhealthscript.damage_player(1000)

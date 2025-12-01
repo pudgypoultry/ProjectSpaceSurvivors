@@ -5,10 +5,26 @@ extends Control
 
 var player
 
+@export_category("Weapon Equips")
 @export var beamSword : PackedScene
 @export var missileSilo : PackedScene
 @export var laser : PackedScene
 @export var mine : PackedScene
+
+@export_category("Passive Equips")
+@export var armoredHull : PackedScene
+@export var chassis : PackedScene
+@export var fabricator : PackedScene
+@export var fusionReactor : PackedScene
+@export var inertiaDampener : PackedScene
+@export var machineLearning : PackedScene
+@export var powerCells : PackedScene
+@export var radar : PackedScene
+@export var repairBots : PackedScene
+@export var targetingSystem : PackedScene
+@export var thrusters : PackedScene
+@export var tractorBeam : PackedScene
+@export var weaponsSystem : PackedScene
 
 var upgrade_options
 
@@ -25,12 +41,23 @@ signal upgrade_selected(upgrade_name: String)
 
 func _ready():
 	upgrade_options = [
-	{"name": "Increased Max Health", "description": "+20 Max HP", "stat": "Globalhealthscript.health", "value": 20, "is_weapon" : false},
-	{"name": "Faster Movement", "description": "+10% Speed", "stat": "max_speed", "value": 0.10, "is_percent": true, "is_weapon" : false},
-	{"name": "Extra Damage", "description": "+15% Damage", "stat": "modify_damage", "value": 0.15, "is_percent": true, "is_weapon" : false},
-	{"name": "Attack Speed", "description": "+20% Attack Speed", "stat": "modify_fire_rate", "value": 0.20, "is_percent": true, "is_weapon" : false},
-	{"name": "Energy Sword", "description": "A rotating beam sword", "is_weapon" : true, "object" : beamSword, "amount": 0},
-	{"name": "Missile Silos", "description": "Seek and destroy", "is_weapon" : true, "object" : missileSilo, "amount": 0}
+	{"name": "Armored Hull", "description" : "+5% Armor", "object" : armoredHull},
+	{"name": "Chassis", "description" : "+20 Max HP", "object" : chassis},
+	{"name": "Fabricator", "description" : "+1 Projectiles", "object" : fabricator},
+	{"name": "Fusion Reactor", "description" : "+15% Damage", "object" : fusionReactor},
+	{"name": "Inertia Dampeners", "description" : "Better momentum control", "object" : inertiaDampener},
+	{"name": "Machine Learning", "description" : "More efficient scrap collection", "object" : machineLearning},
+	{"name": "Power Cells", "description": "+50% Duration", "object" : powerCells},
+	{"name": "Radar", "description": "+50% Area", "object" : radar},
+	{"name": "Repair Bots", "description": "Heal 5 hp/s", "object" : repairBots},
+	{"name": "Targeting System", "description": "+20% Attack Speed", "object" : targetingSystem},
+	{"name": "Thrusters", "description" : "+10% Speed", "object" : thrusters},
+	{"name": "Tractor Beam", "description" : "+50% Collection Radius", "object" : thrusters},
+	{"name": "Thrusters", "description" : "+10% Ship Speed", "object" : thrusters},
+	{"name": "Weapons System", "description": "+50% Projectile speed", "object" : weaponsSystem},
+	
+	{"name": "Energy Sword", "description": "A rotating beam sword", "is_weapon" : true, "object" : beamSword},
+	{"name": "Missile Silos", "description": "Seek and destroy", "is_weapon" : true, "object" : missileSilo}
 	# {"name": "Laser Beam", "description": "Y = mX + b", "is_weapon" : true, "object" : laser, "amount": 0}
 	]
 	for option in upgrade_options:
@@ -105,12 +132,6 @@ func apply_upgrade(upgrade: Dictionary):
 	if not player:
 		print("Error: Not player")
 		return
-	
-	# Try to list all properties
-	#print("DEBUG: Player has these properties:")
-	for prop in player.get_property_list():
-		if prop.usage & PROPERTY_USAGE_SCRIPT_VARIABLE:
-			print("  - ", prop.name, " = ", player.get(prop.name))
 	
 	if !upgrade["is_equipped"]:
 		print(upgrade["object"])

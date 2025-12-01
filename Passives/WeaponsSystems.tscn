@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://i1gr5o1naypa"]
+
+[ext_resource type="Script" uid="uid://bdbynnq7ter1j" path="res://Passives/WeaponsSystems.gd" id="1_2qpat"]
+
+[node name="WeaponsSystems" type="Node3D"]
+script = ExtResource("1_2qpat")
+equipmentName = "Armored Hull"
+equipmentDescription = "Armor. For your hull."
+maxLevel = 5
+levelUpDescriptions = Array[String](["Projectile Speed +5%", "Projectile Speed +10%", "Projectile Speed +15%", "Projectile Speed +20%", "Projectile Speed +25%"])

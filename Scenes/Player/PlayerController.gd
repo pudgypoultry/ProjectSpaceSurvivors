@@ -3,6 +3,23 @@ class_name PlayerController
 
 @export_category("Plugging In Nodes")
 
+@export_category("Starting Stats")
+@export var baseHealth : float = 100.0
+@export var baseArmor : float = 0.0
+@export var baseSpeed : float = 1.0
+@export var baseInertia : float = 1.0
+@export var baseExperience : float = 1.0
+@export var baseRepair : float = 1.0
+@export var basePickupRange : float = 1.0
+
+var currentHealth
+var currentArmor
+var currentSpeed
+var currentInertia
+var currentExperience
+var currentRepair
+var currentPickupRange
+
 @export_category("Game Rules")
 @export var throttle : float = 1.0
 @export var throttle_change_rate : float = 1.0
@@ -38,6 +55,13 @@ var equipped_passives = [PlayerEquipment]
 
 func _ready():
 	StatManager.StartGame(self)
+	currentHealth = baseHealth
+	currentArmor = baseArmor
+	currentSpeed = baseSpeed
+	currentInertia = baseInertia
+	currentExperience = baseExperience
+	currentRepair = baseRepair
+	currentPickupRange = basePickupRange
 
 
 func _process(delta: float) -> void:
@@ -64,7 +88,7 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_pressed("Brake"):
 		throttle = 0.0
-		velocity = lerp(original_velocity, Vector3.ZERO, current_brake/brake_timer)
+		velocity = lerp(original_velocity, Vector3.ZERO, (current_brake * currentInertia)/brake_timer)
 		current_brake += delta
 	
 	if Input.is_action_just_released("Brake"):

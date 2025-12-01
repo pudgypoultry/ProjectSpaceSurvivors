@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://lqm3vpd6eu2e"]
+
+[ext_resource type="Script" uid="uid://bf1bm5keknwtr" path="res://Passives/MachineLearning.gd" id="1_riqu8"]
+
+[node name="MachineLearning" type="Node3D"]
+script = ExtResource("1_riqu8")
+equipmentName = "Armored Hull"
+equipmentDescription = "Armor. For your hull."
+maxLevel = 5
+levelUpDescriptions = Array[String](["Experience +5%", "Experience +10%", "Experience+15%", "Experience +20%", "Experience +25%"])

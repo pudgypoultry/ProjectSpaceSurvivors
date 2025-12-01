@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://clj3qqy35r5q2"]
+
+[ext_resource type="Script" uid="uid://d3uvvfrs4fxwb" path="res://Passives/ArmoredHull.gd" id="1_5mlt7"]
+
+[node name="ArmoredHull" type="Node3D"]
+script = ExtResource("1_5mlt7")
+equipmentName = "Armored Hull"
+equipmentDescription = "Armor. For your hull."
+maxLevel = 5
+levelUpDescriptions = Array[String](["Damage Taken -5%", "Damage Taken -10%", "Damage Taken -15%", "Damage Taken -20%", "Damage Taken -25%"])

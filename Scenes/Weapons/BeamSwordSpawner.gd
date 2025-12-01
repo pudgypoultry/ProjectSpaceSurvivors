@@ -18,13 +18,16 @@ func _process(delta : float):
 
 func OnLevelUp(currentLevel : int):
 	print("leveling " + name + " up to level: " + str(currentLevel + 1))
+	
 	match currentLevel + 1:
 		2:
 			level += 1
-			var secondSword = projectileObject.instantiate()
-			secondSword.rotation.z = 0.125 * 2 * PI - PI
+			var secondSword : Node3D = projectileObject.instantiate()
+			var tiltBasis = global_basis.rotated(Vector3.FORWARD, deg_to_rad(45))
+			
 			add_child(secondSword)
 			swords.append(secondSword)
+			secondSword.global_basis *= tiltBasis
 		3:
 			level += 1
 			var thirdSword = projectileObject.instantiate()

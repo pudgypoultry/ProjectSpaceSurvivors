@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfex85blb5f6g"]
+
+[ext_resource type="Script" uid="uid://q6m83wggya8b" path="res://Passives/FusionReactor.gd" id="1_53djp"]
+
+[node name="FusionReactor" type="Node3D"]
+script = ExtResource("1_53djp")
+equipmentName = "Armored Hull"
+equipmentDescription = "Armor. For your hull."
+maxLevel = 5
+levelUpDescriptions = Array[String](["Damage +5%", "Damage +10%", "Damage +15%", "Damage +20%", "Damage +25%"])

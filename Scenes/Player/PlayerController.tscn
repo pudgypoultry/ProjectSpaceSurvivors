@@ -7,7 +7,7 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2rbph"]
 
-[node name="PlayerShip" type="Node3D"]
+[node name="PlayerShip" type="RigidBody3D"]
 script = ExtResource("1_abx53")
 
 [node name="Lasers" type="Node3D" parent="."]
@@ -43,17 +43,13 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.565927, 2.52862)
+current = true
 
 [node name="autocannon" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_y00gc")
 volume_db = -15.928
 
-[node name="Body3D" type="RigidBody3D" parent="."]
-continuous_cd = true
-contact_monitor = true
-max_contacts_reported = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Body3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_2rbph")
 
-[connection signal="body_entered" from="Body3D" to="." method="_on_body_3d_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_3d_body_entered"]

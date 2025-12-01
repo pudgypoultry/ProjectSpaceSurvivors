@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bow4pmvgil7xa"]
+[gd_scene load_steps=27 format=3 uid="uid://bow4pmvgil7xa"]
 
 [ext_resource type="PackedScene" uid="uid://bd2dhg5c7cps" path="res://Scenes/Player/PlayerController.tscn" id="1_3h184"]
 [ext_resource type="Script" uid="uid://jgrt3ovh4uo5" path="res://Scenes/healthlabel.gd" id="1_6yop6"]
@@ -12,7 +12,20 @@
 [ext_resource type="PackedScene" uid="uid://dwxwon8nkqf8k" path="res://Scenes/Weapons/BeamSwordSpawner.tscn" id="5_sudtw"]
 [ext_resource type="PackedScene" uid="uid://7qpm7dadjybc" path="res://Scenes/Weapons/MissileSilo/MissileSilo.tscn" id="6_sudtw"]
 [ext_resource type="PackedScene" uid="uid://4tgy7edoskwo" path="res://Scenes/Weapons/laser.tscn" id="7_qvlwa"]
+[ext_resource type="PackedScene" uid="uid://clj3qqy35r5q2" path="res://Passives/ArmoredHull.tscn" id="8_rysqg"]
 [ext_resource type="PackedScene" uid="uid://cxsanjyei8f6f" path="res://Scenes/planet.tscn" id="8_s5h6m"]
+[ext_resource type="PackedScene" uid="uid://d3r7p1vwmwi5y" path="res://Passives/Chassis.tscn" id="9_8bgmb"]
+[ext_resource type="PackedScene" uid="uid://dy8eyojtjut3t" path="res://Passives/Fabricator.tscn" id="10_4ipgj"]
+[ext_resource type="PackedScene" uid="uid://bfex85blb5f6g" path="res://Passives/FusionReactor.tscn" id="11_2dp4i"]
+[ext_resource type="PackedScene" uid="uid://pnrmx5cyorh7" path="res://Passives/InertiaDampeners.tscn" id="12_dmcn6"]
+[ext_resource type="PackedScene" uid="uid://lqm3vpd6eu2e" path="res://Passives/MachineLearning.tscn" id="13_uqe8r"]
+[ext_resource type="PackedScene" uid="uid://cltkbosy5lirn" path="res://Passives/PowerCells.tscn" id="14_v2ewu"]
+[ext_resource type="PackedScene" uid="uid://bj05ul6vefebh" path="res://Passives/Radar.tscn" id="15_jiou1"]
+[ext_resource type="PackedScene" uid="uid://dru63jqa4loin" path="res://Passives/RepairBots.tscn" id="16_jrtud"]
+[ext_resource type="PackedScene" uid="uid://caxwe5a0hej0m" path="res://Passives/TargetingSystem.tscn" id="17_xtasp"]
+[ext_resource type="PackedScene" uid="uid://cwbpxpbu5sxm8" path="res://Passives/Thrusters.tscn" id="18_wymwq"]
+[ext_resource type="PackedScene" uid="uid://c5fb2soodxf0c" path="res://Passives/TractorBeam.tscn" id="19_cv7cu"]
+[ext_resource type="PackedScene" uid="uid://i1gr5o1naypa" path="res://Passives/WeaponsSystems.tscn" id="20_4e70t"]
 
 [node name="Sandbox" type="Node3D"]
 
@@ -58,6 +71,19 @@ script = ExtResource("1_wpw8k")
 beamSword = ExtResource("5_sudtw")
 missileSilo = ExtResource("6_sudtw")
 laser = ExtResource("7_qvlwa")
+armoredHull = ExtResource("8_rysqg")
+chassis = ExtResource("9_8bgmb")
+fabricator = ExtResource("10_4ipgj")
+fusionReactor = ExtResource("11_2dp4i")
+inertiaDampener = ExtResource("12_dmcn6")
+machineLearning = ExtResource("13_uqe8r")
+powerCells = ExtResource("14_v2ewu")
+radar = ExtResource("15_jiou1")
+repairBots = ExtResource("16_jrtud")
+targetingSystem = ExtResource("17_xtasp")
+thrusters = ExtResource("18_wymwq")
+tractorBeam = ExtResource("19_cv7cu")
+weaponsSystem = ExtResource("20_4e70t")
 
 [node name="Menu" parent="." instance=ExtResource("1_p7lbm")]
 process_mode = 3

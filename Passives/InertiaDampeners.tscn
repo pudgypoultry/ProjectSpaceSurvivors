@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://pnrmx5cyorh7"]
+
+[ext_resource type="Script" uid="uid://n7magtbowa2" path="res://Passives/InertiaDampeners.gd" id="1_kb53h"]
+
+[node name="InertiaDampeners" type="Node3D"]
+script = ExtResource("1_kb53h")
+equipmentName = "Armored Hull"
+equipmentDescription = "Armor. For your hull."
+maxLevel = 5
+levelUpDescriptions = Array[String](["Momentum Control +5%", "Momentum Control +10%", "Momentum Control +15%", "Momentum Control +20%", "Momentum Control +25%"])

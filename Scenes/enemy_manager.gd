@@ -7,7 +7,9 @@ var player_ship: Node3D
 var enemies_in_play = []
 var total_enemies = 0
 var enemygrunt2 = preload("res://Scenes/Enemies/enemy_grunt2.tscn")
-
+var spawnTimer:float = 0.0
+var spawnInterval:float = 1.0
+var maxEnemies : int = 200
 # manage timers, spawning, stopping on menus
 
 # function to run through list of enemies and pause them
@@ -37,13 +39,14 @@ func SpawnEnemy(enemy_index:int) -> void:
 	newscene.position = spawn_pos
 	total_enemies += 1
 
-var tmp:float = 0
+
 func _process(delta: float) -> void:
 	if player_ship:
-		tmp += delta
-		if tmp > 1:
+		spawnTimer += delta
+		if spawnTimer > spawnInterval && len(enemies_in_play) < maxEnemies:
 			SpawnEnemy(randi_range(0, 0))
-			tmp = 0
+			spawnTimer = 0
+			spawnInterval *= 0.999
 
 func _ready():
 	if get_tree().get_current_scene().get_name() == "Sandbox":

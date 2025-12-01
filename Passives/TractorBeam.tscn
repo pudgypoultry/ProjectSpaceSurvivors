@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5fb2soodxf0c"]
+
+[ext_resource type="Script" uid="uid://bw5qukwnc2ago" path="res://Passives/TractorBeam.gd" id="1_3vbj3"]
+
+[node name="TractorBeam" type="Node3D"]
+script = ExtResource("1_3vbj3")
+equipmentName = "Armored Hull"
+equipmentDescription = "Armor. For your hull."
+maxLevel = 5
+levelUpDescriptions = Array[String](["Pickup Range +5%", "Pickup Range +10%", "Pickup Range +15%", "Pickup Range +20%", "Pickup Range +25%"])

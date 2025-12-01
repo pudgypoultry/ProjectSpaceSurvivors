@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cltkbosy5lirn"]
+
+[ext_resource type="Script" uid="uid://del3kmrfy80w7" path="res://Passives/PowerCells.gd" id="1_ocev3"]
+
+[node name="PowerCells" type="Node3D"]
+script = ExtResource("1_ocev3")
+equipmentName = "Armored Hull"
+equipmentDescription = "Armor. For your hull."
+maxLevel = 5
+levelUpDescriptions = Array[String](["Weapon Duration +5%", "Weapon Duration +10%", "Weapon Duration +15%", "Weapon Duration +20%", "Weapon Duration +25%"])

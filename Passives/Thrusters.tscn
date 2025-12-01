@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwbpxpbu5sxm8"]
+
+[ext_resource type="Script" uid="uid://h2a73q88wci4" path="res://Passives/Thrusters.gd" id="1_l10y1"]
+
+[node name="Thrusters" type="Node3D"]
+script = ExtResource("1_l10y1")
+equipmentName = "Armored Hull"
+equipmentDescription = "Armor. For your hull."
+maxLevel = 5
+levelUpDescriptions = Array[String](["Max Throttle +5%", "Max Throttle +10%", "Max Throttle +15%", "Max Throttle +20%", "Max Throttle +25%"])

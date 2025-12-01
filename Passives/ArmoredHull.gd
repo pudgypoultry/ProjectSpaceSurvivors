@@ -2,6 +2,7 @@ extends EquipmentPassive
 
 func _ready():
 	super._ready()
+	statChanges["armor"] = 1.0
 
 func OnLevelUp(currentLevel : int):
 	print("leveling up to level: " + str(currentLevel + 1))

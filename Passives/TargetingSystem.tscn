@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://caxwe5a0hej0m"]
+
+[ext_resource type="Script" uid="uid://bfhkqldnfm8qt" path="res://Passives/TargetingSystem.gd" id="1_x51ho"]
+
+[node name="TargetingSystem" type="Node3D"]
+script = ExtResource("1_x51ho")
+equipmentName = "Armored Hull"
+equipmentDescription = "Armor. For your hull."
+maxLevel = 5
+levelUpDescriptions = Array[String](["Weapon Cooldown +5%", "Weapon Cooldown +10%", "Weapon Cooldown +15%", "Weapon Cooldown +20%", "Weapon Cooldown +25%"])

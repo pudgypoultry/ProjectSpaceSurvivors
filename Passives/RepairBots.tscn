@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dru63jqa4loin"]
+
+[ext_resource type="Script" uid="uid://c2vpi4j71x1q0" path="res://Passives/RepairBots.gd" id="1_3st80"]
+
+[node name="RepairBots" type="Node3D"]
+script = ExtResource("1_3st80")
+equipmentName = "Armored Hull"
+equipmentDescription = "Armor. For your hull."
+maxLevel = 5
+levelUpDescriptions = Array[String](["HP Regen +5%", "HP Regen +10%", "HP Regen +15%", "HP Regen +20%", "HP Regen +25%"])

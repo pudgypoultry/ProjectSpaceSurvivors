@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy8eyojtjut3t"]
+
+[ext_resource type="Script" uid="uid://103q0i2ena4n" path="res://Passives/Fabricator.gd" id="1_53djp"]
+
+[node name="Fabricator" type="Node3D"]
+script = ExtResource("1_53djp")
+equipmentName = "Armored Hull"
+equipmentDescription = "Armor. For your hull."
+maxLevel = 2
+levelUpDescriptions = Array[String](["Projectiles +1", "Projectiles +2"])

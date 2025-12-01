@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj05ul6vefebh"]
+
+[ext_resource type="Script" uid="uid://dy7w7o4epk3dh" path="res://Passives/Radar.gd" id="1_iuswk"]
+
+[node name="Radar" type="Node3D"]
+script = ExtResource("1_iuswk")
+equipmentName = "Armored Hull"
+equipmentDescription = "Armor. For your hull."
+maxLevel = 5
+levelUpDescriptions = Array[String](["Area +5%", "Area +10%", "Area +15%", "Area +20%", "Area +25%"])

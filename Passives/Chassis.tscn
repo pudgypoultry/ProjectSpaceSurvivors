@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3r7p1vwmwi5y"]
+
+[ext_resource type="Script" uid="uid://bt3p87mxf8ekw" path="res://Passives/Chassis.gd" id="1_5mlt7"]
+
+[node name="Chassis" type="Node3D"]
+script = ExtResource("1_5mlt7")
+equipmentName = "Armored Hull"
+equipmentDescription = "Armor. For your hull."
+maxLevel = 5
+levelUpDescriptions = Array[String](["Maximum HP +5%", "Maximum HP +10%", "Maximum HP +15%", "Maximum HP +20%", "Maximum HP +25%"])

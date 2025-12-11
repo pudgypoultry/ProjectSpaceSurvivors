@@ -22,14 +22,15 @@ _data = {
 point_count = 1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wi87h"]
+radius = 0.25
 
-[node name="GrappleTest" type="RigidBody3D" node_paths=PackedStringArray("hingeJoint")]
+[node name="GrappleTest" type="RigidBody3D" node_paths=PackedStringArray("grappleJoint")]
 collision_layer = 16
 collision_mask = 16
 mass = 0.205
 gravity_scale = 0.0
 script = ExtResource("1_wi87h")
-hingeJoint = NodePath("HingeJoint3D")
+grappleJoint = NodePath("GrappleJoint")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_i0baw")
@@ -57,10 +58,23 @@ visible = false
 curve = SubResource("Curve3D_8pcxp")
 debug_custom_color = Color(0.56640625, 0.3486955, 0.20964742, 1)
 
-[node name="HingeJoint3D" type="HingeJoint3D" parent="."]
+[node name="GrappleJoint" type="Generic6DOFJoint3D" parent="."]
+linear_limit_x/softness = 1.0
+linear_limit_x/restitution = 1.0
+linear_limit_x/damping = 0.01
+linear_limit_y/softness = 1.0
+linear_limit_y/restitution = 1.0
+linear_limit_y/damping = 0.01
+linear_limit_z/softness = 1.0
+linear_limit_z/restitution = 1.0
+linear_limit_z/damping = 0.01
+linear_motor_x/enabled = true
+linear_motor_x/target_velocity = 5.0
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 collision_layer = 16
 collision_mask = 16
 

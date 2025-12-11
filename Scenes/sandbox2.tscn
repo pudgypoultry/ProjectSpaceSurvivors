@@ -1,7 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://bow4pmvgil7xa"]
+[gd_scene load_steps=28 format=3 uid="uid://bow4pmvgil7xa"]
 
 [ext_resource type="PackedScene" uid="uid://bd2dhg5c7cps" path="res://Scenes/Player/PlayerController.tscn" id="1_3h184"]
 [ext_resource type="Script" uid="uid://jgrt3ovh4uo5" path="res://Scenes/healthlabel.gd" id="1_6yop6"]
+[ext_resource type="Script" uid="uid://dn0888gq2ur3n" path="res://Scenes/Debugging.gd" id="1_8bgmb"]
 [ext_resource type="PackedScene" uid="uid://dkel3gcb3p1k0" path="res://Scenes/Environment/stars_environment.tscn" id="1_cojph"]
 [ext_resource type="PackedScene" uid="uid://cakffvppwgksy" path="res://Scenes/UI/levelup.tscn" id="1_koc8j"]
 [ext_resource type="PackedScene" uid="uid://chtonxaegbo54" path="res://Scenes/UI/mainmenu.tscn" id="1_p7lbm"]
@@ -28,6 +29,8 @@
 [ext_resource type="PackedScene" uid="uid://i1gr5o1naypa" path="res://Passives/WeaponsSystems.tscn" id="20_4e70t"]
 
 [node name="Sandbox" type="Node3D"]
+script = ExtResource("1_8bgmb")
+debug = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -94,6 +97,28 @@ process_mode = 3
 transform = Transform3D(0.63913, -0.434526, 0.634586, 0, 0.825104, 0.564981, -0.769098, -0.361097, 0.527349, 0, 0, 0)
 
 [node name="PlayerShip" parent="." instance=ExtResource("1_3h184")]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+baseHealth = 100.0
+baseArmor = 0.0
+baseSpeed = 1.0
+baseInertia = 1.0
+baseExperience = 1.0
+baseRepair = 1.0
+basePickupRange = 1.0
+throttle = 1.0
+throttle_change_rate = 1.0
+throttle_min = 0.0
+throttle_max = 1.0
+max_speed = 5.0
+player_health = 100.0
+nose_rotation_speed = 1.0
+roll_rotation_speed = 1.0
+modify_fire_rate = 1.0
+modify_damage = 1.0
+mouse_sensitivity = 0.5
+mouse_smoothing = 15.0
 
 [node name="MeshInstance3D" parent="." instance=ExtResource("8_s5h6m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.23159, 1.49884, 2.34583)

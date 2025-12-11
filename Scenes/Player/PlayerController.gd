@@ -1,4 +1,4 @@
-extends Node3D
+extends RigidBody3D
 class_name PlayerController
 
 @export_category("Plugging In Nodes")
@@ -69,28 +69,24 @@ func _ready():
 
 func _process(delta: float) -> void:
 	#print(EnemyManager.enemies_in_play)
-	facing_direction = -transform.basis.z
 	
-	var up_down = Input.get_axis("nose_up", "nose_down")
-	var target_pitch_input = mouse_y_input
-	var target_roll_input = mouse_x_input
+	var up_down = Input.get_axis("throttle_down", "throttle_up")
 	
-	smoothed_pitch_input = lerp(smoothed_pitch_input, target_pitch_input, mouse_smoothing * delta)
-	smoothed_roll_input = lerp(smoothed_roll_input, target_roll_input, mouse_smoothing * delta)
 	
-	if abs(smoothed_pitch_input) > 0.001:
-		rotate_object_local(Vector3.RIGHT, smoothed_pitch_input * nose_rotation_speed * delta)
-	
-	if abs(smoothed_roll_input) > 0.001:
-		rotate_object_local(Vector3.FORWARD, -smoothed_roll_input * roll_rotation_speed * delta)
+	#if abs(smoothed_pitch_input) > 0.001:
+		#rotate_object_local(Vector3.RIGHT, smoothed_pitch_input * nose_rotation_speed * delta)
+	#
+	#if abs(smoothed_roll_input) > 0.001:
+		#rotate_object_local(Vector3.FORWARD, -smoothed_roll_input * roll_rotation_speed * delta)
 	
 	if Input.is_action_just_pressed("grapple") && !grappling:
 		print("Grapplin...")
 		var newGrapple = grapplingHook.instantiate()
 		var spawn_offset = -transform.basis.z * 1.5
+		get_tree().root.add_child(newGrapple)
 		newGrapple.global_position = global_position + spawn_offset
 		newGrapple.global_position = global_position
-		get_tree().root.add_child(newGrapple)
+
 		newGrapple.add_collision_exception_with(self)
 		# await get_tree().create_timer(1.0).timeout
 		
@@ -117,8 +113,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_released("brake"):
 		current_brake = 0
 	
-	mouse_x_input = 0.0
-	mouse_y_input = 0.0
+	#mouse_x_input = 0.0
+	#mouse_y_input = 0.0
 	
 	if up_down != 0:
 		throttle += up_down * throttle_change_rate * delta
@@ -126,11 +122,32 @@ func _process(delta: float) -> void:
 		throttle = lerp(throttle, 0.0, delta)
 	
 	throttle = clampf(throttle, -throttle_max, throttle_max)
-	var acceleration: Vector3 = facing_direction * throttle
-	velocity += acceleration * delta
-	velocity = velocity.limit_length(max_speed)
-	position += velocity * delta
+	#var acceleration: Vector3 = facing_direction * throttle
+	#velocity += acceleration * delta
+	#velocity = velocity.limit_length(max_speed)
+	#position += velocity * delta
 	# FireWeapons(delta)
+
+
+func _physics_process(delta: float) -> void:
+	var target_pitch_input = mouse_y_input
+	var target_roll_input = mouse_x_input
+	facing_direction = -transform.basis.z
+	
+	smoothed_pitch_input = lerp(smoothed_pitch_input, target_pitch_input, mouse_smoothing * delta)
+	smoothed_roll_input = lerp(smoothed_roll_input, target_roll_input, mouse_smoothing * delta)
+	
+	if abs(smoothed_pitch_input) > 0.001:
+		rotate_object_local(Vector3.RIGHT, smoothed_pitch_input * nose_rotation_speed * delta)
+	
+	if abs(smoothed_roll_input) > 0.001:
+		rotate_object_local(Vector3.FORWARD, -smoothed_roll_input * roll_rotation_speed * delta)
+	
+	mouse_x_input = 0.0
+	mouse_y_input = 0.0
+	
+	apply_central_force(-transform.basis.z * throttle)
+	pass
 
 
 func _unhandled_input(event: InputEvent) -> void:

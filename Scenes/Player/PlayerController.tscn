@@ -9,8 +9,28 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_2rbph"]
 
 [node name="PlayerShip" type="RigidBody3D"]
+gravity_scale = 0.0
 script = ExtResource("1_abx53")
 grapplingHook = ExtResource("2_p1tv5")
+baseHealth = null
+baseArmor = null
+baseSpeed = null
+baseInertia = null
+baseExperience = null
+baseRepair = null
+basePickupRange = null
+throttle = null
+throttle_change_rate = null
+throttle_min = null
+throttle_max = null
+max_speed = null
+player_health = null
+nose_rotation_speed = null
+roll_rotation_speed = null
+modify_fire_rate = null
+modify_damage = null
+mouse_sensitivity = null
+mouse_smoothing = null
 
 [node name="Lasers" type="Node3D" parent="."]
 

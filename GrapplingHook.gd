@@ -15,6 +15,9 @@ var moveDirection : Vector3
 
 var launched = false
 var grappled = false
+var maxRange = 0.0
+var minRange = 2.0
+var collidingBody
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -41,6 +44,7 @@ func _physics_process(delta: float) -> void:
 
 func Grapple():
 	grappled = true
+	maxRange = playerReference.global_position.distance_to(collidingBody.global_position)
 	set_freeze_enabled(true)
 	#grappleJoint.set_param_x(grappleJoint.PARAM_LINEAR_UPPER_LIMIT, currentDifference.x)
 	#grappleJoint.set_param_y(grappleJoint.PARAM_LINEAR_UPPER_LIMIT, currentDifference.y)
@@ -49,12 +53,17 @@ func Grapple():
 	#grappleJoint.node_b = playerReference.get_path()
 
 func HandleGrapple(delta):
-	var targetDirection = playerReference.global_position.direction_to(self.global_position)
-	var targetDistance = playerReference.global_position.distance_to(self.global_position)
+	var targetDirection = playerReference.global_position.direction_to(collidingBody.global_position)
+	var targetDistance = playerReference.global_position.distance_to(collidingBody.global_position)
 	var displacement = targetDistance - restLength
 	var force = Vector3.ZERO
 	
-	if displacement > 0:
+	# HOLD VELOCITY CONSTANT
+	# get original velocity
+	# if velocity < original, apply force
+	# force in direction of current direction but tangent to grapple point radius
+	
+	if displacement > minRange and displacement < maxRange:
 		var springForceMagnitude = stiffness * (displacement*displacement)
 		var springForce = targetDirection * springForceMagnitude
 		
@@ -77,5 +86,6 @@ func Release():
 
 func _on_collision(body: Node3D) -> void:
 	if body.is_in_group("Grappleable"):
+		collidingBody = body
 		print("lol found one")
 		Grapple()

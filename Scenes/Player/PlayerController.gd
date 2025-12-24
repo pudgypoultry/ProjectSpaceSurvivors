@@ -1,5 +1,7 @@
-extends RigidBody3D
 class_name PlayerController
+
+extends RigidBody3D
+
 
 @export_category("Plugging In Nodes")
 @export var grapplingHook : PackedScene

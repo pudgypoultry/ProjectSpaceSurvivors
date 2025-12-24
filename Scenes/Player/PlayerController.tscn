@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bd2dhg5c7cps"]
+[gd_scene load_steps=8 format=3 uid="uid://bd2dhg5c7cps"]
 
 [ext_resource type="Script" uid="uid://dmdnn5el83uhh" path="res://Scenes/Player/PlayerController.gd" id="1_abx53"]
 [ext_resource type="PackedScene" uid="uid://bv2oii3anjsyg" path="res://Assets/player_ship.tscn" id="2_3mwrl"]
 [ext_resource type="PackedScene" uid="uid://4tgy7edoskwo" path="res://Scenes/Weapons/laser.tscn" id="2_abx53"]
 [ext_resource type="PackedScene" uid="uid://bmp5u8ynpjlru" path="res://Experimental/grapple_test.tscn" id="2_p1tv5"]
 [ext_resource type="AudioStream" uid="uid://l405xqglb7et" path="res://Audio/autocannon.mp3" id="3_y00gc"]
+[ext_resource type="PackedScene" uid="uid://dm7tuo6dhvvdi" path="res://Scenes/Player/InventoryManager.tscn" id="6_ajr7s"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2rbph"]
 
@@ -12,25 +13,6 @@
 gravity_scale = 0.0
 script = ExtResource("1_abx53")
 grapplingHook = ExtResource("2_p1tv5")
-baseHealth = null
-baseArmor = null
-baseSpeed = null
-baseInertia = null
-baseExperience = null
-baseRepair = null
-basePickupRange = null
-throttle = null
-throttle_change_rate = null
-throttle_min = null
-throttle_max = null
-max_speed = null
-player_health = null
-nose_rotation_speed = null
-roll_rotation_speed = null
-modify_fire_rate = null
-modify_damage = null
-mouse_sensitivity = null
-mouse_smoothing = null
 
 [node name="Lasers" type="Node3D" parent="."]
 
@@ -49,5 +31,7 @@ volume_db = -15.928
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_2rbph")
+
+[node name="InventoryManager" parent="." instance=ExtResource("6_ajr7s")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_3d_body_entered"]

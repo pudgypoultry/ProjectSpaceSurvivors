@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bow4pmvgil7xa"]
+[gd_scene load_steps=29 format=3 uid="uid://bow4pmvgil7xa"]
 
 [ext_resource type="PackedScene" uid="uid://bd2dhg5c7cps" path="res://Scenes/Player/PlayerController.tscn" id="1_3h184"]
 [ext_resource type="Script" uid="uid://jgrt3ovh4uo5" path="res://Scenes/healthlabel.gd" id="1_6yop6"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://shxnvdx73v8h" path="res://Scenes/levellabel.gd" id="2_s5h6m"]
 [ext_resource type="AudioStream" uid="uid://fqvbhdyu8d3l" path="res://Audio/backgroundmusic.mp3" id="4_rvmsc"]
 [ext_resource type="PackedScene" uid="uid://c1yablwjh8wrk" path="res://Scenes/UI/pausemenu.tscn" id="5_1cu7a"]
+[ext_resource type="Script" uid="uid://oikh6bkx080e" path="res://Scenes/ThrustTracker.gd" id="5_4ipgj"]
 [ext_resource type="PackedScene" uid="uid://dwxwon8nkqf8k" path="res://Scenes/Weapons/BeamSwordSpawner.tscn" id="5_sudtw"]
 [ext_resource type="PackedScene" uid="uid://7qpm7dadjybc" path="res://Scenes/Weapons/MissileSilo/MissileSilo.tscn" id="6_sudtw"]
 [ext_resource type="PackedScene" uid="uid://4tgy7edoskwo" path="res://Scenes/Weapons/laser.tscn" id="7_qvlwa"]
@@ -69,6 +70,19 @@ offset_bottom = 18.952
 theme_override_colors/font_color = Color(0.917647, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
 script = ExtResource("1_wpw8k")
+
+[node name="Scorelabel2" type="Label" parent="CanvasLayer" node_paths=PackedStringArray("playerReference")]
+anchors_preset = -1
+anchor_right = 0.089
+anchor_bottom = 0.176
+offset_left = 1.0
+offset_top = 126.0
+offset_right = 5.472
+offset_bottom = 60.952003
+theme_override_colors/font_color = Color(0.917647, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+script = ExtResource("5_4ipgj")
+playerReference = NodePath("../../PlayerShip")
 
 [node name="Levelup" parent="." instance=ExtResource("1_koc8j")]
 beamSword = ExtResource("5_sudtw")

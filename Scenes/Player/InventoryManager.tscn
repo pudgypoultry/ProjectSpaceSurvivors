@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm7tuo6dhvvdi"]
+
+[ext_resource type="Script" uid="uid://d3j7lwx5wyqym" path="res://InventoryManager.gd" id="1_bny2x"]
+[ext_resource type="Script" uid="uid://w0frpl6nl5p6" path="res://InventoryTileUI.gd" id="2_53cgx"]
+
+[node name="InventoryManager" type="Node" node_paths=PackedStringArray("inventoryScreen")]
+script = ExtResource("1_bny2x")
+inventoryScreen = NodePath("CanvasLayer")
+metadata/_custom_type_script = "uid://d3j7lwx5wyqym"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -201.75
+offset_top = -201.75
+offset_right = 201.75
+offset_bottom = 201.75
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -25.0
+offset_right = 133.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Panel/MarginContainer"]
+layout_mode = 2
+columns = 7
+
+[node name="InventoryTileUI" type="Panel" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2_53cgx")
+mouseOverColor = Color(0, 0, 0, 0.89411765)
+originalColor = Color(0, 0, 0, 0.7176471)
+
+[connection signal="mouse_entered" from="CanvasLayer/Panel/MarginContainer/GridContainer/InventoryTileUI" to="CanvasLayer/Panel/MarginContainer/GridContainer/InventoryTileUI" method="OnMouseOver"]
+[connection signal="mouse_exited" from="CanvasLayer/Panel/MarginContainer/GridContainer/InventoryTileUI" to="CanvasLayer/Panel/MarginContainer/GridContainer/InventoryTileUI" method="OnMouseLeave"]

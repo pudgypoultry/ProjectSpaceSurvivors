@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="quackhacks-2025"
+config/name="SpaceSurvivors"
 run/main_scene="uid://bow4pmvgil7xa"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
@@ -25,7 +25,7 @@ StatManager="*res://Experimental/StatManager.gd"
 
 [editor]
 
-movie_writer/movie_file="C:/Users/andal/GodotProjects/quackhacks-2025/Movies/Space.avi"
+movie_writer/movie_file="C:/Users/Andre/Documents/ProjectSpaceSurvivors/Movies/Space.avi"
 
 [filesystem]
 

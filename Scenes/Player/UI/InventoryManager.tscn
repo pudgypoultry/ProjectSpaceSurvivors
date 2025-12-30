@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://dm7tuo6dhvvdi"]
+
+[ext_resource type="Script" uid="uid://d3j7lwx5wyqym" path="res://Scenes/Player/UI/InventoryManager.gd" id="1_j8jni"]
+[ext_resource type="Script" uid="uid://b5sftetq2xjiv" path="res://Scenes/Player/UI/ShipInventoryController.gd" id="2_sdfbg"]
+[ext_resource type="Script" uid="uid://byjanspy2ri0w" path="res://Scenes/Player/UI/InventoryGrid.gd" id="3_57rva"]
+[ext_resource type="Texture2D" uid="uid://di1m242t7du74" path="res://icon.svg" id="3_j8jni"]
+[ext_resource type="PackedScene" uid="uid://b4tcy8y7nif7v" path="res://Scenes/UI/GridTile.tscn" id="3_o6588"]
+
+[node name="InventoryManager" type="Node" node_paths=PackedStringArray("inventoryScreen")]
+script = ExtResource("1_j8jni")
+inventoryScreen = NodePath("CanvasLayer")
+metadata/_custom_type_script = "uid://d3j7lwx5wyqym"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerInventory" type="Panel" parent="CanvasLayer" node_paths=PackedStringArray("inventoryGrid")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -201.75
+offset_top = -201.75
+offset_right = 201.75
+offset_bottom = 201.75
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_sdfbg")
+inventoryGrid = NodePath("MarginContainer/GridContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PlayerInventory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = -25.0
+offset_right = 133.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PlayerInventory/MarginContainer"]
+layout_mode = 2
+columns = 7
+script = ExtResource("3_57rva")
+tileScene = ExtResource("3_o6588")
+
+[node name="GridTile" parent="CanvasLayer" node_paths=PackedStringArray("inventoryManager") instance=ExtResource("3_o6588")]
+texture = ExtResource("3_j8jni")
+inventoryManager = NodePath("../PlayerInventory/MarginContainer/GridContainer")

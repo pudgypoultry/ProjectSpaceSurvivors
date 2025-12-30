@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://4tgy7edoskwo" path="res://Scenes/Weapons/laser.tscn" id="2_abx53"]
 [ext_resource type="PackedScene" uid="uid://bmp5u8ynpjlru" path="res://Experimental/grapple_test.tscn" id="2_p1tv5"]
 [ext_resource type="AudioStream" uid="uid://l405xqglb7et" path="res://Audio/autocannon.mp3" id="3_y00gc"]
-[ext_resource type="PackedScene" uid="uid://dm7tuo6dhvvdi" path="res://Scenes/Player/InventoryManager.tscn" id="6_ajr7s"]
+[ext_resource type="PackedScene" uid="uid://dm7tuo6dhvvdi" path="res://Scenes/Player/UI/InventoryManager.tscn" id="6_ajr7s"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2rbph"]
 

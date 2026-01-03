@@ -32,6 +32,7 @@ func Refresh():
 	# Tractor Beam
 	aggregation["pickupRange"] = 1.0
 
+
 func StartGame(playerObject):
 	playerShip = playerObject
 	Refresh()

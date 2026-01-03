@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4tcy8y7nif7v"]
+[gd_scene load_steps=3 format=3 uid="uid://b4tcy8y7nif7v"]
 
-[ext_resource type="Script" uid="uid://b6j1bsvb2y0yj" path="res://Scenes/Player/UI/DragAndDropUIElement.gd" id="1_85yq5"]
+[ext_resource type="Script" uid="uid://b6j1bsvb2y0yj" path="res://Scenes/Player/UI/GridTileDragAndDrop.gd" id="1_85yq5"]
+[ext_resource type="Texture2D" uid="uid://c8x41owbuxcka" path="res://BlenderFiles/PlanetTest/YarnBall1_normal.png" id="2_dhoks"]
 
 [node name="GridTile" type="TextureRect"]
 custom_minimum_size = Vector2(50, 50)
@@ -11,6 +12,8 @@ offset_bottom = 463.0
 mouse_filter = 0
 expand_mode = 1
 script = ExtResource("1_85yq5")
+previewColor = Color(0.3647059, 0.3647059, 0.3647059, 1)
+testTexture = ExtResource("2_dhoks")
 
 [node name="Panel" type="Panel" parent="."]
 show_behind_parent = true
@@ -19,3 +22,6 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
+
+[connection signal="mouse_entered" from="." to="." method="DebugMouseOver"]
+[connection signal="mouse_exited" from="." to="." method="DebugMouseLeave"]

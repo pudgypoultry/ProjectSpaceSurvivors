@@ -5,6 +5,7 @@ extends RigidBody3D
 
 @export_category("Plugging In Nodes")
 @export var grapplingHook : PackedScene
+@export var thrusterHolder : Node3D
 var grappling = false
 var currentGrapple : GrapplingHook
 
@@ -40,6 +41,9 @@ var currentPickupRange
 @export_category("Mouse Controls")
 @export var mouse_sensitivity : float = 0.5
 @export var mouse_smoothing : float = 15.0 
+
+@export_category("Plugging In Nodes")
+@export var weaponFolder : Node3D
 
 var mouse_x_input: float = 0.0
 var mouse_y_input: float = 0.0
@@ -124,6 +128,7 @@ func _process(delta: float) -> void:
 		throttle = lerp(throttle, 0.0, delta)
 	
 	throttle = clampf(throttle, -throttle_max, throttle_max)
+	thrusterHolder.thrust = throttle
 	#var acceleration: Vector3 = facing_direction * throttle
 	#velocity += acceleration * delta
 	#velocity = velocity.limit_length(max_speed)

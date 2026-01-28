@@ -3,9 +3,10 @@ extends Node
 class_name BackpackItemUI
 
 @export var equipmentScene : PackedScene
+@export var equipmentID : int
 @export var adjacencies : Array[Vector2] = [Vector2(0,0)]
 @export var imageSections : Array[Texture2D] = []
-
+@export var isWeapon : bool = true
 var lastOwner : InventoryGrid
 var lastPosition : int
 var originPoint : int
@@ -70,3 +71,8 @@ func FindAdjacentItems(nodes : Array[GridTile]):
 			if node.right.currentItem != null and node.right.currentItem != self:
 				returnList[node.right.currentItem] = 1
 	return returnList.keys()
+
+
+# Each backpack item should overwrite this function in order to tell the player ship how to unpack this
+func UnpackItem(player : PlayerController, weaponManager : WeaponManager):
+	print("Hey I'm here")

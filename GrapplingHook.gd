@@ -5,7 +5,7 @@ var playerReference : PlayerController
 var moveDirection : Vector3
 #@export var path : Path3D
 #@export var csgPolygon : CSGPolygon3D
-@export var grappleJoint : Generic6DOFJoint3D
+#@export var grappleJoint : Generic6DOFJoint3D
 @export var initialForce : float = 10.0
 @export var lineRadius = 0.1
 @export var lineResolution = 180

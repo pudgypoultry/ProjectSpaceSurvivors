@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://sm05wkopl0fq"]
+
+[ext_resource type="Shader" uid="uid://bhe0isfcvehgo" path="res://Assets/Shaders/CandleFlame.gdshader" id="1_bmufm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bmufm"]
+render_priority = 0
+shader = ExtResource("1_bmufm")
+shader_parameter/flameTaperFactor = 0.9
+shader_parameter/flameTipAmplitudeX = 0.01
+shader_parameter/flameTipAmplitudeZ = 0.01
+shader_parameter/flameTipFrequencyX = 1.0
+shader_parameter/flameTipFrequencyZ = 1.0
+shader_parameter/topColor = Color(1, 0, 0, 1)
+shader_parameter/bottomColor = Color(1, 1, 0, 1)
+shader_parameter/fresnelColor = Color(0, 0, 1, 1)
+shader_parameter/fresnelAmount = 5.0
+shader_parameter/fresnelIntensity = 2.0
+shader_parameter/baseAlpha = 0.0
+shader_parameter/colorFadeHeight = 0.4
+shader_parameter/darkZoneRadius = 0.8
+shader_parameter/flickerSpeed = 9.4170004473075
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hc5ef"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8ydac"]
+material = SubResource("StandardMaterial3D_hc5ef")
+
+[node name="Thrusters" type="MeshInstance3D"]
+material_override = SubResource("ShaderMaterial_bmufm")
+mesh = SubResource("SphereMesh_8ydac")

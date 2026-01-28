@@ -37,9 +37,9 @@ func Fire():
 		new_missile2.movement_speed = currentProjectileSpeed
 		await get_tree().create_timer(currentCooldown).timeout
 
-func OnLevelUp(currentLevel : int):
-	print("leveling " + name + " up to level: " + str(currentLevel + 1))
-	match currentLevel + 1:
+func LevelUp():
+	#print("leveling " + name + " up to level: " + str(currentLevel + 1))
+	match level:
 		2:
 			level += 1
 			doubleFire = true

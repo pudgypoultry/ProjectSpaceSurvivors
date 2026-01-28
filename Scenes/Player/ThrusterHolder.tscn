@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://6mjnnvqdlubt"]
+
+[ext_resource type="Script" uid="uid://b1vvecjjxuolc" path="res://Scenes/Player/thruster_holder.gd" id="1_ytawe"]
+[ext_resource type="PackedScene" uid="uid://sm05wkopl0fq" path="res://Scenes/Player/Thrusters.tscn" id="2_885e5"]
+
+[node name="ThrusterHolder" type="Node3D"]
+script = ExtResource("1_ytawe")
+
+[node name="Thrusters" parent="." instance=ExtResource("2_885e5")]
+transform = Transform3D(0.235, 0, 0, 0, -1.0272176e-08, -0.235, 0, 0.235, -1.0272176e-08, 0, 5.540786e-09, 0.16406155)
+skeleton = NodePath("../..")

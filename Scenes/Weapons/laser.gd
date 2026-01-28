@@ -10,7 +10,7 @@ var damage = 10
 func _ready() -> void:
 	laser_mesh.hide()
 
-func _process(delta):
+func _process(_delta):
 	if raycast:
 		fire_laser()
 	# await get_tree.createtimer(seconds).timeout

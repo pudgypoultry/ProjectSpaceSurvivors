@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5eyedh1f3e8e"]
+
+[ext_resource type="PackedScene" uid="uid://bjvwqpxb107mt" path="res://Assets/ShipParts/Thrusters/FuelCanisterModifiable.tscn" id="1_211eo"]
+[ext_resource type="PackedScene" uid="uid://dgplvxp1ldgaf" path="res://Assets/ShipParts/Thrusters/ThrusterModifiable.tscn" id="2_pyxu3"]
+[ext_resource type="PackedScene" uid="uid://6mjnnvqdlubt" path="res://Scenes/Player/ThrusterHolder.tscn" id="3_pyxu3"]
+
+[node name="SolidFuelRocket" type="Node3D"]
+
+[node name="FuelCanister" parent="." instance=ExtResource("1_211eo")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -2.154986, 0, 0)
+
+[node name="Thruster2" parent="." instance=ExtResource("2_pyxu3")]
+transform = Transform3D(-2.3822707e-08, -0.545, 0, 0.545, -2.3822707e-08, 0, 0, 0, 0.545, 2.8998752, 0, 0)
+
+[node name="ThrusterHolder" parent="." instance=ExtResource("3_pyxu3")]
+transform = Transform3D(-2.7341474e-07, 0, 6.255, 0, 6.255, 0, -6.255, 0, -2.7341474e-07, 4.330646, 0, 0)

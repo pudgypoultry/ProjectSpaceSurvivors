@@ -4,8 +4,8 @@ extends Control
 
 func _input(event):
 	if event.is_action_pressed("pause"):
-		toggle_pause_menu()
-		
+		#toggle_pause_menu()
+		pass
 
 func toggle_pause_menu():
 	var new_state= not get_tree().paused

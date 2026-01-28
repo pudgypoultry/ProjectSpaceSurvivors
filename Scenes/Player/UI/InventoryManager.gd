@@ -7,50 +7,35 @@ extends Node
 @export var gridColsMax : int = 5
 
 @export_category("Plugging in Nodes")
+@export var playerShip : PlayerController
 @export var inventoryScreen : CanvasLayer
 @export var playerInventoryGrid : InventoryGrid
 
 var grid : Array[Array] = []
 var currentEquipments = []
+var menuOpen = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for i in range(gridRowsMax):
-		var currentRow = []
-		for j in range(gridColsMax):
-			currentRow.append(InventoryTile.new())
-		grid.append(currentRow)
-	
-	print(grid)
+	playerShip = EnemyManager.player_ship
 
 
-func EquipItem(listOfPositions, itemID, itemNode):
-	var valid = ValidatePosition(listOfPositions)
-	if !valid:
-		return false
-	for pos in listOfPositions:
-		grid[pos[0]][pos[1]].currentItemID = itemID
-		grid[pos[0]][pos[1]].currentItemNode = itemNode
-	AggregateEquipment()
-
-
-func ValidatePosition(listOfPositions):
-	for pos in listOfPositions:
-		var currentPos = grid[pos[0]][pos[1]]
-		if currentPos.isOccupied or !currentPos.isValid:
-			return false
-	return true
-
-
-func AggregateEquipment():
-	var aggregation = {}
-	for row in grid:
-		for tile in row:
-			if tile.isOccupied:
-				aggregation[tile.itemNode] = tile.itemNode.name
-	currentEquipments = aggregation.keys()
-	return currentEquipments
+func _input(event):
+	if event.is_action_pressed("pause"):
+		#print("toilet humor")
+		var new_state = not get_tree().paused
+		get_tree().paused = new_state
+		if !menuOpen:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			ShowInventory()
+			menuOpen = true
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			get_tree().paused = false
+			menuOpen = false
+			HideInventory()
+			UpdateShip()
 
 
 func ShowInventory():
@@ -62,5 +47,29 @@ func HideInventory():
 
 
 func UpdateShip():
-	var equipmentAggregation = playerInventoryGrid.AggregateEquipment()
-	var equipmentAdjacencies = playerInventoryGrid.AggregateAdjacencies()
+	# Wipe all weapons of player
+	for n in playerShip.weaponFolder.get_children():
+		playerShip.weaponFolder.remove_child(n)
+		n.queue_free()
+	print("Weapon Folder Contents:	", str(playerShip.weaponFolder.get_children()))
+	currentEquipments = []
+	var equipmentAggregation = playerInventoryGrid.gridItems
+	# Spawn all new weapons
+	for equipment : BackpackItemUI in equipmentAggregation:
+		if equipment.equipmentScene != null:
+			var currentScene : PlayerEquipment = equipment.equipmentScene.instantiate()
+			# If the weapon is already on the player, level it up by unpacking the packed scene
+			if currentScene.equipmentName in currentEquipments:
+				# Find the weapon in the weapon folder, then level it up
+				for item : PlayerEquipment in playerShip.weaponFolder.get_children():
+					if item.equipmentName == currentScene.equipmentName:
+						item.LevelUp()
+						print("		LEVELING UP:	", currentScene.name)
+						break
+				currentScene.queue_free()
+			# Else, instantiate the weapon
+			else:
+				print("	INSTANTIATING WEAPON:	", currentScene.name)
+				playerShip.weaponFolder.add_child(currentScene)
+				currentEquipments.append(currentScene.equipmentName)
+	print("Current Equipments:	", str(playerShip.weaponFolder.get_children()))

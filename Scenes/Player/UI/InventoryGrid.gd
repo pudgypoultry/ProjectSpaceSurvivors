@@ -16,6 +16,7 @@ var currentTile = null
 var failedDragItem : BackpackItemUI = null
 var failedDragPosition : int = 0
 var gridTiles : Array[GridTile] = []
+var gridItems : Array[BackpackItemUI] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -80,6 +81,8 @@ func PlaceItem(item : BackpackItemUI, placePosition : int):
 		var currentPosition = int(placePosition + item.adjacencies[i].x + columns * item.adjacencies[i].y)
 		gridTiles[currentPosition].texture = item.imageSections[i]
 		gridTiles[currentPosition].currentItem = item
+	gridItems.append(item)
+	print(gridItems)
 
 
 func PickUpItem(item : BackpackItemUI):
@@ -89,6 +92,7 @@ func PickUpItem(item : BackpackItemUI):
 		print("	Attempting to pick up from: " + str(currentPosition))
 		gridTiles[currentPosition].texture = null
 		gridTiles[currentPosition].currentItem = null
+	gridItems.erase(item)
 	return item
 
 
@@ -102,8 +106,13 @@ func AggregateEquipment():
 	var aggregation = {}
 	for tile in gridTiles:
 		if tile.currentItem != null:
+			print("===")
+			print(tile.currentItem)
+			print("===")
 			if tile.currentItem not in aggregation.keys():
 				aggregation[tile.currentItem] = 1
+			else:
+				aggregation[tile.currentItem] += 1
 	return aggregation
 
 

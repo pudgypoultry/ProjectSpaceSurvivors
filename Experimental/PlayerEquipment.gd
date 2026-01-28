@@ -17,11 +17,11 @@ class_name PlayerEquipment
 var playerReference : PlayerController
 
 func _ready():
-	playerReference = get_parent()
+	playerReference = EnemyManager.player_ship
 
-func OnLevelUp(currentLevel : int):
+func LevelUp():
 	# print("OnLevelUp for " + name + " is not implemented yet")
-	match currentLevel:
+	match level:
 		_:
 			print("OnLevelUp for " + name + " is not implemented yet")
 

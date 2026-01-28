@@ -114,25 +114,6 @@ transform = Transform3D(0.63913, -0.434526, 0.634586, 0, 0.825104, 0.564981, -0.
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
-baseHealth = 100.0
-baseArmor = 0.0
-baseSpeed = 1.0
-baseInertia = 1.0
-baseExperience = 1.0
-baseRepair = 1.0
-basePickupRange = 1.0
-throttle = 1.0
-throttle_change_rate = 1.0
-throttle_min = 0.0
-throttle_max = 1.0
-max_speed = 5.0
-player_health = 100.0
-nose_rotation_speed = 1.0
-roll_rotation_speed = 1.0
-modify_fire_rate = 1.0
-modify_damage = 1.0
-mouse_sensitivity = 0.5
-mouse_smoothing = 15.0
 
 [node name="MeshInstance3D" parent="." instance=ExtResource("8_s5h6m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.23159, 1.49884, 2.34583)

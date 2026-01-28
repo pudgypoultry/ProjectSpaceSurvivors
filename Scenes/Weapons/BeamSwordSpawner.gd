@@ -12,14 +12,14 @@ func _ready():
 	super._ready()
 
 
-func _process(delta : float):
+func _process(_delta : float):
 	pass
 
 
-func OnLevelUp(currentLevel : int):
-	print("leveling " + name + " up to level: " + str(currentLevel + 1))
+func LevelUp():
+	print("leveling " + name + " up to level: " + str(level + 1))
 	
-	match currentLevel + 1:
+	match level + 1:
 		2:
 			level += 1
 			var secondSword : Node3D = projectileObject.instantiate()
@@ -28,6 +28,7 @@ func OnLevelUp(currentLevel : int):
 			add_child(secondSword)
 			swords.append(secondSword)
 			secondSword.global_basis *= tiltBasis
+			print("Made 2nd sword")
 		3:
 			level += 1
 			var thirdSword = projectileObject.instantiate()

@@ -1,22 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://bd2dhg5c7cps"]
+[gd_scene load_steps=9 format=3 uid="uid://bd2dhg5c7cps"]
 
 [ext_resource type="Script" uid="uid://dmdnn5el83uhh" path="res://Scenes/Player/PlayerController.gd" id="1_abx53"]
 [ext_resource type="PackedScene" uid="uid://bv2oii3anjsyg" path="res://Assets/player_ship.tscn" id="2_3mwrl"]
-[ext_resource type="PackedScene" uid="uid://4tgy7edoskwo" path="res://Scenes/Weapons/laser.tscn" id="2_abx53"]
 [ext_resource type="PackedScene" uid="uid://bmp5u8ynpjlru" path="res://Experimental/grapple_test.tscn" id="2_p1tv5"]
 [ext_resource type="AudioStream" uid="uid://l405xqglb7et" path="res://Audio/autocannon.mp3" id="3_y00gc"]
 [ext_resource type="PackedScene" uid="uid://dm7tuo6dhvvdi" path="res://Scenes/Player/UI/InventoryManager.tscn" id="6_ajr7s"]
+[ext_resource type="Script" uid="uid://cqe2ghg6tlex7" path="res://Scenes/Player/PlayerWeaponManager.gd" id="6_xjd5n"]
+[ext_resource type="PackedScene" uid="uid://6mjnnvqdlubt" path="res://Scenes/Player/ThrusterHolder.tscn" id="7_xjd5n"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2rbph"]
 
-[node name="PlayerShip" type="RigidBody3D"]
+[node name="PlayerShip" type="RigidBody3D" node_paths=PackedStringArray("thrusterHolder", "weaponFolder")]
 gravity_scale = 0.0
 script = ExtResource("1_abx53")
 grapplingHook = ExtResource("2_p1tv5")
-
-[node name="Lasers" type="Node3D" parent="."]
-
-[node name="laser" parent="Lasers" instance=ExtResource("2_abx53")]
+thrusterHolder = NodePath("ThrusterHolder")
+weaponFolder = NodePath("WeaponManager")
 
 [node name="PlayerShipModel" parent="." instance=ExtResource("2_3mwrl")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -33,5 +32,11 @@ volume_db = -15.928
 shape = SubResource("SphereShape3D_2rbph")
 
 [node name="InventoryManager" parent="." instance=ExtResource("6_ajr7s")]
+
+[node name="WeaponManager" type="Node3D" parent="."]
+script = ExtResource("6_xjd5n")
+
+[node name="ThrusterHolder" parent="." instance=ExtResource("7_xjd5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.09064123)
 
 [connection signal="body_entered" from="." to="." method="_on_body_3d_body_entered"]

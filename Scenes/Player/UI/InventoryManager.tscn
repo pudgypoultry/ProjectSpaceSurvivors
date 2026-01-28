@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dm7tuo6dhvvdi"]
+[gd_scene load_steps=11 format=3 uid="uid://dm7tuo6dhvvdi"]
 
 [ext_resource type="Script" uid="uid://d3j7lwx5wyqym" path="res://Scenes/Player/UI/InventoryManager.gd" id="1_j8jni"]
 [ext_resource type="Script" uid="uid://b5sftetq2xjiv" path="res://Scenes/Player/UI/ShipInventoryController.gd" id="2_sdfbg"]
@@ -8,14 +8,18 @@
 [ext_resource type="Texture2D" uid="uid://c8t8woglkl4bk" path="res://transparent.png" id="5_f43ms"]
 [ext_resource type="Script" uid="uid://bpdhpycepgngc" path="res://Scenes/Player/UI/BackpackItem.gd" id="6_57rva"]
 [ext_resource type="Texture2D" uid="uid://3rkintn40tu0" path="res://red.png" id="6_hoc2i"]
+[ext_resource type="PackedScene" uid="uid://7qpm7dadjybc" path="res://Scenes/Weapons/MissileSilo/MissileSilo.tscn" id="7_xst3f"]
+[ext_resource type="PackedScene" uid="uid://dwxwon8nkqf8k" path="res://Scenes/Weapons/BeamSwordSpawner.tscn" id="9_g8dil"]
 
 [node name="InventoryManager" type="Node" node_paths=PackedStringArray("inventoryScreen", "playerInventoryGrid")]
+process_mode = 3
 script = ExtResource("1_j8jni")
 inventoryScreen = NodePath("CanvasLayer")
-playerInventoryGrid = NodePath("CanvasLayer/PlayerInventory/ShipInventory/GridContainer")
+playerInventoryGrid = NodePath("CanvasLayer/PlayerInventory/ShipInventory/MainGrid")
 metadata/_custom_type_script = "uid://d3j7lwx5wyqym"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="PlayerInventory" type="Panel" parent="CanvasLayer" node_paths=PackedStringArray("shipInventory")]
 anchors_preset = 8
@@ -31,7 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_sdfbg")
-shipInventory = NodePath("ShipInventory/GridContainer")
+shipInventory = NodePath("ShipInventory/MainGrid")
 
 [node name="ShipInventory" type="MarginContainer" parent="CanvasLayer/PlayerInventory"]
 layout_mode = 1
@@ -48,7 +52,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PlayerInventory/ShipInventory"]
+[node name="MainGrid" type="GridContainer" parent="CanvasLayer/PlayerInventory/ShipInventory"]
 layout_mode = 2
 mouse_filter = 2
 columns = 7
@@ -108,12 +112,81 @@ itemStartPosition = 5
 startingItem = NodePath("../../../BackpackItem2")
 hasStartingItem = true
 
+[node name="SideInventory3" type="MarginContainer" parent="CanvasLayer/PlayerInventory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 271.0
+offset_top = -227.0
+offset_right = 537.0
+offset_bottom = -177.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PlayerInventory/SideInventory3" node_paths=PackedStringArray("startingItem")]
+layout_mode = 2
+mouse_filter = 2
+columns = 4
+script = ExtResource("3_57rva")
+rows = 4
+tileScene = ExtResource("3_o6588")
+itemStartPosition = 5
+startingItem = NodePath("../../../BackpackItem3")
+hasStartingItem = true
+
+[node name="SideInventory4" type="MarginContainer" parent="CanvasLayer/PlayerInventory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 272.0
+offset_top = 64.0
+offset_right = 538.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PlayerInventory/SideInventory4" node_paths=PackedStringArray("startingItem")]
+layout_mode = 2
+mouse_filter = 2
+columns = 4
+script = ExtResource("3_57rva")
+rows = 4
+tileScene = ExtResource("3_o6588")
+itemStartPosition = 5
+startingItem = NodePath("../../../BackpackItem4")
+hasStartingItem = true
+
 [node name="BackpackItem" type="Node" parent="CanvasLayer"]
 script = ExtResource("6_57rva")
+equipmentScene = ExtResource("7_xst3f")
 adjacencies = Array[Vector2]([Vector2(0, 0), Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0)])
 imageSections = Array[Texture2D]([ExtResource("6_hoc2i"), ExtResource("6_hoc2i"), ExtResource("6_hoc2i"), ExtResource("6_hoc2i")])
 
 [node name="BackpackItem2" type="Node" parent="CanvasLayer"]
 script = ExtResource("6_57rva")
+equipmentScene = ExtResource("9_g8dil")
+equipmentID = 1
+adjacencies = Array[Vector2]([Vector2(0, 0), Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0), Vector2(0, -1)])
+imageSections = Array[Texture2D]([ExtResource("3_j8jni"), ExtResource("3_j8jni"), ExtResource("3_j8jni"), ExtResource("3_j8jni"), ExtResource("3_j8jni")])
+
+[node name="BackpackItem3" type="Node" parent="CanvasLayer"]
+script = ExtResource("6_57rva")
+equipmentScene = ExtResource("9_g8dil")
+equipmentID = 1
+adjacencies = Array[Vector2]([Vector2(0, 0), Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0), Vector2(0, -1)])
+imageSections = Array[Texture2D]([ExtResource("3_j8jni"), ExtResource("3_j8jni"), ExtResource("3_j8jni"), ExtResource("3_j8jni"), ExtResource("3_j8jni")])
+
+[node name="BackpackItem4" type="Node" parent="CanvasLayer"]
+script = ExtResource("6_57rva")
+equipmentScene = ExtResource("9_g8dil")
+equipmentID = 1
 adjacencies = Array[Vector2]([Vector2(0, 0), Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0), Vector2(0, -1)])
 imageSections = Array[Texture2D]([ExtResource("3_j8jni"), ExtResource("3_j8jni"), ExtResource("3_j8jni"), ExtResource("3_j8jni"), ExtResource("3_j8jni")])

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bmp5u8ynpjlru"]
 
-[ext_resource type="Script" uid="uid://dfky6hyd4w66t" path="res://GrapplingHook.gd" id="1_wi87h"]
+[ext_resource type="Script" uid="uid://dfky6hyd4w66t" path="res://Experimental/GrapplingHook.gd" id="1_wi87h"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i0baw"]
 radius = 0.25

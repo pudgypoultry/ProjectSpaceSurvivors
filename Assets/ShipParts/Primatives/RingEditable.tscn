@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://stqy4xlff0a1"]
+
+[ext_resource type="PackedScene" uid="uid://c0737mp72k3mr" path="res://BlenderFiles/SpaceshipStuff/Primitives/Ring.glb" id="1_yj48r"]
+
+[node name="Ring" instance=ExtResource("1_yj48r")]

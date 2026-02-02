@@ -71,8 +71,3 @@ func FindAdjacentItems(nodes : Array[GridTile]):
 			if node.right.currentItem != null and node.right.currentItem != self:
 				returnList[node.right.currentItem] = 1
 	return returnList.keys()
-
-
-# Each backpack item should overwrite this function in order to tell the player ship how to unpack this
-func UnpackItem(player : PlayerController, weaponManager : WeaponManager):
-	print("Hey I'm here")

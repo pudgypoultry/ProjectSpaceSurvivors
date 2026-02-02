@@ -44,6 +44,7 @@ var currentPickupRange
 
 @export_category("Plugging In Nodes")
 @export var weaponFolder : Node3D
+@export var passiveFolder : Node3D
 
 var mouse_x_input: float = 0.0
 var mouse_y_input: float = 0.0
@@ -58,8 +59,8 @@ var canAct : bool = true
 var velocity: Vector3 = Vector3.ZERO # Replaces movement_direction
 var original_velocity
 
-var equipped_weapons = [PlayerEquipment]
-var equipped_passives = [PlayerEquipment]
+var equipped_weapons : Array[EquipmentWeapon] = []
+var equipped_passives : Array[EquipmentPassive] = []
 
 
 func _ready():
@@ -77,7 +78,7 @@ func _process(delta: float) -> void:
 	#print(EnemyManager.enemies_in_play)
 	
 	var up_down = Input.get_axis("throttle_down", "throttle_up")
-	
+	var left_right = Input.get_axis("roll_right", "roll_left")
 	
 	#if abs(smoothed_pitch_input) > 0.001:
 		#rotate_object_local(Vector3.RIGHT, smoothed_pitch_input * nose_rotation_speed * delta)
@@ -127,6 +128,9 @@ func _process(delta: float) -> void:
 	else:
 		throttle = lerp(throttle, 0.0, delta)
 	
+	if left_right != 0:
+		basis = basis.rotated(basis.z, left_right * 0.05)
+	
 	throttle = clampf(throttle, -throttle_max, throttle_max)
 	thrusterHolder.thrust = throttle
 	#var acceleration: Vector3 = facing_direction * throttle
@@ -148,7 +152,7 @@ func _physics_process(delta: float) -> void:
 		rotate_object_local(Vector3.RIGHT, smoothed_pitch_input * nose_rotation_speed * delta)
 	
 	if abs(smoothed_roll_input) > 0.001:
-		rotate_object_local(Vector3.FORWARD, -smoothed_roll_input * roll_rotation_speed * delta)
+		rotate_object_local(Vector3.DOWN, -smoothed_roll_input * roll_rotation_speed * delta)
 	
 	mouse_x_input = 0.0
 	mouse_y_input = 0.0
@@ -163,27 +167,54 @@ func _unhandled_input(event: InputEvent) -> void:
 		mouse_y_input = -mouse_motion_event.relative.y * mouse_sensitivity
 		mouse_x_input = -mouse_motion_event.relative.x * mouse_sensitivity
 
+
 func EquipWeapon(newWeapon : Node3D):
 	print(newWeapon)
 	equipped_weapons.append(newWeapon)
 	newWeapon.position = Vector3.ZERO
 	newWeapon.rotation = rotation
-	add_child(newWeapon)
+	weaponFolder.add_child(newWeapon)
+
+
+func RemoveWeapon(weaponToRemove : Node3D):
+	if weaponToRemove in equipped_weapons:
+		print("Removing Weapon:	", str(weaponToRemove))
+		equipped_weapons.erase(weaponToRemove)
+		weaponToRemove.queue_free()
+	else:
+		print("Hey dingus the weapon's not here")
+
+
+func RemovePassive(passiveToRemove : Node3D):
+	if passiveToRemove in equipped_passives:
+		print("Removing Passive:	", str(passiveToRemove))
+		equipped_passives.erase(passiveToRemove)
+		passiveToRemove.queue_free()
+	else:
+		print("Hey dingus the passive's not here")
+
 
 func EquipPassive(newPassive : Node3D):
 	print(newPassive)
 	equipped_passives.append(newPassive)
-	add_child(newPassive)
+	newPassive.position = Vector3.ZERO
+	newPassive.rotation = rotation
+	equipped_passives.append(newPassive)
+	passiveFolder.add_child(newPassive)
+
 
 func ReaggregateStats():
-	for weapon in equipped_weapons:
+	print("EQUIPPED WEAPONS:	" + str(equipped_weapons))
+	if len(equipped_weapons) > 0:
+		print(equipped_weapons[0].currentDamage)
+	for weapon : EquipmentWeapon in equipped_weapons:
 		weapon.currentDamage *= StatManager.aggregation["damage"]
 		weapon.currentDuration *= StatManager.aggregation["duration"]
 		weapon.currentCooldown *= StatManager.aggregation["cooldown"]
 		weapon.currentArea *= StatManager.aggregation["area"]
 		weapon.currentProjectileSpeed *= StatManager.aggregation["projectileSpeed"]
 		weapon.currentProjectileAmount *= StatManager.aggregation["projectileAmount"]
-
+		print(weapon.name + "'s current damage is:	" + str(weapon.currentDamage))
 	for passive in equipped_passives:
 		pass
 

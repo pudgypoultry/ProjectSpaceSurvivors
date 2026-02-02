@@ -22,6 +22,7 @@ Globalpointscript="*res://Assets/Scripts/globalpointscript.gd"
 Globallevelscript="*res://Assets/Scripts/globallevelscript.gd"
 Globalhealthscript="*res://Assets/Scripts/globalhealthscript.gd"
 StatManager="*res://Experimental/StatManager.gd"
+TweenTools="*res://Assets/Scripts/TweenTools.gd"
 
 [editor]
 

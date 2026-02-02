@@ -50,7 +50,6 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_apbp2")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_v2453"]
-offset = Vector3(336.28, 0, 0)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1b2ux"]
 noise = SubResource("FastNoiseLite_v2453")
@@ -78,46 +77,47 @@ material = SubResource("ShaderMaterial_6n87t")
 [node name="BiblicallyAccurateAsshole" type="Node3D"]
 
 [node name="Throne" type="Node3D" parent="."]
+transform = Transform3D(3.15, 0, 0, 0, 3.15, 0, 0, 0, 3.15, 0, 0, 0)
 script = ExtResource("2_5gq7t")
 rotationSpeed = 0.0
 
 [node name="Ring" parent="Throne" instance=ExtResource("1_nlt7r")]
-transform = Transform3D(-0.47778705, -0.3094587, -0.822165, -0.86890894, 0.3042202, 0.3904447, 0.1292928, 0.90093595, -0.41424385, 0, 0, 0)
+transform = Transform3D(0.761349, 0.253153, -0.5968758, -0.08828227, 0.9525236, 0.29138446, 0.64230233, -0.16915181, 0.7475518, 0, 0, 0)
 script = ExtResource("2_5gq7t")
 
 [node name="Cylinder" parent="Throne/Ring" index="0"]
 mesh = SubResource("ArrayMesh_asco6")
 
 [node name="Ring2" parent="Throne" instance=ExtResource("1_nlt7r")]
-transform = Transform3D(-0.49999994, -0.8660254, 0, 0.75, -0.43301263, 0.5, -0.4330127, 0.24999997, 0.8660254, 0, 0, 0)
+transform = Transform3D(0.43986702, -0.6779339, -0.5889997, 0.8633699, 0.13869008, 0.48513687, -0.24720211, -0.7219215, 0.64631236, 0, 0, 0)
 script = ExtResource("2_5gq7t")
 
 [node name="Cylinder" parent="Throne/Ring2" index="0"]
 mesh = SubResource("ArrayMesh_asco6")
 
 [node name="Ring3" parent="Throne" instance=ExtResource("1_nlt7r")]
-transform = Transform3D(-0.8512708, -0.5085186, 0.1294095, 0.47444442, -0.8512708, -0.22414385, 0.22414386, -0.1294095, 0.9659258, 0, 0, 0)
+transform = Transform3D(-0.3789641, -0.9224464, 0.07403254, 0.2645622, -0.03133235, 0.96385896, -0.886788, 0.38485315, 0.25591767, 0, 0, 0)
 script = ExtResource("2_5gq7t")
 
 [node name="Cylinder" parent="Throne/Ring3" index="0"]
 mesh = SubResource("ArrayMesh_asco6")
 
 [node name="Ring4" parent="Throne" instance=ExtResource("1_nlt7r")]
-transform = Transform3D(-0.75, -0.24999997, -0.61237246, -0.24999997, -0.7499999, 0.6123724, -0.61237246, 0.61237246, 0.5, 0, 0, 0)
+transform = Transform3D(0.049471457, -0.96836424, 0.24458759, -0.49404898, 0.1891034, 0.8486193, -0.8680239, -0.16282016, -0.46906614, 0, 0, 0)
 script = ExtResource("2_5gq7t")
 
 [node name="Cylinder" parent="Throne/Ring4" index="0"]
 mesh = SubResource("ArrayMesh_asco6")
 
 [node name="Ring5" parent="Throne" instance=ExtResource("1_nlt7r")]
-transform = Transform3D(-0.0883885, 0.4592793, -0.8838835, -0.9722718, 0.15309308, 0.17677668, 0.21650629, 0.87499994, 0.43301263, 0, 0, 0)
+transform = Transform3D(0.9382464, -0.21824595, -0.26844144, 0.094990134, 0.9086084, -0.4067044, 0.33266908, 0.35609058, 0.8732302, 0, 0, 0)
 script = ExtResource("2_5gq7t")
 
 [node name="Cylinder" parent="Throne/Ring5" index="0"]
 mesh = SubResource("ArrayMesh_asco6")
 
 [node name="Ring6" parent="Throne" instance=ExtResource("1_nlt7r")]
-transform = Transform3D(-0.17177276, 0.8609747, -0.47876596, -0.49919307, 0.34290418, 0.79575336, 0.8492941, 0.3756853, 0.37089097, 0, 0, 0)
+transform = Transform3D(-0.65331876, 0.6653069, 0.36130214, -0.7517132, -0.6267869, -0.2050947, 0.09001078, -0.40558863, 0.9096132, 0, 0, 0)
 script = ExtResource("2_5gq7t")
 
 [node name="Cylinder" parent="Throne/Ring6" index="0"]
@@ -131,11 +131,7 @@ transform = Transform3D(2.25, 0, 0, 0, 2.25, 0, 0, 0, 2.25, 0, 0, 0)
 mesh = SubResource("SphereMesh_85fyj")
 skeleton = NodePath("../..")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.1412987, -0.546774, 0.8252714, 0, 0.83363533, 0.5523154, -0.989967, 0.07804145, -0.117791586, -2, 0, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Throne"]
 
 [editable path="Throne/Ring"]
 [editable path="Throne/Ring2"]

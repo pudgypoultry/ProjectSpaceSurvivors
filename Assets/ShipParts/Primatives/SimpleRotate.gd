@@ -12,6 +12,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if clockwise:
-		rotate_object_local(transform.basis.y, deg_to_rad(rotationSpeed * randf())/5)
+		rotate_object_local(transform.basis.y.normalized(), deg_to_rad(rotationSpeed * randf())/5)
 	else:
-		rotate_object_local(transform.basis.y, -deg_to_rad(rotationSpeed * randf())/5)
+		rotate_object_local(transform.basis.y.normalized(), -deg_to_rad(rotationSpeed * randf())/5)

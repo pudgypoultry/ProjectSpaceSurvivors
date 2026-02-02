@@ -49,8 +49,9 @@ func HideInventory():
 func UpdateShip():
 	# Wipe all weapons of player
 	for n in playerShip.weaponFolder.get_children():
-		playerShip.weaponFolder.remove_child(n)
-		n.queue_free()
+		playerShip.RemoveWeapon(n)
+	for n in playerShip.passiveFolder.get_children():
+		playerShip.RemovePassive(n)
 	print("Weapon Folder Contents:	", str(playerShip.weaponFolder.get_children()))
 	currentEquipments = []
 	var equipmentAggregation = playerInventoryGrid.gridItems
@@ -70,6 +71,7 @@ func UpdateShip():
 			# Else, instantiate the weapon
 			else:
 				print("	INSTANTIATING WEAPON:	", currentScene.name)
-				playerShip.weaponFolder.add_child(currentScene)
+				playerShip.EquipWeapon(currentScene)
 				currentEquipments.append(currentScene.equipmentName)
+	playerShip.ReaggregateStats()
 	print("Current Equipments:	", str(playerShip.weaponFolder.get_children()))

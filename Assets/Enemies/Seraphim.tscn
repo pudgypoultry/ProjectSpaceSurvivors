@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4c4dbqb6ifn"]
+
+[ext_resource type="Script" uid="uid://c56pv3cmpmlh8" path="res://Assets/Enemies/SeraphimAnimation.gd" id="1_0nk0u"]
+[ext_resource type="PackedScene" uid="uid://q8fpge4kd064" path="res://Assets/ShipParts/Primatives/WingShapeEditable.tscn" id="1_i06yc"]
+[ext_resource type="Shader" uid="uid://bt5exunvd5dxj" path="res://Assets/Shaders/Fireball.gdshader" id="1_oogtf"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0nk0u"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c53pw"]
+noise = SubResource("FastNoiseLite_0nk0u")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qy1uq"]
+render_priority = 1
+shader = ExtResource("1_oogtf")
+shader_parameter/time_speed = 1.0
+shader_parameter/spin = 0.0
+shader_parameter/flame_brightness = 0.6
+shader_parameter/color_intensity = 0.0
+shader_parameter/horizontal_frequency = 1.0
+shader_parameter/vertical_frequency = 1.0
+shader_parameter/size = -0.3
+shader_parameter/core_size = 1.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_c53pw")
+shader_parameter/color1 = Color(0.286, 0.22, 0.733, 1)
+shader_parameter/color2 = Color(0.98, 0.38, 0.34, 1)
+shader_parameter/color3 = Color(0.98, 0.95, 0.53, 1)
+shader_parameter/color4 = Color(1, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_40dn7"]
+material = SubResource("ShaderMaterial_qy1uq")
+
+[node name="Seraphim" type="Node3D" node_paths=PackedStringArray("topRightWing", "topLeftWing", "midRightWing", "midLeftWing", "bottomRightWing", "bottomLeftWing")]
+script = ExtResource("1_0nk0u")
+topRightWing = NodePath("TopRightWing")
+topLeftWing = NodePath("TopLeftWing")
+midRightWing = NodePath("MidRightWing")
+midLeftWing = NodePath("MidLeftWing")
+bottomRightWing = NodePath("BottomRightWing")
+bottomLeftWing = NodePath("BottomLeftWing")
+openPositions = Array[Vector3]([Vector3(1.2010309, 0, 0), Vector3(1.1153702, -3.1415927, 8.74228e-08), Vector3(0.2503152, 0, 0), Vector3(0.23790583, -3.1415927, 8.7422805e-08), Vector3(-1.0028837, 0, 0), Vector3(-0.99415684, 3.1415925, 1.2778717e-07)])
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.735, 0, 0, 0, 3.735, 0, 0, 0, 3.735, 1.1138391, 0, 0)
+mesh = SubResource("SphereMesh_40dn7")
+
+[node name="TopRightWing" parent="." instance=ExtResource("1_i06yc")]
+transform = Transform3D(1, 0, 0, 0, -0.6690917, -0.74317986, 0, 0.74317986, -0.6690917, 0, 0, -2.92)
+
+[node name="TopLeftWing" parent="." instance=ExtResource("1_i06yc")]
+transform = Transform3D(-1, 8.742278e-08, -7.20256e-15, -5.978827e-08, -0.683898, -0.7295774, -6.378171e-08, -0.7295774, 0.683898, 0, 0, 2.9202986)
+
+[node name="MidRightWing" parent="." instance=ExtResource("1_i06yc")]
+transform = Transform3D(1, 0, 0, 0, -0.9725653, 0.23263088, 0, -0.23263088, -0.9725653, 0, 0, -2.92)
+
+[node name="MidLeftWing" parent="." instance=ExtResource("1_i06yc")]
+transform = Transform3D(-1, 8.7422784e-08, -9.420093e-15, -8.527962e-08, -0.9754846, 0.22006765, 1.9238916e-08, 0.22006765, 0.9754846, 0, 0, 2.9202986)
+
+[node name="BottomRightWing" parent="." instance=ExtResource("1_i06yc")]
+transform = Transform3D(1, 0, 0, 0, 0.03451574, 0.9994041, 0, -0.9994041, 0.03451574, 0, 0, -2.92)
+
+[node name="BottomLeftWing" parent="." instance=ExtResource("1_i06yc")]
+transform = Transform3D(-1, 8.225441e-08, 2.9613407e-08, 2.8319215e-08, -0.01568973, 0.9998769, 8.270891e-08, 0.9998769, 0.01568973, 0, 0, 2.9202986)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 17.867844, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.21239868, -0.9627295, 0.1674476, -0.7560375, 0.27046606, 0.59603316, -0.6191076, 0, -0.7853062, 0, 0, 13.871891)

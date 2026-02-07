@@ -3,7 +3,7 @@ extends Node3D
 # hold enemies, types, etc.
 @export var enemy_types:Array[PackedScene] = []
 var spawn_range:float = 15
-var player_ship: Node3D
+var player_ship: PlayerController
 var enemies_in_play = []
 var total_enemies = 0
 var enemygrunt2 = preload("res://Scenes/Enemies/enemy_grunt2.tscn")
@@ -50,11 +50,12 @@ func _process(delta: float) -> void:
 			spawnInterval *= 0.999
 
 func _ready():
-	if get_tree().get_current_scene().get_name() == "Sandbox":
-		player_ship = get_node("/root/Sandbox/PlayerShip")
-		get_node("/root/Sandbox/Levelup").player = player_ship
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	#if get_tree().get_current_scene().get_name() == "Sandbox":
+		#player_ship = get_node("/root/Sandbox/PlayerShip")
+		# get_node("/root/Sandbox/Levelup").player = player_ship
 	enemy_types.append(enemygrunt2)
-	ResetEnemies()
+	#ResetEnemies()
 
 func ResetEnemies():
 	for i in range(total_enemies):

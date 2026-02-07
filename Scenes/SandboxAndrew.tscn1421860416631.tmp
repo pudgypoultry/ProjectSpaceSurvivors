@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=3 uid="uid://dqpqh8ga7v2np"]
+
+[ext_resource type="Script" uid="uid://dn0888gq2ur3n" path="res://Scenes/Debugging.gd" id="1_n53gg"]
+[ext_resource type="Script" uid="uid://jgrt3ovh4uo5" path="res://Scenes/healthlabel.gd" id="2_u422x"]
+[ext_resource type="Script" uid="uid://dhrrid3tx5m7j" path="res://Scenes/scorelabel.gd" id="4_wlfm7"]
+[ext_resource type="Script" uid="uid://oikh6bkx080e" path="res://Scenes/ThrustTracker.gd" id="5_hjd1d"]
+[ext_resource type="PackedScene" uid="uid://dkel3gcb3p1k0" path="res://Scenes/Environment/stars_environment.tscn" id="24_rqcpt"]
+[ext_resource type="PackedScene" uid="uid://bd2dhg5c7cps" path="res://Scenes/Player/PlayerController.tscn" id="25_sdrvy"]
+[ext_resource type="PackedScene" uid="uid://cxsanjyei8f6f" path="res://Scenes/planet.tscn" id="26_j6am3"]
+[ext_resource type="AudioStream" uid="uid://fqvbhdyu8d3l" path="res://Audio/backgroundmusic.mp3" id="27_huq6t"]
+[ext_resource type="PackedScene" uid="uid://c1yablwjh8wrk" path="res://Scenes/UI/pausemenu.tscn" id="28_x6isv"]
+
+[node name="Sandbox" type="Node3D" node_paths=PackedStringArray("starFoxCamera")]
+script = ExtResource("1_n53gg")
+debug = true
+starFoxCamera = NodePath("StarFoxCam")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Healthlabel" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.089
+anchor_bottom = 0.176
+offset_left = 2.0
+offset_top = 4.0
+offset_right = -0.528
+offset_bottom = -61.048
+theme_override_colors/font_color = Color(0.917647, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+script = ExtResource("2_u422x")
+
+[node name="Scorelabel" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.089
+anchor_bottom = 0.176
+offset_left = 1.0
+offset_top = 45.0
+offset_right = 5.472
+offset_bottom = -20.047997
+theme_override_colors/font_color = Color(0.917647, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+script = ExtResource("4_wlfm7")
+
+[node name="ThrottleLabel" type="Label" parent="CanvasLayer" node_paths=PackedStringArray("playerReference")]
+anchors_preset = -1
+anchor_right = 0.089
+anchor_bottom = 0.176
+offset_left = 1.0
+offset_top = 87.0
+offset_right = 5.472
+offset_bottom = 21.952003
+theme_override_colors/font_color = Color(0.917647, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+script = ExtResource("5_hjd1d")
+playerReference = NodePath("../../PlayerShip")
+
+[node name="StarsEnvironment" parent="." instance=ExtResource("24_rqcpt")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.63913, -0.434526, 0.634586, 0, 0.825104, 0.564981, -0.769098, -0.361097, 0.527349, 0, 0, 0)
+
+[node name="PlayerShip" parent="." instance=ExtResource("25_sdrvy")]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+
+[node name="StarFoxMode" parent="PlayerShip/StateFolder" index="1" node_paths=PackedStringArray("shipTarget")]
+shipTarget = NodePath("../../../StarFoxCam/ShipTarget")
+
+[node name="MeshInstance3D" parent="." instance=ExtResource("26_j6am3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.23159, 1.49884, 2.34583)
+
+[node name="MeshInstance3D5" parent="." instance=ExtResource("26_j6am3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9155, 1.49884, 7.82093)
+
+[node name="MeshInstance3D2" parent="." instance=ExtResource("26_j6am3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.96178, 4.81895, 10.4911)
+
+[node name="MeshInstance3D3" parent="." instance=ExtResource("26_j6am3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.2036715, -8.20719)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("27_huq6t")
+autoplay = true
+parameters/looping = true
+
+[node name="Pausemenu" parent="." instance=ExtResource("28_x6isv")]
+visible = false
+
+[node name="StarFoxCam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.527)
+
+[node name="ShipTarget" type="Node3D" parent="StarFoxCam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.52877)
+
+[editable path="PlayerShip"]

@@ -52,9 +52,9 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	if data is BackpackItemUI:
 		inventoryGrid.ClearTextures()
 		var validPlacement = true
-		for i in range(len(data.adjacencies)):
+		for i in range(len(data.relativeSpacesOccupied)):
 			# print("Check " + str(i) + ":")
-			if data.IsValidPlacement(self, int(data.adjacencies[i].x), int(data.adjacencies[i].y)) == false:
+			if data.IsValidPlacement(self, int(data.relativeSpacesOccupied[i].x), int(data.relativeSpacesOccupied[i].y)) == false:
 				validPlacement = false
 				break
 		print(validPlacement)

@@ -167,26 +167,26 @@ hasStartingItem = true
 [node name="BackpackItem" type="Node" parent="CanvasLayer"]
 script = ExtResource("6_57rva")
 equipmentScene = ExtResource("7_xst3f")
-adjacencies = Array[Vector2]([Vector2(0, 0), Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0)])
+relativeSpacesOccupied = Array[Vector2]([Vector2(0, 0), Vector2(-1, 0), Vector2(1, 0), Vector2(0, 1)])
 imageSections = Array[Texture2D]([ExtResource("6_hoc2i"), ExtResource("6_hoc2i"), ExtResource("6_hoc2i"), ExtResource("6_hoc2i")])
 
 [node name="BackpackItem2" type="Node" parent="CanvasLayer"]
 script = ExtResource("6_57rva")
 equipmentScene = ExtResource("9_g8dil")
 equipmentID = 1
-adjacencies = Array[Vector2]([Vector2(0, 0), Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0), Vector2(0, -1)])
+relativeSpacesOccupied = Array[Vector2]([Vector2(0, 0), Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1)])
 imageSections = Array[Texture2D]([ExtResource("3_j8jni"), ExtResource("3_j8jni"), ExtResource("3_j8jni"), ExtResource("3_j8jni"), ExtResource("3_j8jni")])
 
 [node name="BackpackItem3" type="Node" parent="CanvasLayer"]
 script = ExtResource("6_57rva")
 equipmentScene = ExtResource("9_g8dil")
 equipmentID = 1
-adjacencies = Array[Vector2]([Vector2(0, 0), Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0), Vector2(0, -1)])
+relativeSpacesOccupied = Array[Vector2]([Vector2(0, 0), Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1)])
 imageSections = Array[Texture2D]([ExtResource("3_j8jni"), ExtResource("3_j8jni"), ExtResource("3_j8jni"), ExtResource("3_j8jni"), ExtResource("3_j8jni")])
 
 [node name="BackpackItem4" type="Node" parent="CanvasLayer"]
 script = ExtResource("6_57rva")
 equipmentScene = ExtResource("9_g8dil")
 equipmentID = 1
-adjacencies = Array[Vector2]([Vector2(0, 0), Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0), Vector2(0, -1)])
+relativeSpacesOccupied = Array[Vector2]([Vector2(0, 0), Vector2(1, 0), Vector2(-1, 0), Vector2(0, 1), Vector2(0, -1)])
 imageSections = Array[Texture2D]([ExtResource("3_j8jni"), ExtResource("3_j8jni"), ExtResource("3_j8jni"), ExtResource("3_j8jni"), ExtResource("3_j8jni")])

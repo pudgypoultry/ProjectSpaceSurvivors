@@ -35,7 +35,7 @@ func _ready() -> void:
 			tile.currentItem.lastOwner = self
 			tile.currentItem.lastPosition = tile.index
 			PlaceItem(tile.currentItem, tile.index)
-			for pos in tile.currentItem.adjacencies:
+			for pos in tile.currentItem.relativeSpacesOccupied:
 				var currentPosition = int(tile.index + pos.x + columns * pos.y)
 				gridTiles[currentPosition].prepared = true
 	
@@ -69,16 +69,16 @@ func _ready() -> void:
 
 func PreviewItem(item : BackpackItemUI, placePosition : int):
 	ClearTextures()
-	for i in range(len(item.adjacencies)):
-		var currentPosition = int(placePosition + item.adjacencies[i].x + columns * item.adjacencies[i].y)
+	for i in range(len(item.relativeSpacesOccupied)):
+		var currentPosition = int(placePosition + item.relativeSpacesOccupied[i].x + columns * item.relativeSpacesOccupied[i].y)
 		gridTiles[currentPosition].texture = previewTexture
 
 
 func PlaceItem(item : BackpackItemUI, placePosition : int):
 	ClearTextures()
 	item.originPoint = placePosition
-	for i in range(len(item.adjacencies)):
-		var currentPosition = int(placePosition + item.adjacencies[i].x + columns * item.adjacencies[i].y)
+	for i in range(len(item.relativeSpacesOccupied)):
+		var currentPosition = int(placePosition + item.relativeSpacesOccupied[i].x + columns * item.relativeSpacesOccupied[i].y)
 		gridTiles[currentPosition].texture = item.imageSections[i]
 		gridTiles[currentPosition].currentItem = item
 	gridItems.append(item)
@@ -87,7 +87,7 @@ func PlaceItem(item : BackpackItemUI, placePosition : int):
 
 func PickUpItem(item : BackpackItemUI):
 	ClearTextures()
-	for pos in item.adjacencies:
+	for pos in item.relativeSpacesOccupied:
 		var currentPosition = item.originPoint + pos.x + columns * pos.y
 		print("	Attempting to pick up from: " + str(currentPosition))
 		gridTiles[currentPosition].texture = null

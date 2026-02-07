@@ -31,7 +31,7 @@ var currentPickupRange
 @export var throttle_change_rate : float = 1.0
 @export var throttle_min : float = 0.0
 @export var throttle_max : float = 1.0
-@export var max_speed : float = 5 # This variable is now used
+@export var max_speed : float = 5
 @export var player_health : float = 100.0
 @export var nose_rotation_speed : float = 1.0
 @export var roll_rotation_speed : float = 1.0
@@ -45,6 +45,11 @@ var currentPickupRange
 @export_category("Plugging In Nodes")
 @export var weaponFolder : Node3D
 @export var passiveFolder : Node3D
+@export var currentCamera : Camera3D
+@export var starFoxCamera : Camera3D
+@export var allRangeCamera : Camera3D
+@export var stateManager : Node
+@export var currentState : Node
 
 var mouse_x_input: float = 0.0
 var mouse_y_input: float = 0.0
@@ -65,6 +70,7 @@ var equipped_passives : Array[EquipmentPassive] = []
 
 func _ready():
 	StatManager.StartGame(self)
+	EnemyManager.player_ship = self
 	currentHealth = baseHealth
 	currentArmor = baseArmor
 	currentSpeed = baseSpeed
@@ -75,90 +81,11 @@ func _ready():
 
 
 func _process(delta: float) -> void:
-	#print(EnemyManager.enemies_in_play)
-	
-	var up_down = Input.get_axis("throttle_down", "throttle_up")
-	var left_right = Input.get_axis("roll_right", "roll_left")
-	
-	#if abs(smoothed_pitch_input) > 0.001:
-		#rotate_object_local(Vector3.RIGHT, smoothed_pitch_input * nose_rotation_speed * delta)
-	#
-	#if abs(smoothed_roll_input) > 0.001:
-		#rotate_object_local(Vector3.FORWARD, -smoothed_roll_input * roll_rotation_speed * delta)
-	
-	if Input.is_action_just_pressed("grapple") && !grappling:
-		print("Grapplin...")
-		var newGrapple = grapplingHook.instantiate()
-		var spawn_offset = -transform.basis.z * 1.5
-		get_tree().root.add_child(newGrapple)
-		newGrapple.global_position = global_position + spawn_offset
-		newGrapple.global_position = global_position
-
-		newGrapple.add_collision_exception_with(self)
-		# await get_tree().create_timer(1.0).timeout
-		
-		currentGrapple = newGrapple
-		currentGrapple.Fire(-transform.basis.z)
-		grappling = true
-	
-	elif Input.is_action_just_pressed("grapple") && grappling:
-		print("Done Grapplin")
-		if is_instance_valid(currentGrapple):
-			currentGrapple.Release()
-		grappling = false
-	
-	if Input.is_action_just_pressed("brake"):
-		original_velocity = velocity
-	
-	if Input.is_action_pressed("brake"):
-		throttle = 0.0
-		velocity = lerp(original_velocity, Vector3.ZERO, (current_brake * currentInertia)/brake_timer)
-		current_brake += delta
-		if current_brake * currentInertia / brake_timer > 1.0:
-			velocity = Vector3.ZERO
-	
-	if Input.is_action_just_released("brake"):
-		current_brake = 0
-	
-	#mouse_x_input = 0.0
-	#mouse_y_input = 0.0
-	
-	if up_down != 0:
-		throttle += up_down * throttle_change_rate * delta
-	else:
-		throttle = lerp(throttle, 0.0, delta)
-	
-	if left_right != 0:
-		basis = basis.rotated(basis.z, left_right * 0.05)
-	
-	throttle = clampf(throttle, -throttle_max, throttle_max)
-	thrusterHolder.thrust = throttle
-	#var acceleration: Vector3 = facing_direction * throttle
-	#velocity += acceleration * delta
-	#velocity = velocity.limit_length(max_speed)
-	#position += velocity * delta
-	# FireWeapons(delta)
+	currentState.Process(delta)
 
 
 func _physics_process(delta: float) -> void:
-	var target_pitch_input = mouse_y_input
-	var target_roll_input = mouse_x_input
-	facing_direction = -transform.basis.z
-	
-	smoothed_pitch_input = lerp(smoothed_pitch_input, target_pitch_input, mouse_smoothing * delta)
-	smoothed_roll_input = lerp(smoothed_roll_input, target_roll_input, mouse_smoothing * delta)
-	
-	if abs(smoothed_pitch_input) > 0.001:
-		rotate_object_local(Vector3.RIGHT, smoothed_pitch_input * nose_rotation_speed * delta)
-	
-	if abs(smoothed_roll_input) > 0.001:
-		rotate_object_local(Vector3.DOWN, -smoothed_roll_input * roll_rotation_speed * delta)
-	
-	mouse_x_input = 0.0
-	mouse_y_input = 0.0
-	
-	apply_central_force(-transform.basis.z * throttle)
-	pass
+	currentState.PhysicsProcess(delta)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -166,6 +93,19 @@ func _unhandled_input(event: InputEvent) -> void:
 		var mouse_motion_event: InputEventMouseMotion = event as InputEventMouseMotion
 		mouse_y_input = -mouse_motion_event.relative.y * mouse_sensitivity
 		mouse_x_input = -mouse_motion_event.relative.x * mouse_sensitivity
+
+
+func SwapMode(mode : StateManager.State):
+	match mode:
+		StateManager.State.STARFOX:
+			currentCamera = starFoxCamera
+			currentState = stateManager.GetState(StateManager.State.STARFOX)
+			print("I AM NOW IN STARFOX MODE")
+		StateManager.State.ALLRANGE:
+			currentCamera = allRangeCamera
+			currentState = stateManager.GetState(StateManager.State.ALLRANGE)
+			print("I AM NOW IN ALLRANGE MODE")
+	currentCamera.current = true
 
 
 func EquipWeapon(newWeapon : Node3D):

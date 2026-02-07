@@ -18,7 +18,7 @@ var menuOpen = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	playerShip = EnemyManager.player_ship
+	playerShip = get_parent()
 
 
 func _input(event):

@@ -9,4 +9,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	text = "Throttle: " + str(playerReference.throttle)
+	text = "Throttle: " + str(snappedf(playerReference.throttle, 0.001))

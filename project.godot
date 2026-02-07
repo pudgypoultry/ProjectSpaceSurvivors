@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SpaceSurvivors"
-run/main_scene="uid://bow4pmvgil7xa"
+run/main_scene="uid://dqpqh8ga7v2np"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -23,6 +23,13 @@ Globallevelscript="*res://Assets/Scripts/globallevelscript.gd"
 Globalhealthscript="*res://Assets/Scripts/globalhealthscript.gd"
 StatManager="*res://Experimental/StatManager.gd"
 TweenTools="*res://Assets/Scripts/TweenTools.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1280
+window/size/window_width_override=1280
+window/size/window_height_override=853
 
 [editor]
 

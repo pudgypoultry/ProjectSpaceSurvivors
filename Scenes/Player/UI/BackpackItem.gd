@@ -4,12 +4,21 @@ class_name BackpackItemUI
 
 @export var equipmentScene : PackedScene
 @export var equipmentID : int
-@export var adjacencies : Array[Vector2] = [Vector2(0,0)]
+@export var relativeSpacesOccupied : Array[Vector2] = [Vector2(0,0)]
 @export var imageSections : Array[Texture2D] = []
 @export var isWeapon : bool = true
 var lastOwner : InventoryGrid
 var lastPosition : int
 var originPoint : int
+var tween
+var canRotate = true
+
+#func _process(delta):
+	#if Input.is_key_pressed(KEY_B) && canRotate:
+		#RotateTurnwise()
+		#canRotate = false
+	#if !Input.is_key_pressed(KEY_B) && !canRotate:
+		#canRotate = true
 
 # All adjacencies should be of the form Vector2(x, y)
 #	So all checked values will be Vector2(index + x, index + (y*columns))
@@ -71,3 +80,21 @@ func FindAdjacentItems(nodes : Array[GridTile]):
 			if node.right.currentItem != null and node.right.currentItem != self:
 				returnList[node.right.currentItem] = 1
 	return returnList.keys()
+
+
+func RotateTurnwise():
+	TweenTools.TweenRotation(self, tween, deg_to_rad(90), 0.5)
+	for pos in relativeSpacesOccupied:
+		var lastX = pos.x
+		var lastY = pos.y
+		pos.y = -lastX
+		pos.x = lastY
+
+
+func RotateWiddershins():
+	TweenTools.TweenRotation(self, tween, deg_to_rad(-90), 0.5)
+	for pos in relativeSpacesOccupied:
+		var lastX = pos.x
+		var lastY = pos.y
+		pos.y = lastX
+		pos.x = -lastY

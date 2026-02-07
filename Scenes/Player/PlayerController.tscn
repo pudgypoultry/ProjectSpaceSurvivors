@@ -1,26 +1,33 @@
-[gd_scene load_steps=8 format=3 uid="uid://bd2dhg5c7cps"]
+[gd_scene load_steps=11 format=3 uid="uid://bd2dhg5c7cps"]
 
 [ext_resource type="Script" uid="uid://dmdnn5el83uhh" path="res://Scenes/Player/PlayerController.gd" id="1_abx53"]
 [ext_resource type="PackedScene" uid="uid://bv2oii3anjsyg" path="res://Assets/player_ship.tscn" id="2_3mwrl"]
 [ext_resource type="PackedScene" uid="uid://bmp5u8ynpjlru" path="res://Experimental/grapple_test.tscn" id="2_p1tv5"]
 [ext_resource type="AudioStream" uid="uid://l405xqglb7et" path="res://Audio/autocannon.mp3" id="3_y00gc"]
 [ext_resource type="PackedScene" uid="uid://dm7tuo6dhvvdi" path="res://Scenes/Player/UI/InventoryManager.tscn" id="6_ajr7s"]
+[ext_resource type="Script" uid="uid://bigm0f27866mc" path="res://Scenes/Player/PlayerStateManager.gd" id="7_373yl"]
+[ext_resource type="Script" uid="uid://bwr7d4farxcgl" path="res://Scenes/Player/AllRangeMode.gd" id="7_bay8v"]
 [ext_resource type="PackedScene" uid="uid://6mjnnvqdlubt" path="res://Scenes/Player/ThrusterHolder.tscn" id="7_xjd5n"]
+[ext_resource type="Script" uid="uid://dkj3hhmyhuydg" path="res://Scenes/Player/StarFoxMode.gd" id="8_bay8v"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2rbph"]
 
-[node name="PlayerShip" type="RigidBody3D" node_paths=PackedStringArray("thrusterHolder", "weaponFolder", "passiveFolder")]
+[node name="PlayerShip" type="RigidBody3D" node_paths=PackedStringArray("thrusterHolder", "weaponFolder", "passiveFolder", "currentCamera", "allRangeCamera", "stateManager", "currentState")]
 gravity_scale = 0.0
 script = ExtResource("1_abx53")
 grapplingHook = ExtResource("2_p1tv5")
 thrusterHolder = NodePath("ThrusterHolder")
 weaponFolder = NodePath("WeaponFolder")
 passiveFolder = NodePath("PassiveFolder")
+currentCamera = NodePath("AllRangeCam")
+allRangeCamera = NodePath("AllRangeCam")
+stateManager = NodePath("StateFolder")
+currentState = NodePath("StateFolder/AllRangeMode")
 
 [node name="PlayerShipModel" parent="." instance=ExtResource("2_3mwrl")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="AllRangeCam" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.565927, 2.52862)
 current = true
 
@@ -39,5 +46,14 @@ shape = SubResource("SphereShape3D_2rbph")
 
 [node name="ThrusterHolder" parent="." instance=ExtResource("7_xjd5n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.09064123)
+
+[node name="StateFolder" type="Node" parent="."]
+script = ExtResource("7_373yl")
+
+[node name="AllRangeMode" type="Node" parent="StateFolder"]
+script = ExtResource("7_bay8v")
+
+[node name="StarFoxMode" type="Node" parent="StateFolder"]
+script = ExtResource("8_bay8v")
 
 [connection signal="body_entered" from="." to="." method="_on_body_3d_body_entered"]
